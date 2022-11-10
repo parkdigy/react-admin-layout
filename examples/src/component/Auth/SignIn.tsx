@@ -1,0 +1,36 @@
+import React from 'react';
+import { CardHeader, CardContent, CardActions, Button, Grid } from '@mui/material';
+import { Box, TextField } from '@mui/material';
+
+const SignIn: React.FC = () => {
+  return (
+    <>
+      <CardHeader title='Login' subheader='로그인' />
+      <CardContent sx={{ width: 400 }}>
+        <Box component='form'>
+          <Grid container spacing={2} direction='column'>
+            <Grid item>
+              <TextField type='email' label='이메일' required fullWidth />
+            </Grid>
+            <Grid item>
+              <TextField type='password' label='비밀번호' required fullWidth />
+            </Grid>
+          </Grid>
+        </Box>
+      </CardContent>
+      <CardActions disableSpacing sx={{ pt: 0 }}>
+        <Grid container>
+          <Grid item>
+            <Button variant='text'>회원가입</Button>
+          </Grid>
+          <Grid item sx={{ flex: 1, textAlign: 'right' }}>
+            <Button variant='text'>아이디 찾기</Button>
+            <Button variant='text'>비밀번호 찾기</Button>
+          </Grid>
+        </Grid>
+      </CardActions>
+    </>
+  );
+};
+
+export default SignIn;
