@@ -29,6 +29,14 @@
   "author": "YOUNG CHUL PARK",
   "license": "MIT",
   "readmeFilename": "README.md",
+  "keywords": [
+    "react",
+    "admin",
+    "template",
+    "layout",
+    "typescript",
+    "javascript"
+  ],
   "peerDependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
