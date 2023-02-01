@@ -7472,7 +7472,7 @@ var DefaultLayout = function (_a) {
         var menuTitles = {};
         if (menu) {
             menu.forEach(function (info) {
-                if (info.items) {
+                if (empty(info.uri) && info.items && info.items.length > 0) {
                     info.items.map(function (subInfo) {
                         menuTitles[subInfo.uri] = { name: subInfo.name, parentName: info.name };
                     });

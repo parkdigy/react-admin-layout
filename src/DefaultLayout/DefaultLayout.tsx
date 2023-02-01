@@ -3,6 +3,7 @@ import { Box, Toolbar, AppBar, Drawer, IconButton, Typography } from '@mui/mater
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu';
 import Title from './Title';
+import { empty } from '../@util';
 import { DefaultLayoutProps } from './DefaultLayout.types';
 import { MenuTitleMap } from './DefaultLayout.types.private';
 
@@ -19,7 +20,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, logo, menu, app
     const menuTitles: MenuTitleMap = {};
     if (menu) {
       menu.forEach((info) => {
-        if (info.items) {
+        if (empty(info.uri) && info.items && info.items.length > 0) {
           info.items.map((subInfo) => {
             menuTitles[subInfo.uri] = { name: subInfo.name, parentName: info.name };
           });

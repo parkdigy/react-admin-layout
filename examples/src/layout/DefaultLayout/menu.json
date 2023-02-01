@@ -11,7 +11,8 @@
     "name": "Menu 1",
     "depth": 1,
     "uri": "/menu_1",
-    "icon": "AssistantPhoto"
+    "icon": "AssistantPhoto",
+    "items": []
   },
   {
     "id": "menu_2",
