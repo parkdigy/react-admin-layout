@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Box, Typography } from '@mui/material';
 
 export interface TitleProps {
-  title: string;
-  headTitle?: string;
+  title: ReactNode;
+  headTitle?: ReactNode;
 }
 
 const Title: React.FC<TitleProps> = ({ title, headTitle }) => {

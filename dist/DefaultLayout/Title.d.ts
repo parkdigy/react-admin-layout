@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 export interface TitleProps {
-    title: string;
-    headTitle?: string;
+    title: ReactNode;
+    headTitle?: ReactNode;
 }
 declare const Title: React.FC<TitleProps>;
 export default Title;

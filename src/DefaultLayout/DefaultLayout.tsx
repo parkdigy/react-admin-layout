@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-import { Box, Toolbar, AppBar, Drawer, IconButton, Typography } from '@mui/material';
+import { Box, Toolbar, AppBar, Drawer, IconButton, Typography, Icon } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu';
 import Title from './Title';
@@ -22,10 +22,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, logo, menu, app
       menu.forEach((info) => {
         if (empty(info.uri) && info.items && info.items.length > 0) {
           info.items.map((subInfo) => {
-            menuTitles[subInfo.uri] = { name: subInfo.name, parentName: info.name };
+            menuTitles[subInfo.uri] = { name: subInfo.name, parentName: info.name, parentIcon: info.icon };
           });
         } else if (info.uri) {
-          menuTitles[info.uri] = { name: info.name };
+          menuTitles[info.uri] = { name: info.name, icon: info.icon };
         }
       });
     }
@@ -36,7 +36,42 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, logo, menu, app
     if (menuTitles) {
       const titleData = menuTitles[location.pathname];
       if (titleData) {
-        setTitle(<Title title={titleData.name} headTitle={titleData.parentName} />);
+        setTitle(
+          <Title
+            title={
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                {titleData.icon && (
+                  <div style={{ flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 }}>
+                    <Icon fontSize='small'>
+                      {titleData.icon.replace(
+                        /[A-Z]/g,
+                        (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`
+                      )}
+                    </Icon>
+                  </div>
+                )}
+                <div>{titleData.name}</div>
+              </div>
+            }
+            headTitle={
+              titleData.parentName ? (
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  {titleData.parentIcon && (
+                    <div style={{ flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 }}>
+                      <Icon fontSize='small'>
+                        {titleData.parentIcon.replace(
+                          /[A-Z]/g,
+                          (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`
+                        )}
+                      </Icon>
+                    </div>
+                  )}
+                  <div>{titleData.parentName}</div>
+                </div>
+              ) : null
+            }
+          />
+        );
       } else {
         setTitle(undefined);
       }

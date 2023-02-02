@@ -7474,11 +7474,11 @@ var DefaultLayout = function (_a) {
             menu.forEach(function (info) {
                 if (empty(info.uri) && info.items && info.items.length > 0) {
                     info.items.map(function (subInfo) {
-                        menuTitles[subInfo.uri] = { name: subInfo.name, parentName: info.name };
+                        menuTitles[subInfo.uri] = { name: subInfo.name, parentName: info.name, parentIcon: info.icon };
                     });
                 }
                 else if (info.uri) {
-                    menuTitles[info.uri] = { name: info.name };
+                    menuTitles[info.uri] = { name: info.name, icon: info.icon };
                 }
             });
         }
@@ -7488,7 +7488,13 @@ var DefaultLayout = function (_a) {
         if (menuTitles) {
             var titleData = menuTitles[location.pathname];
             if (titleData) {
-                setTitle(React.createElement(Title, { title: titleData.name, headTitle: titleData.parentName }));
+                setTitle(React.createElement(Title, { title: React.createElement("div", { style: { display: 'flex', alignItems: 'center' } },
+                        titleData.icon && (React.createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 } },
+                            React.createElement(Icon, { fontSize: 'small' }, titleData.icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
+                        React.createElement("div", null, titleData.name)), headTitle: titleData.parentName ? (React.createElement("div", { style: { display: 'flex', alignItems: 'center' } },
+                        titleData.parentIcon && (React.createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 } },
+                            React.createElement(Icon, { fontSize: 'small' }, titleData.parentIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
+                        React.createElement("div", null, titleData.parentName))) : null }));
             }
             else {
                 setTitle(undefined);
