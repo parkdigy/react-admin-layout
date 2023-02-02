@@ -15,7 +15,7 @@ const Title: React.FC<TitleProps> = ({ title, icon, headTitle, headIcon }) => {
         <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', opacity: 0.5 }}>
           {headIcon && (
             <Box style={{ marginRight: 4, lineHeight: 0 }}>
-              <Icon fontSize='small' style={{ fontSize: 15 }}>
+              <Icon style={{ fontSize: 15 }}>
                 {headIcon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)}
               </Icon>
             </Box>
@@ -23,7 +23,7 @@ const Title: React.FC<TitleProps> = ({ title, icon, headTitle, headIcon }) => {
           <Typography style={{ fontSize: 11 }}>{headTitle}</Typography>
         </Box>
       )}
-      <div style={{ display: 'flex', alignItems: 'center', fontSize: 17 }}>
+      <div style={{ display: 'flex', alignItems: 'center', fontSize: '1rem' }}>
         {icon && (
           <div style={{ flexShrink: 0, display: 'inline-flex', marginRight: 5 }}>
             <Icon fontSize='small'>

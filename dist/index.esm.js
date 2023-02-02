@@ -7461,9 +7461,9 @@ styleInject(css_248z);var SideMenu = function (_a) {
     return (React.createElement(Box, { style: { position: 'relative' } },
         headTitle && (React.createElement(Box, { sx: { display: { xs: 'none', sm: 'flex' }, alignItems: 'center', opacity: 0.5 } },
             headIcon && (React.createElement(Box, { style: { marginRight: 4, lineHeight: 0 } },
-                React.createElement(Icon, { fontSize: 'small', style: { fontSize: 15 } }, headIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
+                React.createElement(Icon, { style: { fontSize: 15 } }, headIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
             React.createElement(Typography, { style: { fontSize: 11 } }, headTitle))),
-        React.createElement("div", { style: { display: 'flex', alignItems: 'center', fontSize: 17 } },
+        React.createElement("div", { style: { display: 'flex', alignItems: 'center', fontSize: '1rem' } },
             icon && (React.createElement("div", { style: { flexShrink: 0, display: 'inline-flex', marginRight: 5 } },
                 React.createElement(Icon, { fontSize: 'small' }, icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
             React.createElement("div", null, title))));
