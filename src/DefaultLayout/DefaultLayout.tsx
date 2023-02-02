@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-import { Box, Toolbar, AppBar, Drawer, IconButton, Typography, Icon } from '@mui/material';
+import { Box, Toolbar, AppBar, Drawer, IconButton, Typography } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu';
 import Title from './Title';
@@ -38,38 +38,42 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, logo, menu, app
       if (titleData) {
         setTitle(
           <Title
-            title={
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                {titleData.icon && (
-                  <div style={{ flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 }}>
-                    <Icon fontSize='small'>
-                      {titleData.icon.replace(
-                        /[A-Z]/g,
-                        (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`
-                      )}
-                    </Icon>
-                  </div>
-                )}
-                <div>{titleData.name}</div>
-              </div>
-            }
-            headTitle={
-              titleData.parentName ? (
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 3 }}>
-                  {titleData.parentIcon && (
-                    <div style={{ flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 3 }}>
-                      <Icon fontSize='small'>
-                        {titleData.parentIcon.replace(
-                          /[A-Z]/g,
-                          (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`
-                        )}
-                      </Icon>
-                    </div>
-                  )}
-                  <div>{titleData.parentName}</div>
-                </div>
-              ) : null
-            }
+            title={titleData.name}
+            icon={titleData.icon}
+            headTitle={titleData.parentName}
+            headIcon={titleData.parentIcon}
+            // title={
+            //   <div style={{ display: 'flex', alignItems: 'center' }}>
+            //     {titleData.icon && (
+            //       <div style={{ flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 }}>
+            //         <Icon fontSize='small'>
+            //           {titleData.icon.replace(
+            //             /[A-Z]/g,
+            //             (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`
+            //           )}
+            //         </Icon>
+            //       </div>
+            //     )}
+            //     <div>{titleData.name}</div>
+            //   </div>
+            // }
+            // headTitle={
+            //   titleData.parentName ? (
+            //     <div style={{ display: 'flex', alignItems: 'center', marginBottom: 5 }}>
+            //       {titleData.parentIcon && (
+            //         <div style={{ flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 3 }}>
+            //           <Icon fontSize='small'>
+            //             {titleData.parentIcon.replace(
+            //               /[A-Z]/g,
+            //               (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`
+            //             )}
+            //           </Icon>
+            //         </div>
+            //       )}
+            //       <div>{titleData.parentName}</div>
+            //     </div>
+            //   ) : undefined
+            // }
           />
         );
       } else {

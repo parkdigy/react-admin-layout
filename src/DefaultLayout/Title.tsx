@@ -1,23 +1,38 @@
-import React, { ReactNode } from 'react';
-import { Box, Typography } from '@mui/material';
+import React from 'react';
+import { Box, Icon, Typography } from '@mui/material';
 
 export interface TitleProps {
-  title: ReactNode;
-  headTitle?: ReactNode;
+  title: string;
+  icon?: string;
+  headTitle?: string;
+  headIcon?: string;
 }
 
-const Title: React.FC<TitleProps> = ({ title, headTitle }) => {
+const Title: React.FC<TitleProps> = ({ title, icon, headTitle, headIcon }) => {
   return (
     <Box style={{ position: 'relative' }}>
       {headTitle && (
-        <Typography
-          style={{ marginBottom: -4, opacity: 0.5 }}
-          sx={{ fontSize: 11, display: { xs: 'none', sm: 'block' } }}
-        >
-          {headTitle}
-        </Typography>
+        <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', opacity: 0.5 }}>
+          {headIcon && (
+            <Box style={{ marginRight: 4, lineHeight: 0 }}>
+              <Icon fontSize='small' style={{ fontSize: 15 }}>
+                {headIcon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)}
+              </Icon>
+            </Box>
+          )}
+          <Typography style={{ fontSize: 11 }}>{headTitle}</Typography>
+        </Box>
       )}
-      {title}
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {icon && (
+          <div style={{ flexShrink: 0, display: 'inline-flex', marginRight: 5 }}>
+            <Icon fontSize='small'>
+              {icon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)}
+            </Icon>
+          </div>
+        )}
+        <div>{title}</div>
+      </div>
     </Box>
   );
 };

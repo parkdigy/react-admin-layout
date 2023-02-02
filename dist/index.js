@@ -7457,10 +7457,16 @@ styleInject(css_248z);var SideMenu = function (_a) {
             React__default["default"].createElement(material.Toolbar, null, logo)),
         list && React__default["default"].createElement(SideMenuList, { list: list, onClick: onClick })));
 };var Title = function (_a) {
-    var title = _a.title, headTitle = _a.headTitle;
+    var title = _a.title, icon = _a.icon, headTitle = _a.headTitle, headIcon = _a.headIcon;
     return (React__default["default"].createElement(material.Box, { style: { position: 'relative' } },
-        headTitle && (React__default["default"].createElement(material.Typography, { style: { marginBottom: -4, opacity: 0.5 }, sx: { fontSize: 11, display: { xs: 'none', sm: 'block' } } }, headTitle)),
-        title));
+        headTitle && (React__default["default"].createElement(material.Box, { sx: { display: { xs: 'none', sm: 'flex' }, alignItems: 'center', opacity: 0.5 } },
+            headIcon && (React__default["default"].createElement(material.Box, { style: { marginRight: 4, lineHeight: 0 } },
+                React__default["default"].createElement(material.Icon, { fontSize: 'small', style: { fontSize: 15 } }, headIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
+            React__default["default"].createElement(material.Typography, { style: { fontSize: 11 } }, headTitle))),
+        React__default["default"].createElement("div", { style: { display: 'flex', alignItems: 'center' } },
+            icon && (React__default["default"].createElement("div", { style: { flexShrink: 0, display: 'inline-flex', marginRight: 5 } },
+                React__default["default"].createElement(material.Icon, { fontSize: 'small' }, icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
+            React__default["default"].createElement("div", null, title))));
 };var sideMenuWidth = 220;
 var DefaultLayout = function (_a) {
     var children = _a.children, logo = _a.logo, menu = _a.menu, appBarControl = _a.appBarControl, onMenuClick = _a.onMenuClick;
@@ -7488,13 +7494,7 @@ var DefaultLayout = function (_a) {
         if (menuTitles) {
             var titleData = menuTitles[location.pathname];
             if (titleData) {
-                setTitle(React__default["default"].createElement(Title, { title: React__default["default"].createElement("div", { style: { display: 'flex', alignItems: 'center' } },
-                        titleData.icon && (React__default["default"].createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 } },
-                            React__default["default"].createElement(material.Icon, { fontSize: 'small' }, titleData.icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
-                        React__default["default"].createElement("div", null, titleData.name)), headTitle: titleData.parentName ? (React__default["default"].createElement("div", { style: { display: 'flex', alignItems: 'center', marginBottom: 3 } },
-                        titleData.parentIcon && (React__default["default"].createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 3 } },
-                            React__default["default"].createElement(material.Icon, { fontSize: 'small' }, titleData.parentIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
-                        React__default["default"].createElement("div", null, titleData.parentName))) : null }));
+                setTitle(React__default["default"].createElement(Title, { title: titleData.name, icon: titleData.icon, headTitle: titleData.parentName, headIcon: titleData.parentIcon }));
             }
             else {
                 setTitle(undefined);

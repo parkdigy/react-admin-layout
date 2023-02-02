@@ -7457,10 +7457,16 @@ styleInject(css_248z);var SideMenu = function (_a) {
             React.createElement(Toolbar, null, logo)),
         list && React.createElement(SideMenuList, { list: list, onClick: onClick })));
 };var Title = function (_a) {
-    var title = _a.title, headTitle = _a.headTitle;
+    var title = _a.title, icon = _a.icon, headTitle = _a.headTitle, headIcon = _a.headIcon;
     return (React.createElement(Box, { style: { position: 'relative' } },
-        headTitle && (React.createElement(Typography, { style: { marginBottom: -4, opacity: 0.5 }, sx: { fontSize: 11, display: { xs: 'none', sm: 'block' } } }, headTitle)),
-        title));
+        headTitle && (React.createElement(Box, { sx: { display: { xs: 'none', sm: 'flex' }, alignItems: 'center', opacity: 0.5 } },
+            headIcon && (React.createElement(Box, { style: { marginRight: 4, lineHeight: 0 } },
+                React.createElement(Icon, { fontSize: 'small', style: { fontSize: 15 } }, headIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
+            React.createElement(Typography, { style: { fontSize: 11 } }, headTitle))),
+        React.createElement("div", { style: { display: 'flex', alignItems: 'center' } },
+            icon && (React.createElement("div", { style: { flexShrink: 0, display: 'inline-flex', marginRight: 5 } },
+                React.createElement(Icon, { fontSize: 'small' }, icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
+            React.createElement("div", null, title))));
 };var sideMenuWidth = 220;
 var DefaultLayout = function (_a) {
     var children = _a.children, logo = _a.logo, menu = _a.menu, appBarControl = _a.appBarControl, onMenuClick = _a.onMenuClick;
@@ -7488,13 +7494,7 @@ var DefaultLayout = function (_a) {
         if (menuTitles) {
             var titleData = menuTitles[location.pathname];
             if (titleData) {
-                setTitle(React.createElement(Title, { title: React.createElement("div", { style: { display: 'flex', alignItems: 'center' } },
-                        titleData.icon && (React.createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 } },
-                            React.createElement(Icon, { fontSize: 'small' }, titleData.icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
-                        React.createElement("div", null, titleData.name)), headTitle: titleData.parentName ? (React.createElement("div", { style: { display: 'flex', alignItems: 'center', marginBottom: 3 } },
-                        titleData.parentIcon && (React.createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 3 } },
-                            React.createElement(Icon, { fontSize: 'small' }, titleData.parentIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
-                        React.createElement("div", null, titleData.parentName))) : null }));
+                setTitle(React.createElement(Title, { title: titleData.name, icon: titleData.icon, headTitle: titleData.parentName, headIcon: titleData.parentIcon }));
             }
             else {
                 setTitle(undefined);
