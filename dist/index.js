@@ -7460,11 +7460,11 @@ styleInject(css_248z);var SideMenu = function (_a) {
     var title = _a.title, icon = _a.icon, headTitle = _a.headTitle, headIcon = _a.headIcon;
     return (React__default["default"].createElement(material.Box, { style: { position: 'relative' } },
         headTitle && (React__default["default"].createElement(material.Box, { sx: { display: { xs: 'none', sm: 'flex' }, alignItems: 'center', opacity: 0.5 } },
-            headIcon && (React__default["default"].createElement(material.Box, { style: { marginRight: 4, lineHeight: 0 } },
-                React__default["default"].createElement(material.Icon, { style: { fontSize: 15 } }, headIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
-            React__default["default"].createElement(material.Typography, { style: { fontSize: 11 } }, headTitle))),
+            headIcon && (React__default["default"].createElement(material.Box, { style: { marginRight: '0.25rem', lineHeight: 0 } },
+                React__default["default"].createElement(material.Icon, { style: { fontSize: '1rem' } }, headIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
+            React__default["default"].createElement(material.Typography, { style: { fontSize: '0.7rem' } }, headTitle))),
         React__default["default"].createElement("div", { style: { display: 'flex', alignItems: 'center', fontSize: '1rem' } },
-            icon && (React__default["default"].createElement("div", { style: { flexShrink: 0, display: 'inline-flex', marginRight: 5 } },
+            icon && (React__default["default"].createElement("div", { style: { flexShrink: 0, display: 'inline-flex', marginRight: '0.3rem' } },
                 React__default["default"].createElement(material.Icon, { fontSize: 'small' }, icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
             React__default["default"].createElement("div", null, title))));
 };var sideMenuWidth = 220;

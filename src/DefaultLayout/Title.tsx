@@ -14,18 +14,18 @@ const Title: React.FC<TitleProps> = ({ title, icon, headTitle, headIcon }) => {
       {headTitle && (
         <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', opacity: 0.5 }}>
           {headIcon && (
-            <Box style={{ marginRight: 4, lineHeight: 0 }}>
-              <Icon style={{ fontSize: 15 }}>
+            <Box style={{ marginRight: '0.25rem', lineHeight: 0 }}>
+              <Icon style={{ fontSize: '1rem' }}>
                 {headIcon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)}
               </Icon>
             </Box>
           )}
-          <Typography style={{ fontSize: 11 }}>{headTitle}</Typography>
+          <Typography style={{ fontSize: '0.7rem' }}>{headTitle}</Typography>
         </Box>
       )}
       <div style={{ display: 'flex', alignItems: 'center', fontSize: '1rem' }}>
         {icon && (
-          <div style={{ flexShrink: 0, display: 'inline-flex', marginRight: 5 }}>
+          <div style={{ flexShrink: 0, display: 'inline-flex', marginRight: '0.3rem' }}>
             <Icon fontSize='small'>
               {icon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)}
             </Icon>
