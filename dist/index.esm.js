@@ -7463,7 +7463,7 @@ styleInject(css_248z);var SideMenu = function (_a) {
             headIcon && (React.createElement(Box, { style: { marginRight: 4, lineHeight: 0 } },
                 React.createElement(Icon, { fontSize: 'small', style: { fontSize: 15 } }, headIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
             React.createElement(Typography, { style: { fontSize: 11 } }, headTitle))),
-        React.createElement("div", { style: { display: 'flex', alignItems: 'center' } },
+        React.createElement("div", { style: { display: 'flex', alignItems: 'center', fontSize: 17 } },
             icon && (React.createElement("div", { style: { flexShrink: 0, display: 'inline-flex', marginRight: 5 } },
                 React.createElement(Icon, { fontSize: 'small' }, icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
             React.createElement("div", null, title))));

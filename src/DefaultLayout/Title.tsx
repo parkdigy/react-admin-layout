@@ -23,7 +23,7 @@ const Title: React.FC<TitleProps> = ({ title, icon, headTitle, headIcon }) => {
           <Typography style={{ fontSize: 11 }}>{headTitle}</Typography>
         </Box>
       )}
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', fontSize: 17 }}>
         {icon && (
           <div style={{ flexShrink: 0, display: 'inline-flex', marginRight: 5 }}>
             <Icon fontSize='small'>
