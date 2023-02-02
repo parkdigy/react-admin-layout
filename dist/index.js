@@ -7491,8 +7491,8 @@ var DefaultLayout = function (_a) {
                 setTitle(React__default["default"].createElement(Title, { title: React__default["default"].createElement("div", { style: { display: 'flex', alignItems: 'center' } },
                         titleData.icon && (React__default["default"].createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 } },
                             React__default["default"].createElement(material.Icon, { fontSize: 'small' }, titleData.icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
-                        React__default["default"].createElement("div", null, titleData.name)), headTitle: titleData.parentName ? (React__default["default"].createElement("div", { style: { display: 'flex', alignItems: 'center' } },
-                        titleData.parentIcon && (React__default["default"].createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 } },
+                        React__default["default"].createElement("div", null, titleData.name)), headTitle: titleData.parentName ? (React__default["default"].createElement("div", { style: { display: 'flex', alignItems: 'center', marginBottom: 3 } },
+                        titleData.parentIcon && (React__default["default"].createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 3 } },
                             React__default["default"].createElement(material.Icon, { fontSize: 'small' }, titleData.parentIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
                         React__default["default"].createElement("div", null, titleData.parentName))) : null }));
             }

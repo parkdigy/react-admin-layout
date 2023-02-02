@@ -55,9 +55,9 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, logo, menu, app
             }
             headTitle={
               titleData.parentName ? (
-                <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 3 }}>
                   {titleData.parentIcon && (
-                    <div style={{ flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 }}>
+                    <div style={{ flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 3 }}>
                       <Icon fontSize='small'>
                         {titleData.parentIcon.replace(
                           /[A-Z]/g,

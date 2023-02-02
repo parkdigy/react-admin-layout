@@ -7491,8 +7491,8 @@ var DefaultLayout = function (_a) {
                 setTitle(React.createElement(Title, { title: React.createElement("div", { style: { display: 'flex', alignItems: 'center' } },
                         titleData.icon && (React.createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 } },
                             React.createElement(Icon, { fontSize: 'small' }, titleData.icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
-                        React.createElement("div", null, titleData.name)), headTitle: titleData.parentName ? (React.createElement("div", { style: { display: 'flex', alignItems: 'center' } },
-                        titleData.parentIcon && (React.createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 } },
+                        React.createElement("div", null, titleData.name)), headTitle: titleData.parentName ? (React.createElement("div", { style: { display: 'flex', alignItems: 'center', marginBottom: 3 } },
+                        titleData.parentIcon && (React.createElement("div", { style: { flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 3 } },
                             React.createElement(Icon, { fontSize: 'small' }, titleData.parentIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
                         React.createElement("div", null, titleData.parentName))) : null }));
             }
