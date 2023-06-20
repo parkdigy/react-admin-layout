@@ -1,12 +1,12 @@
 import React from 'react';
-import { CardHeader, CardContent, CardActions, Button, Grid } from '@mui/material';
+import { CardHeader, CardContent, CardActions, Button, Grid, Card } from '@mui/material';
 import { Box, TextField } from '@mui/material';
 
 const SignIn: React.FC = () => {
   return (
-    <>
+    <Card sx={{ width: { xs: 300, sm: 400 } }}>
       <CardHeader title='Login' subheader='로그인' />
-      <CardContent sx={{ width: 400 }}>
+      <CardContent>
         <Box component='form'>
           <Grid container spacing={2} direction='column'>
             <Grid item>
@@ -29,7 +29,7 @@ const SignIn: React.FC = () => {
           </Grid>
         </Grid>
       </CardActions>
-    </>
+    </Card>
   );
 };
 

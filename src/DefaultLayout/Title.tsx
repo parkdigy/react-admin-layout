@@ -1,5 +1,14 @@
-import React from 'react';
-import { Box, Icon, Typography } from '@mui/material';
+import React, { useMemo } from 'react';
+import { Icon } from '@mui/material';
+import {
+  StyledContainerBox,
+  StyledHeadContainerBox,
+  StyledHeadIcon,
+  StyledHeadIconContainerBox,
+  StyledHeadTitleTypography,
+  StyledTitleContainerDiv,
+  StyledTitleIconContainerDiv,
+} from './Title.style';
 
 export interface TitleProps {
   title: string;
@@ -9,31 +18,40 @@ export interface TitleProps {
 }
 
 const Title: React.FC<TitleProps> = ({ title, icon, headTitle, headIcon }) => {
+  const finalHeadIcon = useMemo(
+    () =>
+      headIcon
+        ? headIcon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)
+        : undefined,
+    [headIcon]
+  );
+
+  const finalIcon = useMemo(
+    () => (icon ? icon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`) : undefined),
+    [icon]
+  );
+
   return (
-    <Box style={{ position: 'relative' }}>
+    <StyledContainerBox>
       {headTitle && (
-        <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', opacity: 0.5 }}>
-          {headIcon && (
-            <Box style={{ marginRight: '0.25rem', lineHeight: 0 }}>
-              <Icon style={{ fontSize: '1rem' }}>
-                {headIcon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)}
-              </Icon>
-            </Box>
+        <StyledHeadContainerBox>
+          {finalHeadIcon && (
+            <StyledHeadIconContainerBox>
+              <StyledHeadIcon>{finalHeadIcon}</StyledHeadIcon>
+            </StyledHeadIconContainerBox>
           )}
-          <Typography style={{ fontSize: '0.7rem' }}>{headTitle}</Typography>
-        </Box>
+          <StyledHeadTitleTypography>{headTitle}</StyledHeadTitleTypography>
+        </StyledHeadContainerBox>
       )}
-      <div style={{ display: 'flex', alignItems: 'center', fontSize: '1rem' }}>
-        {icon && (
-          <div style={{ flexShrink: 0, display: 'inline-flex', marginRight: '0.3rem' }}>
-            <Icon fontSize='small'>
-              {icon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)}
-            </Icon>
-          </div>
+      <StyledTitleContainerDiv>
+        {finalIcon && (
+          <StyledTitleIconContainerDiv>
+            <Icon fontSize='small'>{finalIcon}</Icon>
+          </StyledTitleIconContainerDiv>
         )}
         <div>{title}</div>
-      </div>
-    </Box>
+      </StyledTitleContainerDiv>
+    </StyledContainerBox>
   );
 };
 

@@ -16,7 +16,7 @@ module.exports = {
       presets: ['@babel/preset-react'],
     },
   },
-  plugins: ['react'],
+  plugins: ['react', 'react-hooks'],
   settings: {
     'import/resolver': 'webpack',
     react: {
@@ -37,6 +37,8 @@ module.exports = {
     'react/no-unused-state': ['warn'],
     'react/state-in-constructor': ['error', 'always'],
     'react/no-deprecated': ['error'],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'error',
     'no-plusplus': ['error'],
     'prefer-template': ['error'],
     'jsx-quotes': ['error', 'prefer-single'],

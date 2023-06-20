@@ -1,24 +1,18 @@
 import React from 'react';
-import { Toolbar, Box } from '@mui/material';
-import SimpleBar from 'simplebar-react';
+import { Toolbar } from '@mui/material';
 import SideMenuList from '../SideMenuList';
 import { SideMenuProps } from './SideMenu.types';
-
+import { StyledLogoContainerBox, StyledSimpleBar } from './SideMenu.style';
 import 'simplebar-react/dist/simplebar.min.css';
 
 const SideMenu: React.FC<SideMenuProps> = ({ logo, list, onClick }) => {
   return (
-    <SimpleBar style={{ maxHeight: '100%' }}>
-      <Box
-        sx={{
-          borderBottom: 'thin solid #f5f5f5',
-          color: 'text.primary',
-        }}
-      >
+    <StyledSimpleBar>
+      <StyledLogoContainerBox>
         <Toolbar>{logo}</Toolbar>
-      </Box>
+      </StyledLogoContainerBox>
       {list && <SideMenuList list={list} onClick={onClick} />}
-    </SimpleBar>
+    </StyledSimpleBar>
   );
 };
 

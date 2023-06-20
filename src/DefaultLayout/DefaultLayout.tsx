@@ -1,15 +1,29 @@
-import React, { useState, useEffect, ReactElement } from 'react';
-import { Box, Toolbar, AppBar, Drawer, IconButton, Typography } from '@mui/material';
+import React, { useState, useEffect, ReactElement, useCallback } from 'react';
+import { Toolbar, IconButton, Typography } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu';
 import Title from './Title';
 import { empty } from '../@util';
 import { DefaultLayoutProps } from './DefaultLayout.types';
 import { MenuTitleMap } from './DefaultLayout.types.private';
-
-const sideMenuWidth = 220;
+import {
+  StyledAppBar,
+  StyledContainerBox,
+  StyledMainBox,
+  StyledMainContentDiv,
+  StyledSideMenuContainerBox,
+  StyledSideMenuPermanentDrawer,
+  StyledSideMenuTemporaryDrawer,
+} from './DefaultLayout.style';
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, logo, menu, appBarControl, onMenuClick }) => {
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const location = useLocation();
+
+  // -------------------------------------------------------------------------------------------------------------------
+
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [menuTitles, setMenuTitles] = useState<MenuTitleMap>({});
   const [title, setTitle] = useState<ReactElement<typeof Title>>();
@@ -42,66 +56,25 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, logo, menu, app
             icon={titleData.icon}
             headTitle={titleData.parentName}
             headIcon={titleData.parentIcon}
-            // title={
-            //   <div style={{ display: 'flex', alignItems: 'center' }}>
-            //     {titleData.icon && (
-            //       <div style={{ flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 5 }}>
-            //         <Icon fontSize='small'>
-            //           {titleData.icon.replace(
-            //             /[A-Z]/g,
-            //             (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`
-            //           )}
-            //         </Icon>
-            //       </div>
-            //     )}
-            //     <div>{titleData.name}</div>
-            //   </div>
-            // }
-            // headTitle={
-            //   titleData.parentName ? (
-            //     <div style={{ display: 'flex', alignItems: 'center', marginBottom: 5 }}>
-            //       {titleData.parentIcon && (
-            //         <div style={{ flexShrink: 0, display: 'inline-flex', verticalAlign: 'bottom', marginRight: 3 }}>
-            //           <Icon fontSize='small'>
-            //             {titleData.parentIcon.replace(
-            //               /[A-Z]/g,
-            //               (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`
-            //             )}
-            //           </Icon>
-            //         </div>
-            //       )}
-            //       <div>{titleData.parentName}</div>
-            //     </div>
-            //   ) : undefined
-            // }
           />
         );
       } else {
         setTitle(undefined);
       }
     }
-  }, [location.pathname, menuTitles]);
+  }, [location, menuTitles]);
 
-  function toggleIsMobileOpen() {
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const toggleIsMobileOpen = useCallback(() => {
     setIsMobileOpen((isMobileOpen) => !isMobileOpen);
-  }
+  }, []);
 
   //--------------------------------------------------------------------------------------------------------------------
 
   return (
-    <Box sx={{ display: 'flex', height: '100%' }}>
-      <AppBar
-        position='fixed'
-        elevation={0}
-        sx={{
-          backdropFilter: 'blur(20px)',
-          backgroundColor: 'rgba(255, 255, 255, 0.7)',
-          color: 'text.primary',
-          borderBottom: 'thin solid #f5f5f5',
-          width: { sm: `calc(100% - ${sideMenuWidth}px)` },
-          ml: { sm: `${sideMenuWidth}px` },
-        }}
-      >
+    <StyledContainerBox>
+      <StyledAppBar position='fixed' elevation={0}>
         <Toolbar>
           <IconButton
             color='inherit'
@@ -117,18 +90,14 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, logo, menu, app
           </Typography>
           {appBarControl}
         </Toolbar>
-      </AppBar>
-      <Box component='nav' sx={{ width: { sm: sideMenuWidth }, flexShrink: { sm: 0 } }} aria-label='mailbox folders'>
-        <Drawer
+      </StyledAppBar>
+      <StyledSideMenuContainerBox component='nav' aria-label='mailbox folders'>
+        <StyledSideMenuTemporaryDrawer
           variant='temporary'
           open={isMobileOpen}
           onClose={toggleIsMobileOpen}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: sideMenuWidth },
           }}
         >
           {menu && (
@@ -141,24 +110,17 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, logo, menu, app
               }}
             />
           )}
-        </Drawer>
-        <Drawer
-          variant='permanent'
-          sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: sideMenuWidth },
-          }}
-          open
-        >
+        </StyledSideMenuTemporaryDrawer>
+        <StyledSideMenuPermanentDrawer variant='permanent' open>
           {menu && <SideMenu logo={logo} list={menu} onClick={onMenuClick} />}
-        </Drawer>
-      </Box>
-      <Box component='main' sx={{ flexGrow: 1, p: 2, width: { sm: `calc(100% - ${sideMenuWidth}px)` } }}>
+        </StyledSideMenuPermanentDrawer>
+      </StyledSideMenuContainerBox>
+      <StyledMainBox component='main'>
         <Toolbar />
 
-        {children}
-      </Box>
-    </Box>
+        <StyledMainContentDiv>{children}</StyledMainContentDiv>
+      </StyledMainBox>
+    </StyledContainerBox>
   );
 };
 

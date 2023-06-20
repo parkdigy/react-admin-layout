@@ -1,15 +1,15 @@
 import React from 'react';
-import { List } from '@mui/material';
 import SideMenuListItem from '../SideMenuListItem';
 import { SideMenuListProps } from './SideMenuList.types';
+import { StyledList } from './SideMenuList.style';
 
 const SideMenuList: React.FC<SideMenuListProps> = ({ list, onClick }) => {
   return (
-    <List sx={{ padding: 0 }}>
+    <StyledList>
       {list.map((info, idx) => (
         <SideMenuListItem key={idx} info={info} onClick={onClick} />
       ))}
-    </List>
+    </StyledList>
   );
 };
 

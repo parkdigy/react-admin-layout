@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { notEmpty } from '../../@util';
-// import { useNavigate, useLocation } from 'react-router-dom';
-import {
-  ListItemButton,
-  ListItemIcon,
-  Icon,
-  ListItemText,
-  Collapse,
-  useTheme,
-  alpha,
-  SxProps,
-  Theme,
-} from '@mui/material';
+import { ListItemButton, ListItemIcon, Icon, ListItemText, Collapse, useTheme, alpha } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
+import { useLocation } from 'react-router-dom';
 import { SideMenuListItemProps } from './SideMenuListItem.types';
 
 const SideMenuListItem: React.FC<SideMenuListItemProps> = ({ info, onClick }) => {
   const theme = useTheme();
+  const location = useLocation();
+
+  // -------------------------------------------------------------------------------------------------------------------
 
   const [isExpandable, setIsExpandable] = useState<boolean>(false);
   const [isExpand, setIsExpand] = useState<boolean>(false);
-  const [expandIconSx, setExpandIconSx] = useState<SxProps<Theme>>(null);
+
+  // -------------------------------------------------------------------------------------------------------------------
 
   useEffect(() => {
     setIsExpandable(!!info && notEmpty(info.items));
@@ -28,6 +22,7 @@ const SideMenuListItem: React.FC<SideMenuListItemProps> = ({ info, onClick }) =>
     if (info.items && info.items.find((info) => location.pathname === info.uri)) {
       setIsExpand(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [info]);
 
   useEffect(() => {
@@ -45,36 +40,81 @@ const SideMenuListItem: React.FC<SideMenuListItemProps> = ({ info, onClick }) =>
         setIsExpand(true);
       }
     }
-  }, [location.pathname]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
-  useEffect(() => {
-    if (isExpandable && isExpand != null) {
-      setExpandIconSx({
-        animation: `${isExpand ? 'open' : 'close'} 0.1s linear`,
-        transform: `rotate(${isExpand ? 180 : 0}deg)`,
-        '@keyframes open': {
-          '0%': {
-            transform: `rotate(0deg)`,
-          },
-          '100%': {
-            transform: `rotate(180deg)`,
-          },
-        },
-        '@keyframes close': {
-          '0%': {
-            transform: `rotate(180deg)`,
-          },
-          '100%': {
-            transform: `rotate(0deg)`,
-          },
-        },
-      });
-    }
-  }, [isExpandable, isExpand]);
+  // -------------------------------------------------------------------------------------------------------------------
 
-  function toggleIsExpand() {
+  const toggleIsExpand = useCallback(() => {
     setIsExpand((isExpand) => !isExpand);
-  }
+  }, []);
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const icon = useMemo(
+    () =>
+      info.icon
+        ? info.icon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)
+        : undefined,
+    [info]
+  );
+
+  // -------------------------------------------------------------------------------------------------------------------
+
+  const containerStyle = useMemo(
+    () => ({
+      backgroundColor:
+        isExpandable && isExpand
+          ? alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2)
+          : undefined,
+    }),
+    [isExpand, isExpandable, theme]
+  );
+
+  const expandIconSx = useMemo(
+    () =>
+      isExpandable && isExpand != null
+        ? {
+            marginTop: 'auto',
+            marginBottom: 'auto',
+            animation: `${isExpand ? 'open' : 'close'} 0.1s linear`,
+            transform: `rotate(${isExpand ? 180 : 0}deg)`,
+            '@keyframes open': {
+              '0%': {
+                transform: `rotate(0deg)`,
+              },
+              '100%': {
+                transform: `rotate(180deg)`,
+              },
+            },
+            '@keyframes close': {
+              '0%': {
+                transform: `rotate(180deg)`,
+              },
+              '100%': {
+                transform: `rotate(0deg)`,
+              },
+            },
+          }
+        : {
+            marginTop: 'auto',
+            marginBottom: 'auto',
+          },
+    [isExpandable, isExpand]
+  );
+
+  const collapseStyle = useMemo(
+    () => ({
+      backgroundColor: isExpand
+        ? alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2)
+        : undefined,
+    }),
+    [isExpand, theme]
+  );
+
+  const primaryTypographyProps = useMemo(() => ({ sx: { fontWeight: info.depth === 1 ? 600 : null } }), [info]);
+
+  // -------------------------------------------------------------------------------------------------------------------
 
   return (
     <>
@@ -87,33 +127,13 @@ const SideMenuListItem: React.FC<SideMenuListItemProps> = ({ info, onClick }) =>
               }
         }
         selected={isExpandable ? false : info.uri === location.pathname}
-        style={{
-          backgroundColor:
-            isExpandable && isExpand
-              ? alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2)
-              : undefined,
-        }}
+        style={containerStyle}
       >
-        <ListItemIcon sx={{ minWidth: 30 }}>
-          {info.icon && (
-            <Icon fontSize='small'>
-              {info.icon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)}
-            </Icon>
-          )}
-        </ListItemIcon>
-        <ListItemText primaryTypographyProps={{ sx: { fontWeight: info.depth === 1 ? 600 : null } }}>
-          {info.name}
-        </ListItemText>
-        {isExpandable && <ExpandMore style={{ marginTop: 'auto', marginBottom: 'auto' }} sx={expandIconSx} />}
+        <ListItemIcon sx={{ minWidth: 30 }}>{icon && <Icon fontSize='small'>{icon}</Icon>}</ListItemIcon>
+        <ListItemText primaryTypographyProps={primaryTypographyProps}>{info.name}</ListItemText>
+        {isExpandable && <ExpandMore sx={expandIconSx} />}
       </ListItemButton>
-      <Collapse
-        in={isExpand}
-        style={{
-          backgroundColor: isExpand
-            ? alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2)
-            : undefined,
-        }}
-      >
+      <Collapse in={isExpand} style={collapseStyle}>
         {isExpandable &&
           info.items &&
           info.items.map((subInfo, idx) => <SideMenuListItem key={idx} info={subInfo} onClick={onClick} />)}

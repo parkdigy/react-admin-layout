@@ -1,7 +1,7 @@
 {
   "name": "@pdg/react-admin-layout",
   "title": "React Admin Layout",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Admin Layout for React",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
@@ -41,11 +41,12 @@
   "peerDependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
-    "@mui/icons-material": "^5.10.0",
-    "@mui/material": "^5.10.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.5",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "react-router-dom": "^6.4.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.2",

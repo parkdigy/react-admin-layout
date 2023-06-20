@@ -1,4 +1,11 @@
-import {Grid,Card,useTheme,ListItemButton,alpha,ListItemIcon,Icon,ListItemText,Collapse,List,Box,Toolbar,Typography,AppBar,IconButton,Drawer}from'@mui/material';import React,{useRef,useEffect,useState}from'react';import {ExpandMore,Menu}from'@mui/icons-material';/******************************************************************************
+import {Grid,useTheme,alpha,ListItemButton,ListItemIcon,Icon,ListItemText,Collapse,styled,List,Box,Toolbar,Typography,AppBar,Drawer,IconButton}from'@mui/material';import React,{useState,useEffect,useCallback,useMemo,useRef}from'react';import {useLocation}from'react-router-dom';import {ExpandMore,Menu}from'@mui/icons-material';var CardLayoutDefaultProps = {
+    backgroundColor: '#eff3f8',
+};var CardLayout = function (_a) {
+    var children = _a.children, backgroundColor = _a.backgroundColor;
+    return (React.createElement(Grid, { container: true, direction: 'column', alignItems: 'center', justifyContent: 'center', style: { minHeight: '100vh', backgroundColor: backgroundColor } },
+        React.createElement(Grid, { item: true, xs: 12 }, children)));
+};
+CardLayout.defaultProps = CardLayoutDefaultProps;/******************************************************************************
 Copyright (c) Microsoft Corporation.
 
 Permission to use, copy, modify, and/or distribute this software for any
@@ -13,38 +20,131 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
-var __assign = function() {
-    __assign = Object.assign || function __assign(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+}var empty$1 = function (v) {
+    var result = false;
+    if (v == null) {
+        result = true;
+    }
+    else if (typeof v === 'string') {
+        result = v === '';
+    }
+    else if (typeof v === 'object') {
+        if (Array.isArray(v)) {
+            result = v.length === 0;
         }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-
-function __rest(s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
+        else if (!(v instanceof Date)) {
+            result = Object.entries(v).length === 0;
         }
-    return t;
-}var CardLayoutDefaultProps = {
-    backgroundColor: '#eff3f8',
-};var CardLayout = function (_a) {
-    var children = _a.children, backgroundColor = _a.backgroundColor, otherProps = __rest(_a, ["children", "backgroundColor"]);
-    return (React.createElement(Grid, { container: true, direction: 'column', justifyContent: 'flex-end', sx: { minHeight: '100vh', backgroundColor: backgroundColor } },
-        React.createElement(Grid, { item: true, xs: 12 },
-            React.createElement(Grid, { container: true, justifyContent: 'center', alignItems: 'center', sx: { minHeight: 'calc(100vh - 68px)' } },
-                React.createElement(Grid, { item: true, sx: { m: { xs: 1, sm: 3 }, mb: 0 } },
-                    React.createElement(Card, __assign({}, otherProps), children))))));
+    }
+    return result;
 };
-CardLayout.defaultProps = CardLayoutDefaultProps;var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};var propTypes = {exports: {}};var reactIs = {exports: {}};var reactIs_production_min = {};/** @license React v16.13.1
+var notEmpty = function (v) {
+    return !empty$1(v);
+};var SideMenuListItem = function (_a) {
+    var info = _a.info, onClick = _a.onClick;
+    var theme = useTheme();
+    var location = useLocation();
+    // -------------------------------------------------------------------------------------------------------------------
+    var _b = useState(false), isExpandable = _b[0], setIsExpandable = _b[1];
+    var _c = useState(false), isExpand = _c[0], setIsExpand = _c[1];
+    // -------------------------------------------------------------------------------------------------------------------
+    useEffect(function () {
+        setIsExpandable(!!info && notEmpty(info.items));
+        if (info.items && info.items.find(function (info) { return location.pathname === info.uri; })) {
+            setIsExpand(true);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [info]);
+    useEffect(function () {
+        if (isExpandable && isExpand != null) {
+            if (info.uri !== location.pathname) {
+                if (info.items && !info.items.find(function (info) { return location.pathname === info.uri; })) {
+                    if (isExpand) {
+                        setIsExpand(false);
+                    }
+                }
+            }
+        }
+        if (isExpandable && !isExpand) {
+            if (info.items && info.items.find(function (info) { return location.pathname === info.uri; })) {
+                setIsExpand(true);
+            }
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location]);
+    // -------------------------------------------------------------------------------------------------------------------
+    var toggleIsExpand = useCallback(function () {
+        setIsExpand(function (isExpand) { return !isExpand; });
+    }, []);
+    // -------------------------------------------------------------------------------------------------------------------
+    var icon = useMemo(function () {
+        return info.icon
+            ? info.icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })
+            : undefined;
+    }, [info]);
+    // -------------------------------------------------------------------------------------------------------------------
+    var containerStyle = useMemo(function () { return ({
+        backgroundColor: isExpandable && isExpand
+            ? alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2)
+            : undefined,
+    }); }, [isExpand, isExpandable, theme]);
+    var expandIconSx = useMemo(function () {
+        return isExpandable && isExpand != null
+            ? {
+                marginTop: 'auto',
+                marginBottom: 'auto',
+                animation: "".concat(isExpand ? 'open' : 'close', " 0.1s linear"),
+                transform: "rotate(".concat(isExpand ? 180 : 0, "deg)"),
+                '@keyframes open': {
+                    '0%': {
+                        transform: "rotate(0deg)",
+                    },
+                    '100%': {
+                        transform: "rotate(180deg)",
+                    },
+                },
+                '@keyframes close': {
+                    '0%': {
+                        transform: "rotate(180deg)",
+                    },
+                    '100%': {
+                        transform: "rotate(0deg)",
+                    },
+                },
+            }
+            : {
+                marginTop: 'auto',
+                marginBottom: 'auto',
+            };
+    }, [isExpandable, isExpand]);
+    var collapseStyle = useMemo(function () { return ({
+        backgroundColor: isExpand
+            ? alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2)
+            : undefined,
+    }); }, [isExpand, theme]);
+    var primaryTypographyProps = useMemo(function () { return ({ sx: { fontWeight: info.depth === 1 ? 600 : null } }); }, [info]);
+    // -------------------------------------------------------------------------------------------------------------------
+    return (React.createElement(React.Fragment, null,
+        React.createElement(ListItemButton, { onClick: isExpandable
+                ? toggleIsExpand
+                : function () {
+                    if (onClick)
+                        onClick(info);
+                }, selected: isExpandable ? false : info.uri === location.pathname, style: containerStyle },
+            React.createElement(ListItemIcon, { sx: { minWidth: 30 } }, icon && React.createElement(Icon, { fontSize: 'small' }, icon)),
+            React.createElement(ListItemText, { primaryTypographyProps: primaryTypographyProps }, info.name),
+            isExpandable && React.createElement(ExpandMore, { sx: expandIconSx })),
+        React.createElement(Collapse, { in: isExpand, style: collapseStyle }, isExpandable &&
+            info.items &&
+            info.items.map(function (subInfo, idx) { return React.createElement(SideMenuListItem, { key: idx, info: subInfo, onClick: onClick }); }))));
+};var StyledList = styled(List)(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  padding: 0;\n"], ["\n  padding: 0;\n"])));
+var templateObject_1$3;var SideMenuList = function (_a) {
+    var list = _a.list, onClick = _a.onClick;
+    return (React.createElement(StyledList, null, list.map(function (info, idx) { return (React.createElement(SideMenuListItem, { key: idx, info: info, onClick: onClick })); })));
+};var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};var propTypes = {exports: {}};var reactIs = {exports: {}};var reactIs_production_min = {};/** @license React v16.13.1
  * react-is.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -2266,7 +2366,7 @@ var getBuiltIn$1 = getBuiltIn$5;
 var inspectSource = inspectSource$2;
 
 var noop = function () { /* empty */ };
-var empty$1 = [];
+var empty = [];
 var construct = getBuiltIn$1('Reflect', 'construct');
 var constructorRegExp = /^\s*(?:class|function)\b/;
 var exec$1 = uncurryThis$c(constructorRegExp.exec);
@@ -2275,7 +2375,7 @@ var INCORRECT_TO_STRING = !constructorRegExp.exec(noop);
 var isConstructorModern = function isConstructor(argument) {
   if (!isCallable$8(argument)) return false;
   try {
-    construct(noop, empty$1, argument);
+    construct(noop, empty, argument);
     return true;
   } catch (error) {
     return false;
@@ -7322,106 +7422,15 @@ SimpleBar.propTypes = {
   children: propTypes.exports.oneOfType([propTypes.exports.node, propTypes.exports.func]),
   scrollableNodeProps: propTypes.exports.object,
   tag: propTypes.exports.string
-};var empty = function (v) {
-    var result = false;
-    if (v == null) {
-        result = true;
-    }
-    else if (typeof v === 'string') {
-        result = v === '';
-    }
-    else if (typeof v === 'object') {
-        if (Array.isArray(v)) {
-            result = v.length === 0;
-        }
-        else if (!(v instanceof Date)) {
-            result = Object.entries(v).length === 0;
-        }
-    }
-    return result;
-};
-var notEmpty = function (v) {
-    return !empty(v);
-};var SideMenuListItem = function (_a) {
-    var info = _a.info, onClick = _a.onClick;
-    var theme = useTheme();
-    var _b = useState(false), isExpandable = _b[0], setIsExpandable = _b[1];
-    var _c = useState(false), isExpand = _c[0], setIsExpand = _c[1];
-    var _d = useState(null), expandIconSx = _d[0], setExpandIconSx = _d[1];
-    useEffect(function () {
-        setIsExpandable(!!info && notEmpty(info.items));
-        if (info.items && info.items.find(function (info) { return location.pathname === info.uri; })) {
-            setIsExpand(true);
-        }
-    }, [info]);
-    useEffect(function () {
-        if (isExpandable && isExpand != null) {
-            if (info.uri !== location.pathname) {
-                if (info.items && !info.items.find(function (info) { return location.pathname === info.uri; })) {
-                    if (isExpand) {
-                        setIsExpand(false);
-                    }
-                }
-            }
-        }
-        if (isExpandable && !isExpand) {
-            if (info.items && info.items.find(function (info) { return location.pathname === info.uri; })) {
-                setIsExpand(true);
-            }
-        }
-    }, [location.pathname]);
-    useEffect(function () {
-        if (isExpandable && isExpand != null) {
-            setExpandIconSx({
-                animation: "".concat(isExpand ? 'open' : 'close', " 0.1s linear"),
-                transform: "rotate(".concat(isExpand ? 180 : 0, "deg)"),
-                '@keyframes open': {
-                    '0%': {
-                        transform: "rotate(0deg)",
-                    },
-                    '100%': {
-                        transform: "rotate(180deg)",
-                    },
-                },
-                '@keyframes close': {
-                    '0%': {
-                        transform: "rotate(180deg)",
-                    },
-                    '100%': {
-                        transform: "rotate(0deg)",
-                    },
-                },
-            });
-        }
-    }, [isExpandable, isExpand]);
-    function toggleIsExpand() {
-        setIsExpand(function (isExpand) { return !isExpand; });
-    }
-    return (React.createElement(React.Fragment, null,
-        React.createElement(ListItemButton, { onClick: isExpandable
-                ? toggleIsExpand
-                : function () {
-                    if (onClick)
-                        onClick(info);
-                }, selected: isExpandable ? false : info.uri === location.pathname, style: {
-                backgroundColor: isExpandable && isExpand
-                    ? alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2)
-                    : undefined,
-            } },
-            React.createElement(ListItemIcon, { sx: { minWidth: 30 } }, info.icon && (React.createElement(Icon, { fontSize: 'small' }, info.icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
-            React.createElement(ListItemText, { primaryTypographyProps: { sx: { fontWeight: info.depth === 1 ? 600 : null } } }, info.name),
-            isExpandable && React.createElement(ExpandMore, { style: { marginTop: 'auto', marginBottom: 'auto' }, sx: expandIconSx })),
-        React.createElement(Collapse, { in: isExpand, style: {
-                backgroundColor: isExpand
-                    ? alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2)
-                    : undefined,
-            } }, isExpandable &&
-            info.items &&
-            info.items.map(function (subInfo, idx) { return React.createElement(SideMenuListItem, { key: idx, info: subInfo, onClick: onClick }); }))));
-};var SideMenuList = function (_a) {
-    var list = _a.list, onClick = _a.onClick;
-    return (React.createElement(List, { sx: { padding: 0 } }, list.map(function (info, idx) { return (React.createElement(SideMenuListItem, { key: idx, info: info, onClick: onClick })); })));
-};function styleInject(css, ref) {
+};var StyledSimpleBar = styled(SimpleBar)(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n  max-height: 100%;\n"], ["\n  max-height: 100%;\n"])));
+var StyledLogoContainerBox = styled(Box)(function (_a) {
+    var theme = _a.theme;
+    return theme.unstable_sx({
+        borderBottom: 'thin solid #f5f5f5',
+        color: 'text.primary',
+    });
+});
+var templateObject_1$2;function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
   var insertAt = ref.insertAt;
 
@@ -7449,27 +7458,89 @@ var notEmpty = function (v) {
 }var css_248z = "[data-simplebar]{position:relative;flex-direction:column;flex-wrap:wrap;justify-content:flex-start;align-content:flex-start;align-items:flex-start}.simplebar-wrapper{overflow:hidden;width:inherit;height:inherit;max-width:inherit;max-height:inherit}.simplebar-mask{direction:inherit;position:absolute;overflow:hidden;padding:0;margin:0;left:0;top:0;bottom:0;right:0;width:auto!important;height:auto!important;z-index:0}.simplebar-offset{direction:inherit!important;box-sizing:inherit!important;resize:none!important;position:absolute;top:0;left:0;bottom:0;right:0;padding:0;margin:0;-webkit-overflow-scrolling:touch}.simplebar-content-wrapper{direction:inherit;box-sizing:border-box!important;position:relative;display:block;height:100%;width:auto;max-width:100%;max-height:100%;scrollbar-width:none;-ms-overflow-style:none}.simplebar-content-wrapper::-webkit-scrollbar,.simplebar-hide-scrollbar::-webkit-scrollbar{width:0;height:0}.simplebar-content:after,.simplebar-content:before{content:' ';display:table}.simplebar-placeholder{max-height:100%;max-width:100%;width:100%;pointer-events:none}.simplebar-height-auto-observer-wrapper{box-sizing:inherit!important;height:100%;width:100%;max-width:1px;position:relative;float:left;max-height:1px;overflow:hidden;z-index:-1;padding:0;margin:0;pointer-events:none;flex-grow:inherit;flex-shrink:0;flex-basis:0}.simplebar-height-auto-observer{box-sizing:inherit;display:block;opacity:0;position:absolute;top:0;left:0;height:1000%;width:1000%;min-height:1px;min-width:1px;overflow:hidden;pointer-events:none;z-index:-1}.simplebar-track{z-index:1;position:absolute;right:0;bottom:0;pointer-events:none;overflow:hidden}[data-simplebar].simplebar-dragging .simplebar-content{pointer-events:none;user-select:none;-webkit-user-select:none}[data-simplebar].simplebar-dragging .simplebar-track{pointer-events:all}.simplebar-scrollbar{position:absolute;left:0;right:0;min-height:10px}.simplebar-scrollbar:before{position:absolute;content:'';background:#000;border-radius:7px;left:2px;right:2px;opacity:0;transition:opacity .2s .5s linear}.simplebar-scrollbar.simplebar-visible:before{opacity:.5;transition-delay:0s;transition-duration:0s}.simplebar-track.simplebar-vertical{top:0;width:11px}.simplebar-scrollbar:before{top:2px;bottom:2px;left:2px;right:2px}.simplebar-track.simplebar-horizontal{left:0;height:11px}.simplebar-track.simplebar-horizontal .simplebar-scrollbar{right:auto;left:0;top:0;bottom:0;min-height:0;min-width:10px;width:auto}[data-simplebar-direction=rtl] .simplebar-track.simplebar-vertical{right:auto;left:0}.simplebar-dummy-scrollbar-size{direction:rtl;position:fixed;opacity:0;visibility:hidden;height:500px;width:500px;overflow-y:hidden;overflow-x:scroll;-ms-overflow-style:scrollbar!important}.simplebar-dummy-scrollbar-size>div{width:200%;height:200%;margin:10px 0}.simplebar-hide-scrollbar{position:fixed;left:0;visibility:hidden;overflow-y:scroll;scrollbar-width:none;-ms-overflow-style:none}\n";
 styleInject(css_248z);var SideMenu = function (_a) {
     var logo = _a.logo, list = _a.list, onClick = _a.onClick;
-    return (React.createElement(SimpleBar, { style: { maxHeight: '100%' } },
-        React.createElement(Box, { sx: {
-                borderBottom: 'thin solid #f5f5f5',
-                color: 'text.primary',
-            } },
+    return (React.createElement(StyledSimpleBar, null,
+        React.createElement(StyledLogoContainerBox, null,
             React.createElement(Toolbar, null, logo)),
         list && React.createElement(SideMenuList, { list: list, onClick: onClick })));
-};var Title = function (_a) {
+};var StyledContainerBox$1 = styled(Box)(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n  position: relative;\n"], ["\n  position: relative;\n"])));
+var StyledHeadContainerBox = styled(Box)(function (_a) {
+    var theme = _a.theme;
+    return theme.unstable_sx({
+        display: { xs: 'none', sm: 'flex' },
+        alignItems: 'center',
+        opacity: 0.5,
+    });
+});
+var StyledHeadIconContainerBox = styled(Box)(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  margin-right: 0.25rem;\n  line-height: 0;\n"], ["\n  margin-right: 0.25rem;\n  line-height: 0;\n"])));
+var StyledHeadIcon = styled(Icon)(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  font-size: 1rem;\n"], ["\n  font-size: 1rem;\n"])));
+var StyledHeadTitleTypography = styled(Typography)(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  font-size: 0.7rem;\n"], ["\n  font-size: 0.7rem;\n"])));
+var StyledTitleContainerDiv = styled('div')(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  display: flex;\n  align-items: center;\n  font-size: 1rem;\n"], ["\n  display: flex;\n  align-items: center;\n  font-size: 1rem;\n"])));
+var StyledTitleIconContainerDiv = styled('div')(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n  flex-shrink: 0;\n  display: inline-flex;\n  margin-right: 0.3rem;\n"], ["\n  flex-shrink: 0;\n  display: inline-flex;\n  margin-right: 0.3rem;\n"])));
+var templateObject_1$1, templateObject_2$1, templateObject_3, templateObject_4, templateObject_5, templateObject_6;var Title = function (_a) {
     var title = _a.title, icon = _a.icon, headTitle = _a.headTitle, headIcon = _a.headIcon;
-    return (React.createElement(Box, { style: { position: 'relative' } },
-        headTitle && (React.createElement(Box, { sx: { display: { xs: 'none', sm: 'flex' }, alignItems: 'center', opacity: 0.5 } },
-            headIcon && (React.createElement(Box, { style: { marginRight: '0.25rem', lineHeight: 0 } },
-                React.createElement(Icon, { style: { fontSize: '1rem' } }, headIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
-            React.createElement(Typography, { style: { fontSize: '0.7rem' } }, headTitle))),
-        React.createElement("div", { style: { display: 'flex', alignItems: 'center', fontSize: '1rem' } },
-            icon && (React.createElement("div", { style: { flexShrink: 0, display: 'inline-flex', marginRight: '0.3rem' } },
-                React.createElement(Icon, { fontSize: 'small' }, icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })))),
+    var finalHeadIcon = useMemo(function () {
+        return headIcon
+            ? headIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })
+            : undefined;
+    }, [headIcon]);
+    var finalIcon = useMemo(function () { return (icon ? icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); }) : undefined); }, [icon]);
+    return (React.createElement(StyledContainerBox$1, null,
+        headTitle && (React.createElement(StyledHeadContainerBox, null,
+            finalHeadIcon && (React.createElement(StyledHeadIconContainerBox, null,
+                React.createElement(StyledHeadIcon, null, finalHeadIcon))),
+            React.createElement(StyledHeadTitleTypography, null, headTitle))),
+        React.createElement(StyledTitleContainerDiv, null,
+            finalIcon && (React.createElement(StyledTitleIconContainerDiv, null,
+                React.createElement(Icon, { fontSize: 'small' }, finalIcon))),
             React.createElement("div", null, title))));
-};var sideMenuWidth = 220;
-var DefaultLayout = function (_a) {
+};var SIDE_MENU_WIDTH = 220;
+var StyledContainerBox = styled(Box)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  height: 100%;\n"], ["\n  display: flex;\n  height: 100%;\n"])));
+var StyledAppBar = styled(AppBar)(function (_a) {
+    var theme = _a.theme;
+    return theme.unstable_sx({
+        backdropFilter: 'blur(20px)',
+        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+        color: 'text.primary',
+        borderBottom: 'thin solid #f5f5f5',
+        width: { sm: "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)") },
+        ml: { sm: "".concat(SIDE_MENU_WIDTH, "px") },
+    });
+});
+var StyledSideMenuContainerBox = styled(Box)(function (_a) {
+    var theme = _a.theme;
+    return theme.unstable_sx({ width: { sm: SIDE_MENU_WIDTH }, flexShrink: { sm: 0 } });
+});
+var StyledSideMenuTemporaryDrawer = styled(Drawer)(function (_a) {
+    var theme = _a.theme;
+    return theme.unstable_sx({
+        display: { xs: 'block', sm: 'none' },
+        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: SIDE_MENU_WIDTH },
+    });
+});
+var StyledSideMenuPermanentDrawer = styled(Drawer)(function (_a) {
+    var theme = _a.theme;
+    return theme.unstable_sx({
+        display: { xs: 'none', sm: 'block' },
+        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: SIDE_MENU_WIDTH },
+    });
+});
+var StyledMainBox = styled(Box)(function (_a) {
+    var theme = _a.theme;
+    return theme.unstable_sx({
+        flexGrow: 1,
+        p: 2,
+        width: { sm: "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)") },
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+    });
+});
+var StyledMainContentDiv = styled('div')(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex: 1;\n"], ["\n  display: flex;\n  flex: 1;\n"])));
+var templateObject_1, templateObject_2;var DefaultLayout = function (_a) {
+    // -------------------------------------------------------------------------------------------------------------------
     var children = _a.children, logo = _a.logo, menu = _a.menu, appBarControl = _a.appBarControl, onMenuClick = _a.onMenuClick;
+    var location = useLocation();
+    // -------------------------------------------------------------------------------------------------------------------
     var _b = useState(false), isMobileOpen = _b[0], setIsMobileOpen = _b[1];
     var _c = useState({}), menuTitles = _c[0], setMenuTitles = _c[1];
     var _d = useState(), title = _d[0], setTitle = _d[1];
@@ -7478,7 +7549,7 @@ var DefaultLayout = function (_a) {
         var menuTitles = {};
         if (menu) {
             menu.forEach(function (info) {
-                if (empty(info.uri) && info.items && info.items.length > 0) {
+                if (empty$1(info.uri) && info.items && info.items.length > 0) {
                     info.items.map(function (subInfo) {
                         menuTitles[subInfo.uri] = { name: subInfo.name, parentName: info.name, parentIcon: info.icon };
                     });
@@ -7500,41 +7571,29 @@ var DefaultLayout = function (_a) {
                 setTitle(undefined);
             }
         }
-    }, [location.pathname, menuTitles]);
-    function toggleIsMobileOpen() {
+    }, [location, menuTitles]);
+    // -------------------------------------------------------------------------------------------------------------------
+    var toggleIsMobileOpen = useCallback(function () {
         setIsMobileOpen(function (isMobileOpen) { return !isMobileOpen; });
-    }
+    }, []);
     //--------------------------------------------------------------------------------------------------------------------
-    return (React.createElement(Box, { sx: { display: 'flex', height: '100%' } },
-        React.createElement(AppBar, { position: 'fixed', elevation: 0, sx: {
-                backdropFilter: 'blur(20px)',
-                backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                color: 'text.primary',
-                borderBottom: 'thin solid #f5f5f5',
-                width: { sm: "calc(100% - ".concat(sideMenuWidth, "px)") },
-                ml: { sm: "".concat(sideMenuWidth, "px") },
-            } },
+    return (React.createElement(StyledContainerBox, null,
+        React.createElement(StyledAppBar, { position: 'fixed', elevation: 0 },
             React.createElement(Toolbar, null,
                 React.createElement(IconButton, { color: 'inherit', "aria-label": 'open drawer', edge: 'start', onClick: toggleIsMobileOpen, sx: { mr: 2, display: { sm: 'none' } } },
                     React.createElement(Menu, null)),
                 React.createElement(Typography, { variant: 'h6', noWrap: true, component: 'div', sx: { flexGrow: 1 } }, title),
                 appBarControl)),
-        React.createElement(Box, { component: 'nav', sx: { width: { sm: sideMenuWidth }, flexShrink: { sm: 0 } }, "aria-label": 'mailbox folders' },
-            React.createElement(Drawer, { variant: 'temporary', open: isMobileOpen, onClose: toggleIsMobileOpen, ModalProps: {
+        React.createElement(StyledSideMenuContainerBox, { component: 'nav', "aria-label": 'mailbox folders' },
+            React.createElement(StyledSideMenuTemporaryDrawer, { variant: 'temporary', open: isMobileOpen, onClose: toggleIsMobileOpen, ModalProps: {
                     keepMounted: true, // Better open performance on mobile.
-                }, sx: {
-                    display: { xs: 'block', sm: 'none' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: sideMenuWidth },
                 } }, menu && (React.createElement(SideMenu, { logo: logo, list: menu, onClick: function (menuItem) {
                     toggleIsMobileOpen();
                     if (onMenuClick)
                         onMenuClick(menuItem);
                 } }))),
-            React.createElement(Drawer, { variant: 'permanent', sx: {
-                    display: { xs: 'none', sm: 'block' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: sideMenuWidth },
-                }, open: true }, menu && React.createElement(SideMenu, { logo: logo, list: menu, onClick: onMenuClick }))),
-        React.createElement(Box, { component: 'main', sx: { flexGrow: 1, p: 2, width: { sm: "calc(100% - ".concat(sideMenuWidth, "px)") } } },
+            React.createElement(StyledSideMenuPermanentDrawer, { variant: 'permanent', open: true }, menu && React.createElement(SideMenu, { logo: logo, list: menu, onClick: onMenuClick }))),
+        React.createElement(StyledMainBox, { component: 'main' },
             React.createElement(Toolbar, null),
-            children)));
+            React.createElement(StyledMainContentDiv, null, children))));
 };export{CardLayout,DefaultLayout};//# sourceMappingURL=index.esm.js.map
