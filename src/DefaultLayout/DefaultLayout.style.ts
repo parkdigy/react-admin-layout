@@ -49,5 +49,6 @@ export const StyledMainBox = styled(Box)(({ theme }) =>
 
 export const StyledMainContentDiv = styled('div')`
   display: flex;
+  flex-direction: column;
   flex: 1;
 `;

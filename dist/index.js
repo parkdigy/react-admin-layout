@@ -7535,7 +7535,7 @@ var StyledMainBox = material.styled(material.Box)(function (_a) {
         minHeight: '100vh',
     });
 });
-var StyledMainContentDiv = material.styled('div')(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex: 1;\n"], ["\n  display: flex;\n  flex: 1;\n"])));
+var StyledMainContentDiv = material.styled('div')(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n"], ["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n"])));
 var templateObject_1, templateObject_2;var DefaultLayout = function (_a) {
     // -------------------------------------------------------------------------------------------------------------------
     var children = _a.children, logo = _a.logo, menu = _a.menu, appBarControl = _a.appBarControl, onMenuClick = _a.onMenuClick;
