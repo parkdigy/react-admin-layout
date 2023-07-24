@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as AdminLayout from 'react-admin-layout';
+import * as AdminLayout from '../../../../src';
 import { ThemeBase } from '../Theme';
 import menu from './menu.json';
 import MainRouter from '../../router';
@@ -35,6 +35,7 @@ const DefaultLayout = () => {
       <AdminLayout.DefaultLayout
         logo='react-admin-layout'
         menu={menu}
+        menuHideScreen='sm'
         appBarControl={appBarControl}
         onMenuClick={handleMenuClick}
       >

@@ -7502,25 +7502,21 @@ var StyledAppBar = styled(AppBar)(function (_a) {
         backgroundColor: 'rgba(255, 255, 255, 0.7)',
         color: 'text.primary',
         borderBottom: 'thin solid #f5f5f5',
-        width: { sm: "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)") },
-        ml: { sm: "".concat(SIDE_MENU_WIDTH, "px") },
     });
 });
 var StyledSideMenuContainerBox = styled(Box)(function (_a) {
     var theme = _a.theme;
-    return theme.unstable_sx({ width: { sm: SIDE_MENU_WIDTH }, flexShrink: { sm: 0 } });
+    return theme.unstable_sx({});
 });
 var StyledSideMenuTemporaryDrawer = styled(Drawer)(function (_a) {
     var theme = _a.theme;
     return theme.unstable_sx({
-        display: { xs: 'block', sm: 'none' },
         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: SIDE_MENU_WIDTH },
     });
 });
 var StyledSideMenuPermanentDrawer = styled(Drawer)(function (_a) {
     var theme = _a.theme;
     return theme.unstable_sx({
-        display: { xs: 'none', sm: 'block' },
         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: SIDE_MENU_WIDTH },
     });
 });
@@ -7529,21 +7525,32 @@ var StyledMainBox = styled(Box)(function (_a) {
     return theme.unstable_sx({
         flexGrow: 1,
         p: 2,
-        width: { sm: "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)") },
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
     });
 });
 var StyledMainContentDiv = styled('div')(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n"], ["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n"])));
-var templateObject_1, templateObject_2;var DefaultLayout = function (_a) {
+var templateObject_1, templateObject_2;var _screens = ['xs', 'sm', 'md', 'lg', 'xl'];
+var _getNextScreen = function (screen) {
+    if (screen === 'xs')
+        return 'sm';
+    else if (screen === 'sm')
+        return 'md';
+    else if (screen === 'md')
+        return 'lg';
+    else
+        return 'xl';
+};
+var DefaultLayout = function (_a) {
     // -------------------------------------------------------------------------------------------------------------------
-    var children = _a.children, logo = _a.logo, menu = _a.menu, appBarControl = _a.appBarControl, onMenuClick = _a.onMenuClick;
+    var children = _a.children, logo = _a.logo, menu = _a.menu, initMenuHideScreen = _a.menuHideScreen, appBarControl = _a.appBarControl, onMenuClick = _a.onMenuClick;
     var location = useLocation();
     // -------------------------------------------------------------------------------------------------------------------
     var _b = useState(false), isMobileOpen = _b[0], setIsMobileOpen = _b[1];
     var _c = useState({}), menuTitles = _c[0], setMenuTitles = _c[1];
     var _d = useState(), title = _d[0], setTitle = _d[1];
+    var _e = useState(initMenuHideScreen || 'sm'), menuHideScreen = _e[0], setMenuHideScreen = _e[1];
     //--------------------------------------------------------------------------------------------------------------------
     useEffect(function () {
         var menuTitles = {};
@@ -7562,6 +7569,9 @@ var templateObject_1, templateObject_2;var DefaultLayout = function (_a) {
         setMenuTitles(menuTitles);
     }, [menu]);
     useEffect(function () {
+        setMenuHideScreen(initMenuHideScreen || 'sm');
+    }, [initMenuHideScreen]);
+    useEffect(function () {
         if (menuTitles) {
             var titleData = menuTitles[location.pathname];
             if (titleData) {
@@ -7577,23 +7587,78 @@ var templateObject_1, templateObject_2;var DefaultLayout = function (_a) {
         setIsMobileOpen(function (isMobileOpen) { return !isMobileOpen; });
     }, []);
     //--------------------------------------------------------------------------------------------------------------------
+    var appBarSx = useMemo(function () {
+        var width = {};
+        var ml = {};
+        width[_getNextScreen(menuHideScreen)] = "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)");
+        ml[_getNextScreen(menuHideScreen)] = "".concat(SIDE_MENU_WIDTH, "px");
+        return { width: width, ml: ml };
+    }, [menuHideScreen]);
+    var appBarIconButtonSx = useMemo(function () {
+        var display = {};
+        display[_getNextScreen(menuHideScreen)] = 'none';
+        return { mr: 2, display: display };
+    }, [menuHideScreen]);
+    var sideMenuContainerBoxSx = useMemo(function () {
+        var width = {};
+        var flexShrink = {};
+        width[_getNextScreen(menuHideScreen)] = SIDE_MENU_WIDTH;
+        flexShrink[_getNextScreen(menuHideScreen)] = 0;
+        return { width: width, flexShrink: flexShrink };
+    }, [menuHideScreen]);
+    var sideMenuTemporaryDrawerSx = useMemo(function () {
+        var found = false;
+        return {
+            display: _screens.reduce(function (res, screen) {
+                if (screen === menuHideScreen) {
+                    found = true;
+                    res[screen] = 'block';
+                }
+                else {
+                    res[screen] = found ? 'none' : 'block';
+                }
+                return res;
+            }, {}),
+        };
+    }, [menuHideScreen]);
+    var sideMenuPermanentDrawerSx = useMemo(function () {
+        var found = false;
+        return {
+            display: _screens.reduce(function (res, screen) {
+                if (screen === menuHideScreen) {
+                    found = true;
+                    res[screen] = 'none';
+                }
+                else {
+                    res[screen] = found ? 'block' : 'none';
+                }
+                return res;
+            }, {}),
+        };
+    }, [menuHideScreen]);
+    var mainBoxSx = useMemo(function () {
+        var width = {};
+        width[_getNextScreen(menuHideScreen)] = "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)");
+        return { width: width };
+    }, [menuHideScreen]);
+    // -------------------------------------------------------------------------------------------------------------------
     return (React.createElement(StyledContainerBox, null,
-        React.createElement(StyledAppBar, { position: 'fixed', elevation: 0 },
+        React.createElement(StyledAppBar, { position: 'fixed', elevation: 0, sx: appBarSx },
             React.createElement(Toolbar, null,
-                React.createElement(IconButton, { color: 'inherit', "aria-label": 'open drawer', edge: 'start', onClick: toggleIsMobileOpen, sx: { mr: 2, display: { sm: 'none' } } },
+                React.createElement(IconButton, { color: 'inherit', "aria-label": 'open drawer', edge: 'start', onClick: toggleIsMobileOpen, sx: appBarIconButtonSx },
                     React.createElement(Menu, null)),
                 React.createElement(Typography, { variant: 'h6', noWrap: true, component: 'div', sx: { flexGrow: 1 } }, title),
                 appBarControl)),
-        React.createElement(StyledSideMenuContainerBox, { component: 'nav', "aria-label": 'mailbox folders' },
-            React.createElement(StyledSideMenuTemporaryDrawer, { variant: 'temporary', open: isMobileOpen, onClose: toggleIsMobileOpen, ModalProps: {
+        React.createElement(StyledSideMenuContainerBox, { component: 'nav', "aria-label": 'mailbox folders', sx: sideMenuContainerBoxSx },
+            React.createElement(StyledSideMenuTemporaryDrawer, { variant: 'temporary', open: isMobileOpen, onClose: toggleIsMobileOpen, sx: sideMenuTemporaryDrawerSx, ModalProps: {
                     keepMounted: true, // Better open performance on mobile.
                 } }, menu && (React.createElement(SideMenu, { logo: logo, list: menu, onClick: function (menuItem) {
                     toggleIsMobileOpen();
                     if (onMenuClick)
                         onMenuClick(menuItem);
                 } }))),
-            React.createElement(StyledSideMenuPermanentDrawer, { variant: 'permanent', open: true }, menu && React.createElement(SideMenu, { logo: logo, list: menu, onClick: onMenuClick }))),
-        React.createElement(StyledMainBox, { component: 'main' },
+            React.createElement(StyledSideMenuPermanentDrawer, { variant: 'permanent', open: true, sx: sideMenuPermanentDrawerSx }, menu && React.createElement(SideMenu, { logo: logo, list: menu, onClick: onMenuClick }))),
+        React.createElement(StyledMainBox, { component: 'main', sx: mainBoxSx },
             React.createElement(Toolbar, null),
             React.createElement(StyledMainContentDiv, null, children))));
 };export{CardLayout,DefaultLayout};//# sourceMappingURL=index.esm.js.map

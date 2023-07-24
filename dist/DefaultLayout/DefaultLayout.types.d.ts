@@ -18,5 +18,6 @@ export interface DefaultLayoutProps extends CommonSxProps {
     logo: ReactNode;
     menu?: MenuItem[];
     appBarControl?: ReactNode;
+    menuHideScreen?: 'xs' | 'sm' | 'md' | 'lg';
     onMenuClick?(menuItem: MenuItem): void;
 }
