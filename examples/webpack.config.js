@@ -9,13 +9,14 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const { SourceMapDevToolPlugin } = require('webpack');
 
 //--------------------------------------------------------------------------------------------------------------------
 
 const isProduction = process.env.NODE_ENV === 'production';
 const isLibProduction = isProduction || process.env.LIB_ENV === 'production';
 const outputPath = path.resolve(__dirname, 'dist');
-const devtool = isProduction ? 'eval-cheap-source-map' : 'eval';
+const devtool = isProduction ? 'source-map' : 'eval';
 const mode = isProduction ? 'production' : 'development';
 
 //--------------------------------------------------------------------------------------------------------------------
@@ -104,6 +105,9 @@ const options = {
       : {},
   },
   plugins: [
+    new SourceMapDevToolPlugin({
+      filename: '[file].map',
+    }),
     new WebpackShellPluginNext({
       dev: !isProduction,
       onBuildStart: {
@@ -162,6 +166,11 @@ const options = {
             },
           },
         ],
+      },
+      {
+        test: /\.m?js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
       },
       {
         test: /\.html$/,
