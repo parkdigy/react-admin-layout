@@ -141,7 +141,9 @@ var notEmpty = function (v) {
                         onClick(info);
                 }, selected: isExpandable ? false : info.uri === location.pathname, style: containerStyle },
             React.createElement(material.ListItemIcon, { sx: { minWidth: 30 } }, icon && React.createElement(material.Icon, { fontSize: 'small' }, icon)),
-            React.createElement(material.ListItemText, { primaryTypographyProps: primaryTypographyProps }, info.badge ? (React.createElement(material.Badge, { badgeContent: info.badge, color: 'error', variant: badgeVariant !== undefined ? badgeVariant : info.badgeVariant, anchorOrigin: { horizontal: 'left', vertical: 'top' }, slotProps: { badge: { style: { left: '100%', top: '50%', transform: 'translate(10px, -50%)' } } } },
+            React.createElement(material.ListItemText, { primaryTypographyProps: primaryTypographyProps }, info.badge ? (React.createElement(material.Badge, { badgeContent: info.badge, color: 'error', variant: badgeVariant !== undefined ? badgeVariant : info.badgeVariant, anchorOrigin: { horizontal: 'left', vertical: 'top' }, slotProps: {
+                    badge: { style: { left: '100%', top: '50%', transform: 'scale(.8) translate(10px, -50%)' } },
+                } },
                 React.createElement("div", null, info.name))) : (info.name)),
             isExpandable && React.createElement(iconsMaterial.ExpandMore, { sx: expandIconSx })),
         React.createElement(material.Collapse, { in: isExpand, style: collapseStyle }, isExpandable &&

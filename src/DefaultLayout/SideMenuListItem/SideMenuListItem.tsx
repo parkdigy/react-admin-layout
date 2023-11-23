@@ -137,7 +137,9 @@ const SideMenuListItem: React.FC<SideMenuListItemProps> = ({ info, badgeVariant,
               color='error'
               variant={badgeVariant !== undefined ? badgeVariant : info.badgeVariant}
               anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
-              slotProps={{ badge: { style: { left: '100%', top: '50%', transform: 'translate(10px, -50%)' } } }}
+              slotProps={{
+                badge: { style: { left: '100%', top: '50%', transform: 'scale(.8) translate(10px, -50%)' } },
+              }}
             >
               <div>{info.name}</div>
             </Badge>
