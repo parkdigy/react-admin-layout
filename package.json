@@ -1,7 +1,7 @@
 {
   "name": "@pdg/react-admin-layout",
   "title": "React Admin Layout",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Admin Layout for React",
   "type": "module",
   "types": "dist/index.d.ts",

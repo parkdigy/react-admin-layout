@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { notEmpty } from '../../@util';
-import { ListItemButton, ListItemIcon, Icon, ListItemText, Collapse, useTheme, alpha } from '@mui/material';
+import { ListItemButton, ListItemIcon, Icon, ListItemText, Collapse, useTheme, alpha, Badge } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
 import { SideMenuListItemProps } from './SideMenuListItem.types';
 
-const SideMenuListItem: React.FC<SideMenuListItemProps> = ({ info, onClick }) => {
+const SideMenuListItem: React.FC<SideMenuListItemProps> = ({ info, badgeVariant, onClick }) => {
   const theme = useTheme();
   const location = useLocation();
 
@@ -130,13 +130,30 @@ const SideMenuListItem: React.FC<SideMenuListItemProps> = ({ info, onClick }) =>
         style={containerStyle}
       >
         <ListItemIcon sx={{ minWidth: 30 }}>{icon && <Icon fontSize='small'>{icon}</Icon>}</ListItemIcon>
-        <ListItemText primaryTypographyProps={primaryTypographyProps}>{info.name}</ListItemText>
+        <ListItemText primaryTypographyProps={primaryTypographyProps}>
+          {info.badge ? (
+            <Badge
+              badgeContent={info.badge}
+              color='error'
+              variant={badgeVariant !== undefined ? badgeVariant : info.badgeVariant}
+              anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+              slotProps={{ badge: { style: { left: '100%', top: '50%', transform: 'translate(10px, -50%)' } } }}
+            >
+              <div>{info.name}</div>
+            </Badge>
+          ) : (
+            info.name
+          )}
+        </ListItemText>
+
         {isExpandable && <ExpandMore sx={expandIconSx} />}
       </ListItemButton>
       <Collapse in={isExpand} style={collapseStyle}>
         {isExpandable &&
           info.items &&
-          info.items.map((subInfo, idx) => <SideMenuListItem key={idx} info={subInfo} onClick={onClick} />)}
+          info.items.map((subInfo, idx) => (
+            <SideMenuListItem key={idx} badgeVariant={badgeVariant} info={subInfo} onClick={onClick} />
+          ))}
       </Collapse>
     </>
   );

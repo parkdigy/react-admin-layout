@@ -5,13 +5,13 @@ import { SideMenuProps } from './SideMenu.types';
 import { StyledLogoContainerBox, StyledSimpleBar } from './SideMenu.style';
 import 'simplebar-react/dist/simplebar.min.css';
 
-const SideMenu: React.FC<SideMenuProps> = ({ logo, list, onClick }) => {
+const SideMenu: React.FC<SideMenuProps> = ({ logo, badgeVariant, list, onClick }) => {
   return (
     <StyledSimpleBar>
       <StyledLogoContainerBox>
         <Toolbar>{logo}</Toolbar>
       </StyledLogoContainerBox>
-      {list && <SideMenuList list={list} onClick={onClick} />}
+      {list && <SideMenuList badgeVariant={badgeVariant} list={list} onClick={onClick} />}
     </StyledSimpleBar>
   );
 };

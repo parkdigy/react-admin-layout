@@ -31,6 +31,7 @@ const _getNextScreen = (screen: 'xs' | 'sm' | 'md' | 'lg'): 'sm' | 'md' | 'lg' |
 const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   children,
   logo,
+  badgeVariant,
   menu,
   menuHideScreen: initMenuHideScreen,
   appBarControl,
@@ -189,6 +190,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
           {menu && (
             <SideMenu
               logo={logo}
+              badgeVariant={badgeVariant}
               list={menu}
               onClick={(menuItem) => {
                 toggleIsMobileOpen();
@@ -198,7 +200,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
           )}
         </StyledSideMenuTemporaryDrawer>
         <StyledSideMenuPermanentDrawer variant='permanent' open sx={sideMenuPermanentDrawerSx}>
-          {menu && <SideMenu logo={logo} list={menu} onClick={onMenuClick} />}
+          {menu && <SideMenu logo={logo} badgeVariant={badgeVariant} list={menu} onClick={onMenuClick} />}
         </StyledSideMenuPermanentDrawer>
       </StyledSideMenuContainerBox>
       <StyledMainBox component='main' sx={mainBoxSx}>

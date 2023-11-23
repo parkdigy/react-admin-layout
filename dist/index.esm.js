@@ -1,4 +1,4 @@
-import {Grid,useTheme,alpha,ListItemButton,ListItemIcon,Icon,ListItemText,Collapse,styled,List,Box,Toolbar,Typography,AppBar,Drawer,IconButton}from'@mui/material';import*as React from'react';import React__default,{useState,useEffect,useCallback,useMemo}from'react';import {useLocation}from'react-router-dom';import {ExpandMore,Menu}from'@mui/icons-material';var CardLayoutDefaultProps = {
+import {Grid,useTheme,alpha,ListItemButton,ListItemIcon,Icon,ListItemText,Badge,Collapse,styled,List,Box,Toolbar,Typography,AppBar,Drawer,IconButton}from'@mui/material';import*as React from'react';import React__default,{useState,useEffect,useCallback,useMemo}from'react';import {useLocation}from'react-router-dom';import {ExpandMore,Menu}from'@mui/icons-material';var CardLayoutDefaultProps = {
     backgroundColor: '#eff3f8',
 };var CardLayout = function (_a) {
     var children = _a.children, backgroundColor = _a.backgroundColor;
@@ -50,7 +50,7 @@ typeof SuppressedError === "function" ? SuppressedError : function (error, suppr
 var notEmpty = function (v) {
     return !empty(v);
 };var SideMenuListItem = function (_a) {
-    var info = _a.info, onClick = _a.onClick;
+    var info = _a.info, badgeVariant = _a.badgeVariant, onClick = _a.onClick;
     var theme = useTheme();
     var location = useLocation();
     // -------------------------------------------------------------------------------------------------------------------
@@ -141,15 +141,16 @@ var notEmpty = function (v) {
                         onClick(info);
                 }, selected: isExpandable ? false : info.uri === location.pathname, style: containerStyle },
             React__default.createElement(ListItemIcon, { sx: { minWidth: 30 } }, icon && React__default.createElement(Icon, { fontSize: 'small' }, icon)),
-            React__default.createElement(ListItemText, { primaryTypographyProps: primaryTypographyProps }, info.name),
+            React__default.createElement(ListItemText, { primaryTypographyProps: primaryTypographyProps }, info.badge ? (React__default.createElement(Badge, { badgeContent: info.badge, color: 'error', variant: badgeVariant !== undefined ? badgeVariant : info.badgeVariant, anchorOrigin: { horizontal: 'left', vertical: 'top' }, slotProps: { badge: { style: { left: '100%', top: '50%', transform: 'translate(10px, -50%)' } } } },
+                React__default.createElement("div", null, info.name))) : (info.name)),
             isExpandable && React__default.createElement(ExpandMore, { sx: expandIconSx })),
         React__default.createElement(Collapse, { in: isExpand, style: collapseStyle }, isExpandable &&
             info.items &&
-            info.items.map(function (subInfo, idx) { return React__default.createElement(SideMenuListItem, { key: idx, info: subInfo, onClick: onClick }); }))));
+            info.items.map(function (subInfo, idx) { return (React__default.createElement(SideMenuListItem, { key: idx, badgeVariant: badgeVariant, info: subInfo, onClick: onClick })); }))));
 };var StyledList = styled(List)(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  padding: 0;\n"], ["\n  padding: 0;\n"])));
 var templateObject_1$3;var SideMenuList = function (_a) {
-    var list = _a.list, onClick = _a.onClick;
-    return (React__default.createElement(StyledList, null, list.map(function (info, idx) { return (React__default.createElement(SideMenuListItem, { key: idx, info: info, onClick: onClick })); })));
+    var list = _a.list, badgeVariant = _a.badgeVariant, onClick = _a.onClick;
+    return (React__default.createElement(StyledList, null, list.map(function (info, idx) { return (React__default.createElement(SideMenuListItem, { key: idx, info: info, badgeVariant: badgeVariant, onClick: onClick })); })));
 };/** Detect free variable `global` from Node.js. */
 var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
 
@@ -1743,11 +1744,11 @@ var templateObject_1$2;function styleInject(css, ref) {
   }
 }var css_248z = "[data-simplebar]{position:relative;flex-direction:column;flex-wrap:wrap;justify-content:flex-start;align-content:flex-start;align-items:flex-start}.simplebar-wrapper{overflow:hidden;width:inherit;height:inherit;max-width:inherit;max-height:inherit}.simplebar-mask{direction:inherit;position:absolute;overflow:hidden;padding:0;margin:0;left:0;top:0;bottom:0;right:0;width:auto!important;height:auto!important;z-index:0}.simplebar-offset{direction:inherit!important;box-sizing:inherit!important;resize:none!important;position:absolute;top:0;left:0;bottom:0;right:0;padding:0;margin:0;-webkit-overflow-scrolling:touch}.simplebar-content-wrapper{direction:inherit;box-sizing:border-box!important;position:relative;display:block;height:100%;width:auto;max-width:100%;max-height:100%;overflow:auto;scrollbar-width:none;-ms-overflow-style:none}.simplebar-content-wrapper::-webkit-scrollbar,.simplebar-hide-scrollbar::-webkit-scrollbar{display:none;width:0;height:0}.simplebar-content:after,.simplebar-content:before{content:' ';display:table}.simplebar-placeholder{max-height:100%;max-width:100%;width:100%;pointer-events:none}.simplebar-height-auto-observer-wrapper{box-sizing:inherit!important;height:100%;width:100%;max-width:1px;position:relative;float:left;max-height:1px;overflow:hidden;z-index:-1;padding:0;margin:0;pointer-events:none;flex-grow:inherit;flex-shrink:0;flex-basis:0}.simplebar-height-auto-observer{box-sizing:inherit;display:block;opacity:0;position:absolute;top:0;left:0;height:1000%;width:1000%;min-height:1px;min-width:1px;overflow:hidden;pointer-events:none;z-index:-1}.simplebar-track{z-index:1;position:absolute;right:0;bottom:0;pointer-events:none;overflow:hidden}[data-simplebar].simplebar-dragging{pointer-events:none;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}[data-simplebar].simplebar-dragging .simplebar-content{pointer-events:none;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}[data-simplebar].simplebar-dragging .simplebar-track{pointer-events:all}.simplebar-scrollbar{position:absolute;left:0;right:0;min-height:10px}.simplebar-scrollbar:before{position:absolute;content:'';background:#000;border-radius:7px;left:2px;right:2px;opacity:0;transition:opacity .2s .5s linear}.simplebar-scrollbar.simplebar-visible:before{opacity:.5;transition-delay:0s;transition-duration:0s}.simplebar-track.simplebar-vertical{top:0;width:11px}.simplebar-scrollbar:before{top:2px;bottom:2px;left:2px;right:2px}.simplebar-track.simplebar-horizontal{left:0;height:11px}.simplebar-track.simplebar-horizontal .simplebar-scrollbar{right:auto;left:0;top:0;bottom:0;min-height:0;min-width:10px;width:auto}[data-simplebar-direction=rtl] .simplebar-track.simplebar-vertical{right:auto;left:0}.simplebar-dummy-scrollbar-size{direction:rtl;position:fixed;opacity:0;visibility:hidden;height:500px;width:500px;overflow-y:hidden;overflow-x:scroll;-ms-overflow-style:scrollbar!important}.simplebar-dummy-scrollbar-size>div{width:200%;height:200%;margin:10px 0}.simplebar-hide-scrollbar{position:fixed;left:0;visibility:hidden;overflow-y:scroll;scrollbar-width:none;-ms-overflow-style:none}\n";
 styleInject(css_248z);var SideMenu = function (_a) {
-    var logo = _a.logo, list = _a.list, onClick = _a.onClick;
+    var logo = _a.logo, badgeVariant = _a.badgeVariant, list = _a.list, onClick = _a.onClick;
     return (React__default.createElement(StyledSimpleBar, null,
         React__default.createElement(StyledLogoContainerBox, null,
             React__default.createElement(Toolbar, null, logo)),
-        list && React__default.createElement(SideMenuList, { list: list, onClick: onClick })));
+        list && React__default.createElement(SideMenuList, { badgeVariant: badgeVariant, list: list, onClick: onClick })));
 };var StyledContainerBox$1 = styled(Box)(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n  position: relative;\n"], ["\n  position: relative;\n"])));
 var StyledHeadContainerBox = styled(Box)(function (_a) {
     var theme = _a.theme;
@@ -1830,7 +1831,7 @@ var _getNextScreen = function (screen) {
 };
 var DefaultLayout = function (_a) {
     // -------------------------------------------------------------------------------------------------------------------
-    var children = _a.children, logo = _a.logo, menu = _a.menu, initMenuHideScreen = _a.menuHideScreen, appBarControl = _a.appBarControl, onMenuClick = _a.onMenuClick;
+    var children = _a.children, logo = _a.logo, badgeVariant = _a.badgeVariant, menu = _a.menu, initMenuHideScreen = _a.menuHideScreen, appBarControl = _a.appBarControl, onMenuClick = _a.onMenuClick;
     var location = useLocation();
     // -------------------------------------------------------------------------------------------------------------------
     var _b = useState(false), isMobileOpen = _b[0], setIsMobileOpen = _b[1];
@@ -1938,12 +1939,12 @@ var DefaultLayout = function (_a) {
         React__default.createElement(StyledSideMenuContainerBox, { component: 'nav', "aria-label": 'mailbox folders', sx: sideMenuContainerBoxSx },
             React__default.createElement(StyledSideMenuTemporaryDrawer, { variant: 'temporary', open: isMobileOpen, onClose: toggleIsMobileOpen, sx: sideMenuTemporaryDrawerSx, ModalProps: {
                     keepMounted: true, // Better open performance on mobile.
-                } }, menu && (React__default.createElement(SideMenu, { logo: logo, list: menu, onClick: function (menuItem) {
+                } }, menu && (React__default.createElement(SideMenu, { logo: logo, badgeVariant: badgeVariant, list: menu, onClick: function (menuItem) {
                     toggleIsMobileOpen();
                     if (onMenuClick)
                         onMenuClick(menuItem);
                 } }))),
-            React__default.createElement(StyledSideMenuPermanentDrawer, { variant: 'permanent', open: true, sx: sideMenuPermanentDrawerSx }, menu && React__default.createElement(SideMenu, { logo: logo, list: menu, onClick: onMenuClick }))),
+            React__default.createElement(StyledSideMenuPermanentDrawer, { variant: 'permanent', open: true, sx: sideMenuPermanentDrawerSx }, menu && React__default.createElement(SideMenu, { logo: logo, badgeVariant: badgeVariant, list: menu, onClick: onMenuClick }))),
         React__default.createElement(StyledMainBox, { component: 'main', sx: mainBoxSx },
             React__default.createElement(Toolbar, null),
             React__default.createElement(StyledMainContentDiv, null, children))));
