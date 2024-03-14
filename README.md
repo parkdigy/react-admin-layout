@@ -4,7 +4,7 @@ Admin Layout for React
 
 ## 설치
 ```
-npm install -D @pdg/react-admin-layout @mui/material @mui/icons-material @emotion/react @emotion/styled
+npm install -D @pdg/react-admin-layout @mui/material @mui/icons-material @emotion/react @emotion/styled simplebar-react
 ```
 
 ### index.html 에 추가
