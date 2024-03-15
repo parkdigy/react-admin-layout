@@ -3,7 +3,6 @@ import { Toolbar } from '@mui/material';
 import SideMenuList from '../SideMenuList';
 import { SideMenuProps } from './SideMenu.types';
 import { StyledLogoContainerBox, StyledSimpleBar } from './SideMenu.style';
-import 'simplebar-react/dist/simplebar.min.css';
 
 const SideMenu: React.FC<SideMenuProps> = ({ logo, badgeVariant, list, onClick }) => {
   return (

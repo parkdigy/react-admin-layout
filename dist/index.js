@@ -1,4 +1,4 @@
-'use strict';var material=require('@mui/material'),React=require('react'),reactRouterDom=require('react-router-dom'),iconsMaterial=require('@mui/icons-material'),SimpleBar=require('simplebar-react');require('simplebar-react/dist/simplebar.min.css');var CardLayoutDefaultProps = {
+'use strict';var material=require('@mui/material'),React=require('react'),reactRouterDom=require('react-router-dom'),iconsMaterial=require('@mui/icons-material'),SimpleBar=require('simplebar-react');var CardLayoutDefaultProps = {
     backgroundColor: '#eff3f8',
 };var CardLayout = function (_a) {
     var children = _a.children, backgroundColor = _a.backgroundColor;

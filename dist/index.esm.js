@@ -1,4 +1,4 @@
-import {Grid,useTheme,alpha,ListItemButton,ListItemIcon,Icon,ListItemText,Badge,Collapse,styled,List,Box,Toolbar,Typography,AppBar,Drawer,IconButton}from'@mui/material';import React,{useState,useEffect,useCallback,useMemo}from'react';import {useLocation}from'react-router-dom';import {ExpandMore,Menu}from'@mui/icons-material';import SimpleBar from'simplebar-react';import'simplebar-react/dist/simplebar.min.css';var CardLayoutDefaultProps = {
+import {Grid,useTheme,alpha,ListItemButton,ListItemIcon,Icon,ListItemText,Badge,Collapse,styled,List,Box,Toolbar,Typography,AppBar,Drawer,IconButton}from'@mui/material';import React,{useState,useEffect,useCallback,useMemo}from'react';import {useLocation}from'react-router-dom';import {ExpandMore,Menu}from'@mui/icons-material';import SimpleBar from'simplebar-react';var CardLayoutDefaultProps = {
     backgroundColor: '#eff3f8',
 };var CardLayout = function (_a) {
     var children = _a.children, backgroundColor = _a.backgroundColor;
