@@ -366,4 +366,4 @@ var DefaultLayout = function (_a) {
         React.createElement(StyledMainBox, { component: 'main', sx: mainBoxSx },
             React.createElement(material.Toolbar, null),
             React.createElement(StyledMainContentDiv, null, children))));
-};exports.CardLayout=CardLayout;exports.DefaultLayout=DefaultLayout;//# sourceMappingURL=index.js.map
+};exports.CardLayout=CardLayout;exports.DefaultLayout=DefaultLayout;

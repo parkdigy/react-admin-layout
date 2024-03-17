@@ -366,4 +366,4 @@ var DefaultLayout = function (_a) {
         React.createElement(StyledMainBox, { component: 'main', sx: mainBoxSx },
             React.createElement(Toolbar, null),
             React.createElement(StyledMainContentDiv, null, children))));
-};export{CardLayout,DefaultLayout};//# sourceMappingURL=index.esm.js.map
+};export{CardLayout,DefaultLayout};
