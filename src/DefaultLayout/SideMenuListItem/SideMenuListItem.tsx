@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { notEmpty } from '../../@util';
 import { ListItemButton, ListItemIcon, Icon, ListItemText, Collapse, useTheme, alpha, Badge } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
 import { SideMenuListItemProps } from './SideMenuListItem.types';
+import { notEmpty } from '@pdg/util';
 
 const SideMenuListItem: React.FC<SideMenuListItemProps> = ({ info, badgeVariant, onClick }) => {
   const theme = useTheme();

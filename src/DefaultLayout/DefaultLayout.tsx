@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu';
 import Title from './Title';
-import { empty } from '../@util';
 import { DefaultLayoutProps } from './DefaultLayout.types';
 import { MenuTitleMap } from './DefaultLayout.types.private';
 import {
@@ -18,6 +17,7 @@ import {
   StyledSideMenuTemporaryDrawer,
 } from './DefaultLayout.style';
 import { CommonSxProps } from '../@types';
+import { empty } from '@pdg/util';
 
 const _screens = ['xs', 'sm', 'md', 'lg', 'xl'];
 
