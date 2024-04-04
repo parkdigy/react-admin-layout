@@ -1,7 +1,7 @@
 {
   "name": "@pdg/react-admin-layout",
   "title": "React Admin Layout",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "Admin Layout for React",
   "type": "module",
   "types": "dist/index.d.ts",
@@ -24,7 +24,7 @@
     "dev": "cd examples && npm run dev",
     "dev-prd-lib": "cd examples && npm run dev-prd-lib",
     "build": "rollup -c --bundleConfigAsCjs",
-    "publish": "npm publish --access=public",
+    "pub": "npm i && npm run build && npm publish --access=public && rm ./.git/hooks/pre-commit",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "reinstall-module": "rm -rf node_modules && rm -f package-lock.json && npm i"
   },
@@ -45,7 +45,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.13",
     "@mui/material": "^5.15.13",
-    "@pdg/util": "^1.0.19",
+    "@pdg/util": "^1.0.20",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
