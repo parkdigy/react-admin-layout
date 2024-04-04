@@ -21,3 +21,8 @@ npm install -D @pdg/react-admin-layout @mui/material @mui/icons-material @emotio
 </head>
 ...
 ```
+
+### simplebar-react css 추가
+```
+import 'simplebar-react/dist/simplebar.min.css';
+```
