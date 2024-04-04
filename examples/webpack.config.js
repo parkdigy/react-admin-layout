@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
-const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -21,30 +20,9 @@ const mode = isProduction ? 'production' : 'development';
 
 //--------------------------------------------------------------------------------------------------------------------
 
-const preBuildScripts = [];
-if (!isProduction) {
-  const packageJson = require('../package.json');
-  const packageNames = Object.keys(packageJson.peerDependencies || {}).filter(
-    (packageName) => !packageName.startsWith('@emotion/')
-  );
-  if (packageNames.length > 0) {
-    packageNames.forEach((packageName) => {
-      preBuildScripts.push(
-        `echo ">>>>> node_modules/${packageName} npm link" && cd node_modules/${packageName} && npm link`
-      );
-    });
-  }
-
-  preBuildScripts.push(
-    `echo ">>>>> ../npm link ${packageNames.join(' ')}" && cd .. && npm link ${packageNames.join(' ')}`
-  );
-}
-
-//--------------------------------------------------------------------------------------------------------------------
-
 const alias = {
-  '#comp': path.resolve(__dirname, 'src/component'),
-  '#ccomp': path.resolve(__dirname, 'src/component/Common'),
+  '@comp': path.resolve(__dirname, 'src/component'),
+  '@ccomp': path.resolve(__dirname, 'src/component/Common'),
 };
 if (!isLibProduction) {
   alias['react-admin-layout'] = path.resolve(__dirname, '../src');
@@ -61,6 +39,7 @@ const options = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias,
+    modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, '../node_modules')],
   },
   output: {
     path: outputPath,
@@ -107,13 +86,6 @@ const options = {
   plugins: [
     new SourceMapDevToolPlugin({
       filename: '[file].map',
-    }),
-    new WebpackShellPluginNext({
-      dev: !isProduction,
-      onBuildStart: {
-        scripts: preBuildScripts,
-        blocking: true,
-      },
     }),
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],

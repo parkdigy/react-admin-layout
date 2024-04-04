@@ -2,7 +2,7 @@ import React from 'react';
 import * as AdminLayout from 'react-admin-layout';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeBase } from '../Theme';
-import { SignIn } from '#comp';
+import { SignIn } from '@comp';
 
 const CardLayout = () => {
   return (
