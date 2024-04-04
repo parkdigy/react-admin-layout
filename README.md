@@ -2,13 +2,16 @@
 
 Admin Layout for React 
 
+## 데모
+https://parkdigy.github.io/react-admin-layout/
+
 ## 설치
-```
+```shell
 npm install -D @pdg/react-admin-layout @mui/material @mui/icons-material @emotion/react @emotion/styled @pdg/util simplebar-react
 ```
 
 ### index.html 에 추가
-```
+```html
 ...
 <head>
   ...
@@ -17,9 +20,4 @@ npm install -D @pdg/react-admin-layout @mui/material @mui/icons-material @emotio
   ...
 </head>
 ...
-```
-
-### css 에 추가
-```
-import 'simplebar-react/dist/simplebar.min.css';
 ```

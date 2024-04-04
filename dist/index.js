@@ -1,4 +1,30 @@
-'use strict';var material=require('@mui/material'),React=require('react'),reactRouterDom=require('react-router-dom'),iconsMaterial=require('@mui/icons-material'),util=require('@pdg/util'),SimpleBar=require('simplebar-react');var CardLayoutDefaultProps = {
+'use strict';var material=require('@mui/material'),React=require('react'),reactRouterDom=require('react-router-dom'),iconsMaterial=require('@mui/icons-material'),util=require('@pdg/util'),SimpleBar=require('simplebar-react');function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}var css_248z = "@import 'simplebar-react/dist/simplebar.min.css';\n.simplebar-track.simplebar-vertical {\n  width: 8px !important;\n}\n.simplebar-track.simplebar-vertical .simplebar-scrollbar.simplebar-visible:before {\n  opacity: 0.3 !important;\n}";
+styleInject(css_248z);var CardLayoutDefaultProps = {
     backgroundColor: '#eff3f8',
 };var CardLayout = function (_a) {
     var children = _a.children, backgroundColor = _a.backgroundColor;
@@ -6,13 +32,20 @@
         React.createElement(material.Grid, { item: true, xs: 12 }, children)));
 };
 CardLayout.defaultProps = CardLayoutDefaultProps;var SideMenuListItem = function (_a) {
+    /********************************************************************************************************************
+     * Use
+     * ******************************************************************************************************************/
     var info = _a.info, badgeVariant = _a.badgeVariant, onClick = _a.onClick;
     var theme = material.useTheme();
     var location = reactRouterDom.useLocation();
-    // -------------------------------------------------------------------------------------------------------------------
+    /********************************************************************************************************************
+     * State
+     * ******************************************************************************************************************/
     var _b = React.useState(false), isExpandable = _b[0], setIsExpandable = _b[1];
     var _c = React.useState(false), isExpand = _c[0], setIsExpand = _c[1];
-    // -------------------------------------------------------------------------------------------------------------------
+    /********************************************************************************************************************
+     * Effect
+     * ******************************************************************************************************************/
     React.useEffect(function () {
         setIsExpandable(!!info && util.notEmpty(info.items));
         if (info.items && info.items.find(function (info) { return location.pathname === info.uri; })) {
@@ -37,17 +70,20 @@ CardLayout.defaultProps = CardLayoutDefaultProps;var SideMenuListItem = function
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
-    // -------------------------------------------------------------------------------------------------------------------
+    /********************************************************************************************************************
+     * Function
+     * ******************************************************************************************************************/
     var toggleIsExpand = React.useCallback(function () {
         setIsExpand(function (isExpand) { return !isExpand; });
     }, []);
-    // -------------------------------------------------------------------------------------------------------------------
+    /********************************************************************************************************************
+     * Memo
+     * ******************************************************************************************************************/
     var icon = React.useMemo(function () {
         return info.icon
             ? info.icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })
             : undefined;
     }, [info]);
-    // -------------------------------------------------------------------------------------------------------------------
     var containerStyle = React.useMemo(function () { return ({
         backgroundColor: isExpandable && isExpand
             ? material.alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2)
@@ -88,7 +124,9 @@ CardLayout.defaultProps = CardLayoutDefaultProps;var SideMenuListItem = function
             : undefined,
     }); }, [isExpand, theme]);
     var primaryTypographyProps = React.useMemo(function () { return ({ sx: { fontWeight: info.depth === 1 ? 600 : null } }); }, [info]);
-    // -------------------------------------------------------------------------------------------------------------------
+    /********************************************************************************************************************
+     * Render
+     * ******************************************************************************************************************/
     return (React.createElement(React.Fragment, null,
         React.createElement(material.ListItemButton, { onClick: isExpandable
                 ? toggleIsExpand
@@ -228,15 +266,21 @@ var _getNextScreen = function (screen) {
         return 'xl';
 };
 var DefaultLayout = function (_a) {
-    // -------------------------------------------------------------------------------------------------------------------
+    /********************************************************************************************************************
+     * Use
+     * ******************************************************************************************************************/
     var children = _a.children, logo = _a.logo, badgeVariant = _a.badgeVariant, menu = _a.menu, initMenuHideScreen = _a.menuHideScreen, appBarControl = _a.appBarControl, onMenuClick = _a.onMenuClick;
     var location = reactRouterDom.useLocation();
-    // -------------------------------------------------------------------------------------------------------------------
+    /********************************************************************************************************************
+     * State
+     * ******************************************************************************************************************/
     var _b = React.useState(false), isMobileOpen = _b[0], setIsMobileOpen = _b[1];
     var _c = React.useState({}), menuTitles = _c[0], setMenuTitles = _c[1];
     var _d = React.useState(), title = _d[0], setTitle = _d[1];
     var _e = React.useState(initMenuHideScreen || 'sm'), menuHideScreen = _e[0], setMenuHideScreen = _e[1];
-    //--------------------------------------------------------------------------------------------------------------------
+    /********************************************************************************************************************
+     * Effect
+     * ******************************************************************************************************************/
     React.useEffect(function () {
         var menuTitles = {};
         if (menu) {
@@ -267,11 +311,15 @@ var DefaultLayout = function (_a) {
             }
         }
     }, [location, menuTitles]);
-    // -------------------------------------------------------------------------------------------------------------------
+    /********************************************************************************************************************
+     * Function
+     * ******************************************************************************************************************/
     var toggleIsMobileOpen = React.useCallback(function () {
         setIsMobileOpen(function (isMobileOpen) { return !isMobileOpen; });
     }, []);
-    //--------------------------------------------------------------------------------------------------------------------
+    /********************************************************************************************************************
+     * Memo
+     * ******************************************************************************************************************/
     var appBarSx = React.useMemo(function () {
         var width = {};
         var ml = {};
@@ -326,7 +374,9 @@ var DefaultLayout = function (_a) {
         width[_getNextScreen(menuHideScreen)] = "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)");
         return { width: width };
     }, [menuHideScreen]);
-    // -------------------------------------------------------------------------------------------------------------------
+    /********************************************************************************************************************
+     * Render
+     * ******************************************************************************************************************/
     return (React.createElement(StyledContainerBox, null,
         React.createElement(StyledAppBar, { position: 'fixed', elevation: 0, sx: appBarSx },
             React.createElement(material.Toolbar, null,
