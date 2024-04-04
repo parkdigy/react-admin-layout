@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as AdminLayout from '../../../../src';
 import { ThemeBase } from '../Theme';
@@ -22,6 +22,21 @@ const DefaultLayout = () => {
 
   //--------------------------------------------------------------------------------------------------------------------
 
+  const finalMenu = useMemo(
+    () =>
+      menu.map((info) => ({
+        ...info,
+        uri: !info.uri ? info.uri : isEnvProduction ? `/react-admin-layout${info.uri}` : info.uri,
+        items: info.items?.map((subInfo) => ({
+          ...subInfo,
+          uri: !subInfo.uri ? subInfo.uri : isEnvProduction ? `/react-admin-layout${subInfo.uri}` : subInfo.uri,
+        })),
+      })),
+    []
+  );
+
+  //--------------------------------------------------------------------------------------------------------------------
+
   const handleMenuClick = (menuItem: AdminLayout.MenuItem) => {
     if (menuItem.uri) {
       navigate(menuItem.uri);
@@ -34,7 +49,7 @@ const DefaultLayout = () => {
     <ThemeBase>
       <AdminLayout.DefaultLayout
         logo='react-admin-layout'
-        menu={menu}
+        menu={finalMenu}
         menuHideScreen='sm'
         appBarControl={appBarControl}
         onMenuClick={handleMenuClick}

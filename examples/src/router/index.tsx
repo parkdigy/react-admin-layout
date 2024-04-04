@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-
 import { Dashboard, Menu1, Menu2Sub1, Menu2Sub2, Menu2Sub3, Menu3Sub1, Menu3Sub2, Menu3Sub3 } from '@comp';
 
-const routes = () => {
+const RootRouters = () => {
+  const rootPath = useMemo(() => (isEnvProduction ? '/react-admin-layout/' : '/'), []);
+
   return (
     <Routes>
       <Route path='/' element={<Dashboard />} />
@@ -18,13 +19,13 @@ const routes = () => {
             <Route path='/sub_1' element={<Menu3Sub1 />} />
             <Route path='/sub_2' element={<Menu3Sub2 />} />
             <Route path='/sub_3' element={<Menu3Sub3 />} />
-            <Route path='*' element={<Navigate to='/' />} />
+            <Route path='*' element={<Navigate to={rootPath} />} />
           </Routes>
         }
       />
-      <Route path='*' element={<Navigate to='/' />} />
+      <Route path='*' element={<Navigate to={rootPath} />} />
     </Routes>
   );
 };
 
-export default routes;
+export default RootRouters;
