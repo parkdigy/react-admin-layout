@@ -5,9 +5,11 @@ const Dashboard = () => {
   return (
     <>
       <div>Dashboard</div>
+      <br />
       <div>
         <Button href='/auth/signin'>SignIn</Button>
       </div>
+      <div></div>
     </>
   );
 };

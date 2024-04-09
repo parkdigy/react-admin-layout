@@ -1,3 +1,6 @@
+@import 'simplebar';
+@import 'mui';
+
 html,
 body,
 div,
@@ -79,7 +82,14 @@ time,
 mark,
 audio,
 video,
-main {
+main,
+input,
+button,
+textarea,
+pre,
+select,
+a {
+  font-family: 'Pretendard', 'Apple Gothic', 'Dotum', sans-serif;
   margin: 0;
   padding: 0;
   border: 0;
@@ -91,21 +101,4 @@ main {
 *:before,
 *:after {
   box-sizing: border-box;
-}
-
-html,
-body,
-input,
-button,
-textarea,
-pre,
-select {
-  font-family: 'Pretendard', 'Apple Gothic', 'Dotum', sans-serif;
-}
-
-.simplebar-track.simplebar-vertical {
-  width: 8px !important;
-  .simplebar-scrollbar.simplebar-visible:before {
-    opacity: 0.3 !important;
-  }
 }
