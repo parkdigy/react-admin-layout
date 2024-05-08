@@ -4,4 +4,3 @@ export interface CardLayoutProps extends Partial<CardProps> {
     children?: ReactNode;
     backgroundColor?: string;
 }
-export declare const CardLayoutDefaultProps: Pick<CardLayoutProps, 'backgroundColor'>;
