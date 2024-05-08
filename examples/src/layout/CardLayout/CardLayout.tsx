@@ -1,6 +1,6 @@
 import React from 'react';
-import * as AdminLayout from 'react-admin-layout';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import * as AdminLayout from '../../../../src';
 import { ThemeBase } from '../Theme';
 import { SignIn } from '@comp';
 
