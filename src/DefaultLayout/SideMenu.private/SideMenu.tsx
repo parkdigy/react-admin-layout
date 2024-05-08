@@ -1,18 +1,18 @@
 import React from 'react';
 import { Toolbar } from '@mui/material';
-import SideMenuList from '../SideMenuList';
+import SideMenuList from '../SideMenuList.private';
 import { SideMenuProps } from './SideMenu.types';
 import { StyledLogoContainerBox, StyledSimpleBar } from './SideMenu.style';
 
-const SideMenu: React.FC<SideMenuProps> = ({ logo, badgeVariant, list, onClick }) => {
+const SideMenu = ({ logo, badgeVariant, list }: SideMenuProps) => {
   return (
     <StyledSimpleBar>
       <StyledLogoContainerBox>
         <Toolbar>{logo}</Toolbar>
       </StyledLogoContainerBox>
-      {list && <SideMenuList badgeVariant={badgeVariant} list={list} onClick={onClick} />}
+      {list && <SideMenuList badgeVariant={badgeVariant} list={list} />}
     </StyledSimpleBar>
   );
 };
 
-export default SideMenu;
+export default React.memo(SideMenu);

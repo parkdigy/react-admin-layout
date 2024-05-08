@@ -28,13 +28,50 @@ styleInject(css_248z);var CardLayout = function (_a) {
     var children = _a.children, _b = _a.backgroundColor, backgroundColor = _b === void 0 ? '#eff3f8' : _b;
     return (React.createElement(material.Grid, { container: true, direction: 'column', alignItems: 'center', justifyContent: 'center', style: { minHeight: '100vh', backgroundColor: backgroundColor } },
         React.createElement(material.Grid, { item: true, xs: 12 }, children)));
-};var SideMenuListItem = function (_a) {
+};/******************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise, SuppressedError, Symbol */
+
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+}
+typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
+    var e = new Error(message);
+    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+};var StyledExpandMore = material.styled(iconsMaterial.ExpandMore)(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n  margin-top: auto;\n  margin-bottom: auto;\n  @keyframes open {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(180deg);\n    }\n  }\n  @keyframes close {\n    0% {\n      transform: rotate(180deg);\n    }\n    100% {\n      transform: rotate(0deg);\n    }\n  }\n"], ["\n  margin-top: auto;\n  margin-bottom: auto;\n  @keyframes open {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(180deg);\n    }\n  }\n  @keyframes close {\n    0% {\n      transform: rotate(180deg);\n    }\n    100% {\n      transform: rotate(0deg);\n    }\n  }\n"])));
+var StyledListItemIcon = material.styled(material.ListItemIcon)(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(["\n  min-width: 30px;\n"], ["\n  min-width: 30px;\n"])));
+var templateObject_1$4, templateObject_2$2;var SideMenuListItem = function (_a) {
     /********************************************************************************************************************
      * Use
      * ******************************************************************************************************************/
-    var info = _a.info, badgeVariant = _a.badgeVariant, onClick = _a.onClick;
-    var theme = material.useTheme();
+    var info = _a.info, badgeVariant = _a.badgeVariant, expandedBackgroundColor = _a.expandedBackgroundColor;
     var location = reactRouterDom.useLocation();
+    var navigate = reactRouterDom.useNavigate();
     /********************************************************************************************************************
      * State
      * ******************************************************************************************************************/
@@ -44,7 +81,7 @@ styleInject(css_248z);var CardLayout = function (_a) {
      * Effect
      * ******************************************************************************************************************/
     React.useEffect(function () {
-        setIsExpandable(!!info && util.notEmpty(info.items));
+        setIsExpandable(util.notEmpty(info.items));
         if (info.items && info.items.find(function (info) { return location.pathname === info.uri; })) {
             setIsExpand(true);
         }
@@ -68,107 +105,43 @@ styleInject(css_248z);var CardLayout = function (_a) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
     /********************************************************************************************************************
-     * Function
-     * ******************************************************************************************************************/
-    var toggleIsExpand = React.useCallback(function () {
-        setIsExpand(function (isExpand) { return !isExpand; });
-    }, []);
-    /********************************************************************************************************************
-     * Memo
-     * ******************************************************************************************************************/
-    var icon = React.useMemo(function () {
-        return info.icon
-            ? info.icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })
-            : undefined;
-    }, [info]);
-    var containerStyle = React.useMemo(function () { return ({
-        backgroundColor: isExpandable && isExpand
-            ? material.alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2)
-            : undefined,
-    }); }, [isExpand, isExpandable, theme]);
-    var expandIconSx = React.useMemo(function () {
-        return isExpandable && isExpand != null
-            ? {
-                marginTop: 'auto',
-                marginBottom: 'auto',
-                animation: "".concat(isExpand ? 'open' : 'close', " 0.1s linear"),
-                transform: "rotate(".concat(isExpand ? 180 : 0, "deg)"),
-                '@keyframes open': {
-                    '0%': {
-                        transform: "rotate(0deg)",
-                    },
-                    '100%': {
-                        transform: "rotate(180deg)",
-                    },
-                },
-                '@keyframes close': {
-                    '0%': {
-                        transform: "rotate(180deg)",
-                    },
-                    '100%': {
-                        transform: "rotate(0deg)",
-                    },
-                },
-            }
-            : {
-                marginTop: 'auto',
-                marginBottom: 'auto',
-            };
-    }, [isExpandable, isExpand]);
-    var collapseStyle = React.useMemo(function () { return ({
-        backgroundColor: isExpand
-            ? material.alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2)
-            : undefined,
-    }); }, [isExpand, theme]);
-    var primaryTypographyProps = React.useMemo(function () { return ({ sx: { fontWeight: info.depth === 1 ? 600 : null } }); }, [info]);
-    /********************************************************************************************************************
      * Render
      * ******************************************************************************************************************/
     return (React.createElement(React.Fragment, null,
-        React.createElement(material.ListItemButton, { onClick: isExpandable
-                ? toggleIsExpand
-                : function () {
-                    if (onClick)
-                        onClick(info);
-                }, selected: isExpandable ? false : info.uri === location.pathname, style: containerStyle },
-            React.createElement(material.ListItemIcon, { sx: { minWidth: 30 } }, icon && React.createElement(material.Icon, { fontSize: 'small' }, icon)),
-            React.createElement(material.ListItemText, { primaryTypographyProps: primaryTypographyProps }, info.badge ? (React.createElement(material.Badge, { badgeContent: info.badge, color: 'error', variant: badgeVariant !== undefined ? badgeVariant : info.badgeVariant, anchorOrigin: { horizontal: 'left', vertical: 'top' }, slotProps: {
+        React.createElement(material.ListItemButton, { onClick: isExpandable ? function () { return setIsExpand(function (old) { return !old; }); } : function () { return info.uri && navigate(info.uri); }, selected: isExpandable ? false : info.uri === location.pathname, style: {
+                backgroundColor: isExpandable && isExpand ? expandedBackgroundColor : undefined,
+            } },
+            React.createElement(StyledListItemIcon, null, info.icon && React.createElement(material.Icon, { fontSize: 'small' }, info.icon)),
+            React.createElement(material.ListItemText, { primaryTypographyProps: { style: { fontWeight: info.depth === 1 ? 600 : undefined } } }, info.badge ? (React.createElement(material.Badge, { badgeContent: info.badge, color: 'error', variant: badgeVariant !== undefined ? badgeVariant : info.badgeVariant, anchorOrigin: { horizontal: 'left', vertical: 'top' }, slotProps: {
                     badge: { style: { left: '100%', top: '50%', transform: 'scale(.8) translate(10px, -50%)' } },
                 } },
                 React.createElement("div", null, info.name))) : (info.name)),
-            isExpandable && React.createElement(iconsMaterial.ExpandMore, { sx: expandIconSx })),
-        React.createElement(material.Collapse, { in: isExpand, style: collapseStyle }, isExpandable &&
-            info.items &&
-            info.items.map(function (subInfo, idx) { return (React.createElement(SideMenuListItem, { key: idx, badgeVariant: badgeVariant, info: subInfo, onClick: onClick })); }))));
-};/******************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-/* global Reflect, Promise, SuppressedError, Symbol */
-
-
-function __makeTemplateObject(cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-}
-typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
-    var e = new Error(message);
-    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
+            isExpandable && (React.createElement(StyledExpandMore, { sx: {
+                    animation: "".concat(isExpand ? 'open' : 'close', " 0.1s linear"),
+                    transform: "rotate(".concat(isExpand ? 180 : 0, "deg)"),
+                } }))),
+        isExpandable && (React.createElement(material.Collapse, { in: isExpand, style: { backgroundColor: isExpand ? expandedBackgroundColor : undefined } }, info.items &&
+            info.items.map(function (subInfo, idx) { return React.createElement(SideMenuListItem, { key: idx, badgeVariant: badgeVariant, info: subInfo }); })))));
 };var StyledList = material.styled(material.List)(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  padding: 0;\n"], ["\n  padding: 0;\n"])));
 var templateObject_1$3;var SideMenuList = function (_a) {
-    var list = _a.list, badgeVariant = _a.badgeVariant, onClick = _a.onClick;
-    return (React.createElement(StyledList, null, list.map(function (info, idx) { return (React.createElement(SideMenuListItem, { key: idx, info: info, badgeVariant: badgeVariant, onClick: onClick })); })));
-};var StyledSimpleBar = material.styled(SimpleBar)(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n  max-height: 100%;\n"], ["\n  max-height: 100%;\n"])));
+    /********************************************************************************************************************
+     * Use
+     * ******************************************************************************************************************/
+    var list = _a.list, badgeVariant = _a.badgeVariant;
+    var theme = material.useTheme();
+    /********************************************************************************************************************
+     * Variable
+     * ******************************************************************************************************************/
+    var finalList = list.map(function (item) { return (__assign(__assign({}, item), { icon: item.icon
+            ? item.icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })
+            : undefined })); });
+    var expandedBackgroundColor = material.alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2);
+    /********************************************************************************************************************
+     * Render
+     * ******************************************************************************************************************/
+    return (React.createElement(StyledList, null, finalList.map(function (info, idx) { return (React.createElement(SideMenuListItem, { key: idx, info: info, badgeVariant: badgeVariant, expandedBackgroundColor: expandedBackgroundColor })); })));
+};
+var SideMenuList$1 = React.memo(SideMenuList);var StyledSimpleBar = material.styled(SimpleBar)(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n  max-height: 100%;\n"], ["\n  max-height: 100%;\n"])));
 var StyledLogoContainerBox = material.styled(material.Box)(function (_a) {
     var theme = _a.theme;
     return theme.unstable_sx({
@@ -177,12 +150,13 @@ var StyledLogoContainerBox = material.styled(material.Box)(function (_a) {
     });
 });
 var templateObject_1$2;var SideMenu = function (_a) {
-    var logo = _a.logo, badgeVariant = _a.badgeVariant, list = _a.list, onClick = _a.onClick;
+    var logo = _a.logo, badgeVariant = _a.badgeVariant, list = _a.list;
     return (React.createElement(StyledSimpleBar, null,
         React.createElement(StyledLogoContainerBox, null,
             React.createElement(material.Toolbar, null, logo)),
-        list && React.createElement(SideMenuList, { badgeVariant: badgeVariant, list: list, onClick: onClick })));
-};var StyledContainerBox$1 = material.styled(material.Box)(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n  position: relative;\n"], ["\n  position: relative;\n"])));
+        list && React.createElement(SideMenuList$1, { badgeVariant: badgeVariant, list: list })));
+};
+var SideMenu$1 = React.memo(SideMenu);var StyledContainerBox$1 = material.styled(material.Box)(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n  position: relative;\n"], ["\n  position: relative;\n"])));
 var StyledHeadContainerBox = material.styled(material.Box)(function (_a) {
     var theme = _a.theme;
     return theme.unstable_sx({
@@ -251,7 +225,7 @@ var StyledMainBox = material.styled(material.Box)(function (_a) {
     });
 });
 var StyledMainContentDiv = material.styled('div')(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n"], ["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n"])));
-var templateObject_1, templateObject_2;var _screens = ['xs', 'sm', 'md', 'lg', 'xl'];
+var templateObject_1, templateObject_2;var SCREENS = ['xs', 'sm', 'md', 'lg', 'xl'];
 var _getNextScreen = function (screen) {
     if (screen === 'xs')
         return 'sm';
@@ -266,15 +240,16 @@ var DefaultLayout = function (_a) {
     /********************************************************************************************************************
      * Use
      * ******************************************************************************************************************/
-    var children = _a.children, logo = _a.logo, badgeVariant = _a.badgeVariant, menu = _a.menu, initMenuHideScreen = _a.menuHideScreen, appBarControl = _a.appBarControl, onMenuClick = _a.onMenuClick;
+    var _b, _c, _d, _e, _f, _g;
+    var children = _a.children, logo = _a.logo, badgeVariant = _a.badgeVariant, menu = _a.menu, initMenuHideScreen = _a.menuHideScreen, appBarControl = _a.appBarControl;
     var location = reactRouterDom.useLocation();
     /********************************************************************************************************************
      * State
      * ******************************************************************************************************************/
-    var _b = React.useState(false), isMobileOpen = _b[0], setIsMobileOpen = _b[1];
-    var _c = React.useState({}), menuTitles = _c[0], setMenuTitles = _c[1];
-    var _d = React.useState(), title = _d[0], setTitle = _d[1];
-    var _e = React.useState(initMenuHideScreen || 'sm'), menuHideScreen = _e[0], setMenuHideScreen = _e[1];
+    var _h = React.useState(false), isMobileOpen = _h[0], setIsMobileOpen = _h[1];
+    var _j = React.useState({}), menuTitles = _j[0], setMenuTitles = _j[1];
+    var _k = React.useState(), title = _k[0], setTitle = _k[1];
+    var _l = React.useState(initMenuHideScreen || 'sm'), menuHideScreen = _l[0], setMenuHideScreen = _l[1];
     /********************************************************************************************************************
      * Effect
      * ******************************************************************************************************************/
@@ -298,6 +273,9 @@ var DefaultLayout = function (_a) {
         setMenuHideScreen(initMenuHideScreen || 'sm');
     }, [initMenuHideScreen]);
     React.useEffect(function () {
+        setIsMobileOpen(false);
+    }, [location]);
+    React.useEffect(function () {
         if (menuTitles) {
             var titleData = menuTitles[location.pathname];
             if (titleData) {
@@ -311,35 +289,14 @@ var DefaultLayout = function (_a) {
     /********************************************************************************************************************
      * Function
      * ******************************************************************************************************************/
-    var toggleIsMobileOpen = React.useCallback(function () {
-        setIsMobileOpen(function (isMobileOpen) { return !isMobileOpen; });
-    }, []);
+    var toggleIsMobileOpen = function () { return setIsMobileOpen(function (isMobileOpen) { return !isMobileOpen; }); };
     /********************************************************************************************************************
      * Memo
      * ******************************************************************************************************************/
-    var appBarSx = React.useMemo(function () {
-        var width = {};
-        var ml = {};
-        width[_getNextScreen(menuHideScreen)] = "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)");
-        ml[_getNextScreen(menuHideScreen)] = "".concat(SIDE_MENU_WIDTH, "px");
-        return { width: width, ml: ml };
-    }, [menuHideScreen]);
-    var appBarIconButtonSx = React.useMemo(function () {
-        var display = {};
-        display[_getNextScreen(menuHideScreen)] = 'none';
-        return { mr: 2, display: display };
-    }, [menuHideScreen]);
-    var sideMenuContainerBoxSx = React.useMemo(function () {
-        var width = {};
-        var flexShrink = {};
-        width[_getNextScreen(menuHideScreen)] = SIDE_MENU_WIDTH;
-        flexShrink[_getNextScreen(menuHideScreen)] = 0;
-        return { width: width, flexShrink: flexShrink };
-    }, [menuHideScreen]);
     var sideMenuTemporaryDrawerSx = React.useMemo(function () {
         var found = false;
         return {
-            display: _screens.reduce(function (res, screen) {
+            display: SCREENS.reduce(function (res, screen) {
                 if (screen === menuHideScreen) {
                     found = true;
                     res[screen] = 'block';
@@ -354,7 +311,7 @@ var DefaultLayout = function (_a) {
     var sideMenuPermanentDrawerSx = React.useMemo(function () {
         var found = false;
         return {
-            display: _screens.reduce(function (res, screen) {
+            display: SCREENS.reduce(function (res, screen) {
                 if (screen === menuHideScreen) {
                     found = true;
                     res[screen] = 'none';
@@ -366,11 +323,20 @@ var DefaultLayout = function (_a) {
             }, {}),
         };
     }, [menuHideScreen]);
-    var mainBoxSx = React.useMemo(function () {
-        var width = {};
-        width[_getNextScreen(menuHideScreen)] = "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)");
-        return { width: width };
-    }, [menuHideScreen]);
+    /********************************************************************************************************************
+     * Variable
+     * ******************************************************************************************************************/
+    var nextMenuScreen = _getNextScreen(menuHideScreen);
+    var appBarSx = {
+        width: (_b = {}, _b[nextMenuScreen] = "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)"), _b),
+        ml: (_c = {}, _c[nextMenuScreen] = "".concat(SIDE_MENU_WIDTH, "px"), _c),
+    };
+    var appBarIconButtonSx = { mr: 2, display: (_d = {}, _d[nextMenuScreen] = 'none', _d) };
+    var sideMenuContainerBoxSx = {
+        width: (_e = {}, _e[nextMenuScreen] = SIDE_MENU_WIDTH, _e),
+        flexShrink: (_f = {}, _f[nextMenuScreen] = 0, _f),
+    };
+    var mainBoxSx = { width: (_g = {}, _g[nextMenuScreen] = "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)"), _g) };
     /********************************************************************************************************************
      * Render
      * ******************************************************************************************************************/
@@ -384,12 +350,8 @@ var DefaultLayout = function (_a) {
         React.createElement(StyledSideMenuContainerBox, { component: 'nav', "aria-label": 'mailbox folders', sx: sideMenuContainerBoxSx },
             React.createElement(StyledSideMenuTemporaryDrawer, { variant: 'temporary', open: isMobileOpen, onClose: toggleIsMobileOpen, sx: sideMenuTemporaryDrawerSx, ModalProps: {
                     keepMounted: true, // Better open performance on mobile.
-                } }, menu && (React.createElement(SideMenu, { logo: logo, badgeVariant: badgeVariant, list: menu, onClick: function (menuItem) {
-                    toggleIsMobileOpen();
-                    if (onMenuClick)
-                        onMenuClick(menuItem);
-                } }))),
-            React.createElement(StyledSideMenuPermanentDrawer, { variant: 'permanent', open: true, sx: sideMenuPermanentDrawerSx }, menu && React.createElement(SideMenu, { logo: logo, badgeVariant: badgeVariant, list: menu, onClick: onMenuClick }))),
+                } }, menu && React.createElement(SideMenu$1, { logo: logo, badgeVariant: badgeVariant, list: menu })),
+            React.createElement(StyledSideMenuPermanentDrawer, { variant: 'permanent', open: true, sx: sideMenuPermanentDrawerSx }, menu && React.createElement(SideMenu$1, { logo: logo, badgeVariant: badgeVariant, list: menu }))),
         React.createElement(StyledMainBox, { component: 'main', sx: mainBoxSx },
             React.createElement(material.Toolbar, null),
             React.createElement(StyledMainContentDiv, null, children))));

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, ReactElement, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, ReactElement, useMemo } from 'react';
 import { Toolbar, IconButton, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { Menu as MenuIcon } from '@mui/icons-material';
-import SideMenu from './SideMenu';
-import Title from './Title';
-import { DefaultLayoutProps } from './DefaultLayout.types';
+import SideMenu from './SideMenu.private';
+import Title from './Title.private';
+import { DefaultLayoutProps as Props } from './DefaultLayout.types';
 import { MenuTitleMap } from './DefaultLayout.types.private';
 import {
   SIDE_MENU_WIDTH,
@@ -15,11 +15,10 @@ import {
   StyledSideMenuContainerBox,
   StyledSideMenuPermanentDrawer,
   StyledSideMenuTemporaryDrawer,
-} from './DefaultLayout.style';
-import { CommonSxProps } from '../@types';
-import { empty } from '@pdg/util';
+} from './DefaultLayout.style.private';
+import { Dict, empty } from '@pdg/util';
 
-const _screens = ['xs', 'sm', 'md', 'lg', 'xl'];
+const SCREENS = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 const _getNextScreen = (screen: 'xs' | 'sm' | 'md' | 'lg'): 'sm' | 'md' | 'lg' | 'xl' => {
   if (screen === 'xs') return 'sm';
@@ -28,15 +27,14 @@ const _getNextScreen = (screen: 'xs' | 'sm' | 'md' | 'lg'): 'sm' | 'md' | 'lg' |
   else return 'xl';
 };
 
-const DefaultLayout: React.FC<DefaultLayoutProps> = ({
+const DefaultLayout = ({
   children,
   logo,
   badgeVariant,
   menu,
   menuHideScreen: initMenuHideScreen,
   appBarControl,
-  onMenuClick,
-}) => {
+}: Props) => {
   /********************************************************************************************************************
    * Use
    * ******************************************************************************************************************/
@@ -50,7 +48,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [menuTitles, setMenuTitles] = useState<MenuTitleMap>({});
   const [title, setTitle] = useState<ReactElement<typeof Title>>();
-  const [menuHideScreen, setMenuHideScreen] = useState<Exclude<DefaultLayoutProps['menuHideScreen'], undefined>>(
+  const [menuHideScreen, setMenuHideScreen] = useState<Exclude<Props['menuHideScreen'], undefined>>(
     initMenuHideScreen || 'sm'
   );
 
@@ -79,6 +77,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
   }, [initMenuHideScreen]);
 
   useEffect(() => {
+    setIsMobileOpen(false);
+  }, [location]);
+
+  useEffect(() => {
     if (menuTitles) {
       const titleData = menuTitles[location.pathname];
       if (titleData) {
@@ -100,40 +102,16 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
    * Function
    * ******************************************************************************************************************/
 
-  const toggleIsMobileOpen = useCallback(() => {
-    setIsMobileOpen((isMobileOpen) => !isMobileOpen);
-  }, []);
+  const toggleIsMobileOpen = () => setIsMobileOpen((isMobileOpen) => !isMobileOpen);
 
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
 
-  const appBarSx: CommonSxProps['sx'] = useMemo(() => {
-    const width: Record<string, string> = {};
-    const ml: Record<string, string> = {};
-    width[_getNextScreen(menuHideScreen)] = `calc(100% - ${SIDE_MENU_WIDTH}px)`;
-    ml[_getNextScreen(menuHideScreen)] = `${SIDE_MENU_WIDTH}px`;
-    return { width, ml };
-  }, [menuHideScreen]);
-
-  const appBarIconButtonSx: CommonSxProps['sx'] = useMemo(() => {
-    const display: Record<string, string> = {};
-    display[_getNextScreen(menuHideScreen)] = 'none';
-    return { mr: 2, display };
-  }, [menuHideScreen]);
-
-  const sideMenuContainerBoxSx: CommonSxProps['sx'] = useMemo(() => {
-    const width: Record<string, number> = {};
-    const flexShrink: Record<string, number> = {};
-    width[_getNextScreen(menuHideScreen)] = SIDE_MENU_WIDTH;
-    flexShrink[_getNextScreen(menuHideScreen)] = 0;
-    return { width, flexShrink };
-  }, [menuHideScreen]);
-
-  const sideMenuTemporaryDrawerSx: CommonSxProps['sx'] = useMemo(() => {
+  const sideMenuTemporaryDrawerSx: Props['sx'] = useMemo(() => {
     let found = false;
     return {
-      display: _screens.reduce<Record<string, string | undefined>>((res, screen) => {
+      display: SCREENS.reduce((res, screen) => {
         if (screen === menuHideScreen) {
           found = true;
           res[screen] = 'block';
@@ -141,14 +119,14 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
           res[screen] = found ? 'none' : 'block';
         }
         return res;
-      }, {}),
+      }, {} as Dict<string>),
     };
   }, [menuHideScreen]);
 
-  const sideMenuPermanentDrawerSx: CommonSxProps['sx'] = useMemo(() => {
+  const sideMenuPermanentDrawerSx: Props['sx'] = useMemo(() => {
     let found = false;
     return {
-      display: _screens.reduce<Record<string, string | undefined>>((res, screen) => {
+      display: SCREENS.reduce((res, screen) => {
         if (screen === menuHideScreen) {
           found = true;
           res[screen] = 'none';
@@ -156,15 +134,29 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
           res[screen] = found ? 'block' : 'none';
         }
         return res;
-      }, {}),
+      }, {} as Dict<string>),
     };
   }, [menuHideScreen]);
 
-  const mainBoxSx: CommonSxProps['sx'] = useMemo(() => {
-    const width: Record<string, string> = {};
-    width[_getNextScreen(menuHideScreen)] = `calc(100% - ${SIDE_MENU_WIDTH}px)`;
-    return { width };
-  }, [menuHideScreen]);
+  /********************************************************************************************************************
+   * Variable
+   * ******************************************************************************************************************/
+
+  const nextMenuScreen = _getNextScreen(menuHideScreen);
+
+  const appBarSx: Required<Props['sx']> = {
+    width: { [nextMenuScreen]: `calc(100% - ${SIDE_MENU_WIDTH}px)` },
+    ml: { [nextMenuScreen]: `${SIDE_MENU_WIDTH}px` },
+  };
+
+  const appBarIconButtonSx: Required<Props['sx']> = { mr: 2, display: { [nextMenuScreen]: 'none' } };
+
+  const sideMenuContainerBoxSx: Required<Props['sx']> = {
+    width: { [nextMenuScreen]: SIDE_MENU_WIDTH },
+    flexShrink: { [nextMenuScreen]: 0 },
+  };
+
+  const mainBoxSx: Required<Props['sx']> = { width: { [nextMenuScreen]: `calc(100% - ${SIDE_MENU_WIDTH}px)` } };
 
   /********************************************************************************************************************
    * Render
@@ -199,20 +191,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({
             keepMounted: true, // Better open performance on mobile.
           }}
         >
-          {menu && (
-            <SideMenu
-              logo={logo}
-              badgeVariant={badgeVariant}
-              list={menu}
-              onClick={(menuItem) => {
-                toggleIsMobileOpen();
-                if (onMenuClick) onMenuClick(menuItem);
-              }}
-            />
-          )}
+          {menu && <SideMenu logo={logo} badgeVariant={badgeVariant} list={menu} />}
         </StyledSideMenuTemporaryDrawer>
         <StyledSideMenuPermanentDrawer variant='permanent' open sx={sideMenuPermanentDrawerSx}>
-          {menu && <SideMenu logo={logo} badgeVariant={badgeVariant} list={menu} onClick={onMenuClick} />}
+          {menu && <SideMenu logo={logo} badgeVariant={badgeVariant} list={menu} />}
         </StyledSideMenuPermanentDrawer>
       </StyledSideMenuContainerBox>
       <StyledMainBox component='main' sx={mainBoxSx}>

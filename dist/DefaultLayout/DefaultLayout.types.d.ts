@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
-import { CommonSxProps } from '../@types';
+import { CSSProperties, ReactNode } from 'react';
 import { BadgeProps } from '@mui/material';
+import { SxProps } from '@mui/system';
+import { Theme } from '@mui/material/styles';
 export interface SubMenuItem {
     id: string;
     name: string;
@@ -19,11 +20,14 @@ export interface MenuItem {
     badgeVariant?: BadgeProps['variant'];
     items?: SubMenuItem[];
 }
-export interface DefaultLayoutProps extends CommonSxProps {
+export interface DefaultLayoutProps {
+    children?: ReactNode;
+    className?: string;
+    style?: CSSProperties;
+    sx?: SxProps<Theme>;
     logo: ReactNode;
     badgeVariant?: BadgeProps['variant'];
     menu?: MenuItem[];
     appBarControl?: ReactNode;
     menuHideScreen?: 'xs' | 'sm' | 'md' | 'lg';
-    onMenuClick?(menuItem: MenuItem): void;
 }

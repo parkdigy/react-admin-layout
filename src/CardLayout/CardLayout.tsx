@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import React from 'react';
 import { CardLayoutProps } from './CardLayout.types';
 
-const CardLayout: React.FC<CardLayoutProps> = ({ children, backgroundColor = '#eff3f8' }) => {
+const CardLayout = ({ children, backgroundColor = '#eff3f8' }: CardLayoutProps) => {
   return (
     <Grid
       container

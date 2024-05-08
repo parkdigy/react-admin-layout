@@ -17,7 +17,7 @@ export interface TitleProps {
   headIcon?: string;
 }
 
-const Title: React.FC<TitleProps> = ({ title, icon, headTitle, headIcon }) => {
+const Title = ({ title, icon, headTitle, headIcon }: TitleProps) => {
   const finalHeadIcon = useMemo(
     () =>
       headIcon

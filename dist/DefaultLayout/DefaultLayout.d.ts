@@ -1,4 +1,4 @@
 import React from 'react';
-import { DefaultLayoutProps } from './DefaultLayout.types';
-declare const DefaultLayout: React.FC<DefaultLayoutProps>;
+import { DefaultLayoutProps as Props } from './DefaultLayout.types';
+declare const DefaultLayout: ({ children, logo, badgeVariant, menu, menuHideScreen: initMenuHideScreen, appBarControl, }: Props) => React.JSX.Element;
 export default DefaultLayout;
