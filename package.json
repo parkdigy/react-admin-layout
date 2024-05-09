@@ -1,7 +1,7 @@
 {
   "name": "@pdg/react-admin-layout",
   "title": "React Admin Layout",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "description": "Admin Layout for React",
   "type": "module",
   "types": "dist/index.d.ts",
@@ -46,7 +46,7 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.16",
     "@mui/material": "^5.15.16",
-    "@pdg/util": "^1.0.21",
+    "@pdg/util": "^1.0.22",
     "@types/react": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
