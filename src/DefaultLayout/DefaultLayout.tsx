@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactElement, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Toolbar, IconButton, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { Menu as MenuIcon } from '@mui/icons-material';
@@ -27,14 +27,7 @@ const _getNextScreen = (screen: 'xs' | 'sm' | 'md' | 'lg'): 'sm' | 'md' | 'lg' |
   else return 'xl';
 };
 
-const DefaultLayout = ({
-  children,
-  logo,
-  badgeVariant,
-  menu,
-  menuHideScreen: initMenuHideScreen,
-  appBarControl,
-}: Props) => {
+const DefaultLayout = ({ children, logo, badgeVariant, menu, menuHideScreen = 'sm', appBarControl }: Props) => {
   /********************************************************************************************************************
    * Use
    * ******************************************************************************************************************/
@@ -47,10 +40,6 @@ const DefaultLayout = ({
 
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [menuTitles, setMenuTitles] = useState<MenuTitleMap>({});
-  const [title, setTitle] = useState<ReactElement<typeof Title>>();
-  const [menuHideScreen, setMenuHideScreen] = useState<Exclude<Props['menuHideScreen'], undefined>>(
-    initMenuHideScreen || 'sm'
-  );
 
   /********************************************************************************************************************
    * Effect
@@ -73,36 +62,16 @@ const DefaultLayout = ({
   }, [menu]);
 
   useEffect(() => {
-    setMenuHideScreen(initMenuHideScreen || 'sm');
-  }, [initMenuHideScreen]);
-
-  useEffect(() => {
     setIsMobileOpen(false);
   }, [location]);
-
-  useEffect(() => {
-    if (menuTitles) {
-      const titleData = menuTitles[location.pathname];
-      if (titleData) {
-        setTitle(
-          <Title
-            title={titleData.name}
-            icon={titleData.icon}
-            headTitle={titleData.parentName}
-            headIcon={titleData.parentIcon}
-          />
-        );
-      } else {
-        setTitle(undefined);
-      }
-    }
-  }, [location, menuTitles]);
 
   /********************************************************************************************************************
    * Function
    * ******************************************************************************************************************/
 
-  const toggleIsMobileOpen = () => setIsMobileOpen((isMobileOpen) => !isMobileOpen);
+  const toggleIsMobileOpen = useCallback(() => {
+    setIsMobileOpen((isMobileOpen) => !isMobileOpen);
+  }, []);
 
   /********************************************************************************************************************
    * Memo
@@ -158,6 +127,8 @@ const DefaultLayout = ({
 
   const mainBoxSx: Required<Props['sx']> = { width: { [nextMenuScreen]: `calc(100% - ${SIDE_MENU_WIDTH}px)` } };
 
+  const titleData = menuTitles[location.pathname];
+
   /********************************************************************************************************************
    * Render
    * ******************************************************************************************************************/
@@ -176,7 +147,14 @@ const DefaultLayout = ({
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap component='div' sx={{ flexGrow: 1 }}>
-            {title}
+            {titleData && (
+              <Title
+                title={titleData.name}
+                icon={titleData.icon}
+                headTitle={titleData.parentName}
+                headIcon={titleData.parentIcon}
+              />
+            )}
           </Typography>
           {appBarControl}
         </Toolbar>

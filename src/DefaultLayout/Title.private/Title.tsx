@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Icon } from '@mui/material';
 import {
   StyledContainerBox,
@@ -18,18 +18,21 @@ export interface TitleProps {
 }
 
 const Title = ({ title, icon, headTitle, headIcon }: TitleProps) => {
-  const finalHeadIcon = useMemo(
-    () =>
-      headIcon
-        ? headIcon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)
-        : undefined,
-    [headIcon]
-  );
+  /********************************************************************************************************************
+   * Variable
+   * ******************************************************************************************************************/
 
-  const finalIcon = useMemo(
-    () => (icon ? icon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`) : undefined),
-    [icon]
-  );
+  const finalHeadIcon = headIcon
+    ? headIcon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)
+    : undefined;
+
+  const finalIcon = icon
+    ? icon.replace(/[A-Z]/g, (letter, idx) => `${idx > 0 ? '_' : ''}${letter.toLowerCase()}`)
+    : undefined;
+
+  /********************************************************************************************************************
+   * Render
+   * ******************************************************************************************************************/
 
   return (
     <StyledContainerBox>
@@ -55,4 +58,4 @@ const Title = ({ title, icon, headTitle, headIcon }: TitleProps) => {
   );
 };
 
-export default Title;
+export default React.memo(Title);

@@ -9,7 +9,8 @@ const CardLayout = ({ children, backgroundColor = '#eff3f8' }: CardLayoutProps) 
       direction='column'
       alignItems='center'
       justifyContent='center'
-      style={{ minHeight: '100vh', backgroundColor }}
+      bgcolor={backgroundColor}
+      minHeight='100vh'
     >
       <Grid item xs={12}>
         {children}

@@ -1,4 +1,4 @@
-import {Grid,styled,ListItemIcon,ListItemButton,Icon,ListItemText,Badge,Collapse,List,useTheme,alpha,Box,Toolbar,Typography,AppBar,Drawer,IconButton}from'@mui/material';import React,{useState,useEffect,useMemo}from'react';import {useLocation,useNavigate}from'react-router-dom';import {ExpandMore,Menu}from'@mui/icons-material';import {notEmpty,empty}from'@pdg/util';import SimpleBar from'simplebar-react';function styleInject(css, ref) {
+import {Grid,styled,ListItemIcon,ListItemButton,Icon,ListItemText,Badge,Collapse,List,useTheme,alpha,Box,Toolbar,Typography,AppBar,Drawer,IconButton}from'@mui/material';import React,{useState,useEffect,useCallback,useMemo}from'react';import {useLocation,useNavigate}from'react-router-dom';import {ExpandMore,Menu}from'@mui/icons-material';import {notEmpty,empty}from'@pdg/util';import SimpleBar from'simplebar-react';function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
   var insertAt = ref.insertAt;
 
@@ -26,7 +26,7 @@ import {Grid,styled,ListItemIcon,ListItemButton,Icon,ListItemText,Badge,Collapse
 }var css_248z = ".simplebar-track.simplebar-vertical {\n  width: 8px !important;\n}\n.simplebar-track.simplebar-vertical .simplebar-scrollbar.simplebar-visible:before {\n  opacity: 0.3 !important;\n}\n\n.MuiButtonBase-root.MuiButton-root.MuiButton-outlined {\n  padding: 5px 15px 4px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-sizeLarge {\n  padding: 7px 21px 6px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-sizeSmall {\n  padding: 3px 9px 2px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-contained {\n  padding: 6px 16px 5px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-sizeLarge {\n  padding: 8px 22px 7px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-sizeSmall {\n  padding: 4px 10px 3px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-text {\n  padding: 6px 8px 5px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-sizeLarge {\n  padding: 8px 11px 7px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-sizeSmall {\n  padding: 4px 5px 3px;\n}\n\nhtml,\nbody,\ndiv,\nspan,\napplet,\nobject,\niframe,\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\np,\nblockquote,\npre,\na,\nabbr,\nacronym,\naddress,\nbig,\ncite,\ncode,\ndel,\ndfn,\nem,\nimg,\nins,\nkbd,\nq,\ns,\nsamp,\nsmall,\nstrike,\nstrong,\nsub,\nsup,\ntt,\nvar,\nb,\nu,\ni,\ncenter,\ndl,\ndt,\ndd,\nol,\nul,\nli,\nfieldset,\nform,\nlabel,\nlegend,\ntable,\ncaption,\ntbody,\ntfoot,\nthead,\ntr,\nth,\ntd,\narticle,\naside,\ncanvas,\ndetails,\nembed,\nfigure,\nfigcaption,\nfooter,\nheader,\nhgroup,\nmenu,\nnav,\noutput,\nruby,\nsection,\nsummary,\ntime,\nmark,\naudio,\nvideo,\nmain,\ninput,\nbutton,\ntextarea,\npre,\nselect,\na {\n  font-family: \"Pretendard\", \"Apple Gothic\", \"Dotum\", sans-serif;\n  margin: 0;\n  padding: 0;\n  border: 0;\n  vertical-align: top;\n  box-sizing: border-box;\n  word-break: keep-all;\n  line-height: unset;\n}\n\n*:before,\n*:after {\n  box-sizing: border-box;\n}";
 styleInject(css_248z);var CardLayout = function (_a) {
     var children = _a.children, _b = _a.backgroundColor, backgroundColor = _b === void 0 ? '#eff3f8' : _b;
-    return (React.createElement(Grid, { container: true, direction: 'column', alignItems: 'center', justifyContent: 'center', style: { minHeight: '100vh', backgroundColor: backgroundColor } },
+    return (React.createElement(Grid, { container: true, direction: 'column', alignItems: 'center', justifyContent: 'center', bgcolor: backgroundColor, minHeight: '100vh' },
         React.createElement(Grid, { item: true, xs: 12 }, children)));
 };/******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -171,13 +171,19 @@ var StyledHeadTitleTypography = styled(Typography)(templateObject_4 || (template
 var StyledTitleContainerDiv = styled('div')(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  display: flex;\n  align-items: center;\n  font-size: 1rem;\n"], ["\n  display: flex;\n  align-items: center;\n  font-size: 1rem;\n"])));
 var StyledTitleIconContainerDiv = styled('div')(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n  flex-shrink: 0;\n  display: inline-flex;\n  margin-right: 0.3rem;\n"], ["\n  flex-shrink: 0;\n  display: inline-flex;\n  margin-right: 0.3rem;\n"])));
 var templateObject_1$1, templateObject_2$1, templateObject_3, templateObject_4, templateObject_5, templateObject_6;var Title = function (_a) {
+    /********************************************************************************************************************
+     * Variable
+     * ******************************************************************************************************************/
     var title = _a.title, icon = _a.icon, headTitle = _a.headTitle, headIcon = _a.headIcon;
-    var finalHeadIcon = useMemo(function () {
-        return headIcon
-            ? headIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })
-            : undefined;
-    }, [headIcon]);
-    var finalIcon = useMemo(function () { return (icon ? icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); }) : undefined); }, [icon]);
+    var finalHeadIcon = headIcon
+        ? headIcon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })
+        : undefined;
+    var finalIcon = icon
+        ? icon.replace(/[A-Z]/g, function (letter, idx) { return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase()); })
+        : undefined;
+    /********************************************************************************************************************
+     * Render
+     * ******************************************************************************************************************/
     return (React.createElement(StyledContainerBox$1, null,
         headTitle && (React.createElement(StyledHeadContainerBox, null,
             finalHeadIcon && (React.createElement(StyledHeadIconContainerBox, null,
@@ -187,7 +193,8 @@ var templateObject_1$1, templateObject_2$1, templateObject_3, templateObject_4, 
             finalIcon && (React.createElement(StyledTitleIconContainerDiv, null,
                 React.createElement(Icon, { fontSize: 'small' }, finalIcon))),
             React.createElement("div", null, title))));
-};var SIDE_MENU_WIDTH = 220;
+};
+var Title$1 = React.memo(Title);var SIDE_MENU_WIDTH = 220;
 var StyledContainerBox = styled(Box)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: flex;\n  height: 100%;\n"], ["\n  display: flex;\n  height: 100%;\n"])));
 var StyledAppBar = styled(AppBar)(function (_a) {
     var theme = _a.theme;
@@ -241,15 +248,13 @@ var DefaultLayout = function (_a) {
      * Use
      * ******************************************************************************************************************/
     var _b, _c, _d, _e, _f, _g;
-    var children = _a.children, logo = _a.logo, badgeVariant = _a.badgeVariant, menu = _a.menu, initMenuHideScreen = _a.menuHideScreen, appBarControl = _a.appBarControl;
+    var children = _a.children, logo = _a.logo, badgeVariant = _a.badgeVariant, menu = _a.menu, _h = _a.menuHideScreen, menuHideScreen = _h === void 0 ? 'sm' : _h, appBarControl = _a.appBarControl;
     var location = useLocation();
     /********************************************************************************************************************
      * State
      * ******************************************************************************************************************/
-    var _h = useState(false), isMobileOpen = _h[0], setIsMobileOpen = _h[1];
-    var _j = useState({}), menuTitles = _j[0], setMenuTitles = _j[1];
-    var _k = useState(), title = _k[0], setTitle = _k[1];
-    var _l = useState(initMenuHideScreen || 'sm'), menuHideScreen = _l[0], setMenuHideScreen = _l[1];
+    var _j = useState(false), isMobileOpen = _j[0], setIsMobileOpen = _j[1];
+    var _k = useState({}), menuTitles = _k[0], setMenuTitles = _k[1];
     /********************************************************************************************************************
      * Effect
      * ******************************************************************************************************************/
@@ -270,26 +275,14 @@ var DefaultLayout = function (_a) {
         setMenuTitles(menuTitles);
     }, [menu]);
     useEffect(function () {
-        setMenuHideScreen(initMenuHideScreen || 'sm');
-    }, [initMenuHideScreen]);
-    useEffect(function () {
         setIsMobileOpen(false);
     }, [location]);
-    useEffect(function () {
-        if (menuTitles) {
-            var titleData = menuTitles[location.pathname];
-            if (titleData) {
-                setTitle(React.createElement(Title, { title: titleData.name, icon: titleData.icon, headTitle: titleData.parentName, headIcon: titleData.parentIcon }));
-            }
-            else {
-                setTitle(undefined);
-            }
-        }
-    }, [location, menuTitles]);
     /********************************************************************************************************************
      * Function
      * ******************************************************************************************************************/
-    var toggleIsMobileOpen = function () { return setIsMobileOpen(function (isMobileOpen) { return !isMobileOpen; }); };
+    var toggleIsMobileOpen = useCallback(function () {
+        setIsMobileOpen(function (isMobileOpen) { return !isMobileOpen; });
+    }, []);
     /********************************************************************************************************************
      * Memo
      * ******************************************************************************************************************/
@@ -337,6 +330,7 @@ var DefaultLayout = function (_a) {
         flexShrink: (_f = {}, _f[nextMenuScreen] = 0, _f),
     };
     var mainBoxSx = { width: (_g = {}, _g[nextMenuScreen] = "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)"), _g) };
+    var titleData = menuTitles[location.pathname];
     /********************************************************************************************************************
      * Render
      * ******************************************************************************************************************/
@@ -345,7 +339,7 @@ var DefaultLayout = function (_a) {
             React.createElement(Toolbar, null,
                 React.createElement(IconButton, { color: 'inherit', "aria-label": 'open drawer', edge: 'start', onClick: toggleIsMobileOpen, sx: appBarIconButtonSx },
                     React.createElement(Menu, null)),
-                React.createElement(Typography, { variant: 'h6', noWrap: true, component: 'div', sx: { flexGrow: 1 } }, title),
+                React.createElement(Typography, { variant: 'h6', noWrap: true, component: 'div', sx: { flexGrow: 1 } }, titleData && (React.createElement(Title$1, { title: titleData.name, icon: titleData.icon, headTitle: titleData.parentName, headIcon: titleData.parentIcon }))),
                 appBarControl)),
         React.createElement(StyledSideMenuContainerBox, { component: 'nav', "aria-label": 'mailbox folders', sx: sideMenuContainerBoxSx },
             React.createElement(StyledSideMenuTemporaryDrawer, { variant: 'temporary', open: isMobileOpen, onClose: toggleIsMobileOpen, sx: sideMenuTemporaryDrawerSx, ModalProps: {
