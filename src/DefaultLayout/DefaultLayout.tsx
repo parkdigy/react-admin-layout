@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Toolbar, IconButton, Typography } from '@mui/material';
+import { Toolbar, IconButton, Typography, Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu.private';
@@ -10,9 +10,7 @@ import {
   SIDE_MENU_WIDTH,
   StyledAppBar,
   StyledContainerBox,
-  StyledMainBox,
   StyledMainContentDiv,
-  StyledSideMenuContainerBox,
   StyledSideMenuPermanentDrawer,
   StyledSideMenuTemporaryDrawer,
 } from './DefaultLayout.style.private';
@@ -125,7 +123,14 @@ const DefaultLayout = ({ children, logo, badgeVariant, menu, menuHideScreen = 's
     flexShrink: { [nextMenuScreen]: 0 },
   };
 
-  const mainBoxSx: Required<Props['sx']> = { width: { [nextMenuScreen]: `calc(100% - ${SIDE_MENU_WIDTH}px)` } };
+  const mainBoxSx: Required<Props['sx']> = {
+    width: { [nextMenuScreen]: `calc(100% - ${SIDE_MENU_WIDTH}px)` },
+    flexGrow: 1,
+    p: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  };
 
   const titleData = menuTitles[location.pathname];
 
@@ -159,7 +164,7 @@ const DefaultLayout = ({ children, logo, badgeVariant, menu, menuHideScreen = 's
           {appBarControl}
         </Toolbar>
       </StyledAppBar>
-      <StyledSideMenuContainerBox component='nav' aria-label='mailbox folders' sx={sideMenuContainerBoxSx}>
+      <Box component='nav' aria-label='mailbox folders' sx={sideMenuContainerBoxSx}>
         <StyledSideMenuTemporaryDrawer
           variant='temporary'
           open={isMobileOpen}
@@ -174,12 +179,11 @@ const DefaultLayout = ({ children, logo, badgeVariant, menu, menuHideScreen = 's
         <StyledSideMenuPermanentDrawer variant='permanent' open sx={sideMenuPermanentDrawerSx}>
           {menu && <SideMenu logo={logo} badgeVariant={badgeVariant} list={menu} />}
         </StyledSideMenuPermanentDrawer>
-      </StyledSideMenuContainerBox>
-      <StyledMainBox component='main' sx={mainBoxSx}>
+      </Box>
+      <Box component='main' sx={mainBoxSx}>
         <Toolbar />
-
         <StyledMainContentDiv>{children}</StyledMainContentDiv>
-      </StyledMainBox>
+      </Box>
     </StyledContainerBox>
   );
 };

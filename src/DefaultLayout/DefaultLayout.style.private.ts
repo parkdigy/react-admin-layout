@@ -16,8 +16,6 @@ export const StyledAppBar = styled(AppBar)(({ theme }) =>
   })
 );
 
-export const StyledSideMenuContainerBox = styled(Box)(({ theme }) => theme.unstable_sx({}));
-
 export const StyledSideMenuTemporaryDrawer = styled(Drawer)(({ theme }) =>
   theme.unstable_sx({
     '& .MuiDrawer-paper': { boxSizing: 'border-box', width: SIDE_MENU_WIDTH },
@@ -27,16 +25,6 @@ export const StyledSideMenuTemporaryDrawer = styled(Drawer)(({ theme }) =>
 export const StyledSideMenuPermanentDrawer = styled(Drawer)(({ theme }) =>
   theme.unstable_sx({
     '& .MuiDrawer-paper': { boxSizing: 'border-box', width: SIDE_MENU_WIDTH },
-  })
-);
-
-export const StyledMainBox = styled(Box)(({ theme }) =>
-  theme.unstable_sx({
-    flexGrow: 1,
-    p: 2,
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
   })
 );
 

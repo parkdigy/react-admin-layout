@@ -33,6 +33,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unused-vars': ['warn'],
+    '@typescript-eslint/no-unused-expressions': 'off',
     'no-useless-constructor': ['warn'],
     'react/no-unused-state': ['warn'],
     'react/state-in-constructor': ['error', 'always'],

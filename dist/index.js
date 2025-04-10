@@ -1,33 +1,7 @@
-'use strict';var material=require('@mui/material'),React=require('react'),reactRouterDom=require('react-router-dom'),iconsMaterial=require('@mui/icons-material'),util=require('@pdg/util'),SimpleBar=require('simplebar-react');function styleInject(css, ref) {
-  if ( ref === void 0 ) ref = {};
-  var insertAt = ref.insertAt;
-
-  if (typeof document === 'undefined') { return; }
-
-  var head = document.head || document.getElementsByTagName('head')[0];
-  var style = document.createElement('style');
-  style.type = 'text/css';
-
-  if (insertAt === 'top') {
-    if (head.firstChild) {
-      head.insertBefore(style, head.firstChild);
-    } else {
-      head.appendChild(style);
-    }
-  } else {
-    head.appendChild(style);
-  }
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    style.appendChild(document.createTextNode(css));
-  }
-}var css_248z = ".simplebar-track.simplebar-vertical {\n  width: 8px !important;\n}\n.simplebar-track.simplebar-vertical .simplebar-scrollbar.simplebar-visible:before {\n  opacity: 0.3 !important;\n}\n\n.MuiButtonBase-root.MuiButton-root.MuiButton-outlined {\n  padding: 5px 15px 4px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-sizeLarge {\n  padding: 7px 21px 6px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-sizeSmall {\n  padding: 3px 9px 2px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-contained {\n  padding: 6px 16px 5px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-sizeLarge {\n  padding: 8px 22px 7px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-sizeSmall {\n  padding: 4px 10px 3px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-text {\n  padding: 6px 8px 5px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-sizeLarge {\n  padding: 8px 11px 7px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-sizeSmall {\n  padding: 4px 5px 3px;\n}\n\nhtml,\nbody,\ndiv,\nspan,\napplet,\nobject,\niframe,\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\np,\nblockquote,\npre,\na,\nabbr,\nacronym,\naddress,\nbig,\ncite,\ncode,\ndel,\ndfn,\nem,\nimg,\nins,\nkbd,\nq,\ns,\nsamp,\nsmall,\nstrike,\nstrong,\nsub,\nsup,\ntt,\nvar,\nb,\nu,\ni,\ncenter,\ndl,\ndt,\ndd,\nol,\nul,\nli,\nfieldset,\nform,\nlabel,\nlegend,\ntable,\ncaption,\ntbody,\ntfoot,\nthead,\ntr,\nth,\ntd,\narticle,\naside,\ncanvas,\ndetails,\nembed,\nfigure,\nfigcaption,\nfooter,\nheader,\nhgroup,\nmenu,\nnav,\noutput,\nruby,\nsection,\nsummary,\ntime,\nmark,\naudio,\nvideo,\nmain,\ninput,\nbutton,\ntextarea,\npre,\nselect,\na {\n  font-family: \"Pretendard\", \"Apple Gothic\", \"Dotum\", sans-serif;\n  margin: 0;\n  padding: 0;\n  border: 0;\n  vertical-align: top;\n  box-sizing: border-box;\n  word-break: keep-all;\n  line-height: unset;\n}\n\n*:before,\n*:after {\n  box-sizing: border-box;\n}";
-styleInject(css_248z);var CardLayout = function (_a) {
+'use strict';var material=require('@mui/material'),React=require('react'),reactRouterDom=require('react-router-dom'),iconsMaterial=require('@mui/icons-material'),util=require('@pdg/util'),SimpleBar=require('simplebar-react');var CardLayout = function (_a) {
     var children = _a.children, _b = _a.backgroundColor, backgroundColor = _b === void 0 ? '#eff3f8' : _b;
     return (React.createElement(material.Grid, { container: true, direction: 'column', alignItems: 'center', justifyContent: 'center', bgcolor: backgroundColor, minHeight: '100vh' },
-        React.createElement(material.Grid, { item: true, xs: 12 }, children)));
+        React.createElement(material.Grid, null, children)));
 };/******************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -42,7 +16,7 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
-/* global Reflect, Promise, SuppressedError, Symbol */
+/* global Reflect, Promise, SuppressedError, Symbol, Iterator */
 
 
 var __assign = function() {
@@ -205,10 +179,6 @@ var StyledAppBar = material.styled(material.AppBar)(function (_a) {
         borderBottom: 'thin solid #f5f5f5',
     });
 });
-var StyledSideMenuContainerBox = material.styled(material.Box)(function (_a) {
-    var theme = _a.theme;
-    return theme.unstable_sx({});
-});
 var StyledSideMenuTemporaryDrawer = material.styled(material.Drawer)(function (_a) {
     var theme = _a.theme;
     return theme.unstable_sx({
@@ -219,16 +189,6 @@ var StyledSideMenuPermanentDrawer = material.styled(material.Drawer)(function (_
     var theme = _a.theme;
     return theme.unstable_sx({
         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: SIDE_MENU_WIDTH },
-    });
-});
-var StyledMainBox = material.styled(material.Box)(function (_a) {
-    var theme = _a.theme;
-    return theme.unstable_sx({
-        flexGrow: 1,
-        p: 2,
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh',
     });
 });
 var StyledMainContentDiv = material.styled('div')(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n"], ["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n"])));
@@ -329,7 +289,14 @@ var DefaultLayout = function (_a) {
         width: (_e = {}, _e[nextMenuScreen] = SIDE_MENU_WIDTH, _e),
         flexShrink: (_f = {}, _f[nextMenuScreen] = 0, _f),
     };
-    var mainBoxSx = { width: (_g = {}, _g[nextMenuScreen] = "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)"), _g) };
+    var mainBoxSx = {
+        width: (_g = {}, _g[nextMenuScreen] = "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)"), _g),
+        flexGrow: 1,
+        p: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+    };
     var titleData = menuTitles[location.pathname];
     /********************************************************************************************************************
      * Render
@@ -341,12 +308,12 @@ var DefaultLayout = function (_a) {
                     React.createElement(iconsMaterial.Menu, null)),
                 React.createElement(material.Typography, { variant: 'h6', noWrap: true, component: 'div', sx: { flexGrow: 1 } }, titleData && (React.createElement(Title$1, { title: titleData.name, icon: titleData.icon, headTitle: titleData.parentName, headIcon: titleData.parentIcon }))),
                 appBarControl)),
-        React.createElement(StyledSideMenuContainerBox, { component: 'nav', "aria-label": 'mailbox folders', sx: sideMenuContainerBoxSx },
+        React.createElement(material.Box, { component: 'nav', "aria-label": 'mailbox folders', sx: sideMenuContainerBoxSx },
             React.createElement(StyledSideMenuTemporaryDrawer, { variant: 'temporary', open: isMobileOpen, onClose: toggleIsMobileOpen, sx: sideMenuTemporaryDrawerSx, ModalProps: {
                     keepMounted: true, // Better open performance on mobile.
                 } }, menu && React.createElement(SideMenu$1, { logo: logo, badgeVariant: badgeVariant, list: menu })),
             React.createElement(StyledSideMenuPermanentDrawer, { variant: 'permanent', open: true, sx: sideMenuPermanentDrawerSx }, menu && React.createElement(SideMenu$1, { logo: logo, badgeVariant: badgeVariant, list: menu }))),
-        React.createElement(StyledMainBox, { component: 'main', sx: mainBoxSx },
+        React.createElement(material.Box, { component: 'main', sx: mainBoxSx },
             React.createElement(material.Toolbar, null),
             React.createElement(StyledMainContentDiv, null, children))));
 };exports.CardLayout=CardLayout;exports.DefaultLayout=DefaultLayout;

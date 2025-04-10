@@ -42,8 +42,10 @@ export const theme = createTheme({
 const ThemeBase: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
+      <>
+        <CssBaseline />
+        {children}
+      </>
     </ThemeProvider>
   );
 };

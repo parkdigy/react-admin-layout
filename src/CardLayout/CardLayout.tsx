@@ -12,9 +12,7 @@ const CardLayout = ({ children, backgroundColor = '#eff3f8' }: CardLayoutProps) 
       bgcolor={backgroundColor}
       minHeight='100vh'
     >
-      <Grid item xs={12}>
-        {children}
-      </Grid>
+      <Grid>{children}</Grid>
     </Grid>
   );
 };
