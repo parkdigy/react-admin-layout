@@ -8,12 +8,7 @@ import './sass/index.scss';
 
 function App() {
   return (
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <BrowserRouter>
       <Routes>
         <Route path='/auth/*' element={<CardLayout />} />
         <Route path='/*' element={<DefaultLayout />} />
