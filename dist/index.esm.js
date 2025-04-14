@@ -1,4 +1,30 @@
-import {Grid,styled,ListItemIcon,ListItemButton,Icon,ListItemText,Badge,Collapse,List,useTheme,alpha,Box,Toolbar,Typography,AppBar,Drawer,IconButton}from'@mui/material';import React,{useState,useEffect,useCallback,useMemo}from'react';import {useLocation,useNavigate}from'react-router-dom';import {ExpandMore,Menu}from'@mui/icons-material';import {notEmpty,empty}from'@pdg/util';import SimpleBar from'simplebar-react';var CardLayout = function (_a) {
+import {Grid,styled,ListItemIcon,ListItemButton,Icon,ListItemText,Badge,Collapse,List,useTheme,alpha,Box,Toolbar,Typography,AppBar,Drawer,IconButton}from'@mui/material';import React,{useState,useEffect,useCallback,useMemo}from'react';import {useLocation,useNavigate}from'react-router-dom';import {ExpandMore,Menu}from'@mui/icons-material';import {notEmpty,empty}from'@pdg/util';import SimpleBar from'simplebar-react';function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}var css_248z = ".simplebar-track.simplebar-vertical {\n  width: 8px !important;\n}\n.simplebar-track.simplebar-vertical .simplebar-scrollbar.simplebar-visible:before {\n  opacity: 0.3 !important;\n}\n\n.MuiButtonBase-root.MuiButton-root.MuiButton-outlined {\n  padding: 5px 15px 4px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-sizeLarge {\n  padding: 7px 21px 6px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-sizeSmall {\n  padding: 3px 9px 2px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-contained {\n  padding: 6px 16px 5px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-sizeLarge {\n  padding: 8px 22px 7px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-sizeSmall {\n  padding: 4px 10px 3px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-text {\n  padding: 6px 8px 5px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-sizeLarge {\n  padding: 8px 11px 7px;\n}\n.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-sizeSmall {\n  padding: 4px 5px 3px;\n}\n\nhtml,\nbody,\ndiv,\nspan,\napplet,\nobject,\niframe,\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\np,\nblockquote,\npre,\na,\nabbr,\nacronym,\naddress,\nbig,\ncite,\ncode,\ndel,\ndfn,\nem,\nimg,\nins,\nkbd,\nq,\ns,\nsamp,\nsmall,\nstrike,\nstrong,\nsub,\nsup,\ntt,\nvar,\nb,\nu,\ni,\ncenter,\ndl,\ndt,\ndd,\nol,\nul,\nli,\nfieldset,\nform,\nlabel,\nlegend,\ntable,\ncaption,\ntbody,\ntfoot,\nthead,\ntr,\nth,\ntd,\narticle,\naside,\ncanvas,\ndetails,\nembed,\nfigure,\nfigcaption,\nfooter,\nheader,\nhgroup,\nmenu,\nnav,\noutput,\nruby,\nsection,\nsummary,\ntime,\nmark,\naudio,\nvideo,\nmain,\ninput,\nbutton,\ntextarea,\npre,\nselect,\na {\n  font-family: \"Pretendard\", \"Apple Gothic\", \"Dotum\", sans-serif;\n  margin: 0;\n  padding: 0;\n  border: 0;\n  vertical-align: top;\n  box-sizing: border-box;\n  word-break: keep-all;\n  line-height: unset;\n}\n\n*:before,\n*:after {\n  box-sizing: border-box;\n}";
+styleInject(css_248z);var CardLayout = function (_a) {
     var children = _a.children, _b = _a.backgroundColor, backgroundColor = _b === void 0 ? '#eff3f8' : _b;
     return (React.createElement(Grid, { container: true, direction: 'column', alignItems: 'center', justifyContent: 'center', bgcolor: backgroundColor, minHeight: '100vh' },
         React.createElement(Grid, null, children)));
