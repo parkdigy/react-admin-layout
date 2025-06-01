@@ -1,7 +1,7 @@
 {
   "name": "@pdg/react-admin-layout",
   "title": "React Admin Layout",
-  "version": "1.0.40",
+  "version": "1.0.42",
   "description": "Admin Layout for React",
   "type": "module",
   "types": "dist/index.d.ts",
@@ -42,22 +42,24 @@
     "javascript"
   ],
   "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^7.0.2",
-    "@mui/material": "^7.0.2",
-    "@pdg/util": "^1.0.23",
-    "@types/react": ">=17.0.0",
-    "react": ">=17.0.0",
-    "react-dom": ">=17.0.0",
-    "react-router-dom": "^7.5.0",
-    "simplebar-react": "3.3.0"
+    "@mui/icons-material": "^7.1.0",
+    "@mui/material": "^7.1.0",
+    "@pdg/util": "^1.0.24",
+    "react-router": "^7.6.1",
+    "simplebar-react": "^3.3.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-eslint": "^9.0.5",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@types/node": "^22.14.0",
+    "@types/react": "^19.1.6",
     "@typescript-eslint/eslint-plugin": "^8.29.1",
     "@typescript-eslint/parser": "^8.29.1",
     "eslint": "8.57.1",

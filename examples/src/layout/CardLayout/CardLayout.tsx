@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router';
 import * as AdminLayout from '../../../../src';
 import { ThemeBase } from '../Theme';
 import { SignIn } from '@comp';

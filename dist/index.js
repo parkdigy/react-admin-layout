@@ -1,4 +1,4 @@
-'use strict';var material=require('@mui/material'),React=require('react'),reactRouterDom=require('react-router-dom'),iconsMaterial=require('@mui/icons-material'),util=require('@pdg/util'),SimpleBar=require('simplebar-react');function styleInject(css, ref) {
+'use strict';var material=require('@mui/material'),React=require('react'),reactRouter=require('react-router'),iconsMaterial=require('@mui/icons-material'),util=require('@pdg/util'),SimpleBar=require('simplebar-react');function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
   var insertAt = ref.insertAt;
 
@@ -70,8 +70,8 @@ var templateObject_1$4, templateObject_2$2;var SideMenuListItem = function (_a) 
      * Use
      * ******************************************************************************************************************/
     var info = _a.info, badgeVariant = _a.badgeVariant, expandedBackgroundColor = _a.expandedBackgroundColor;
-    var location = reactRouterDom.useLocation();
-    var navigate = reactRouterDom.useNavigate();
+    var location = reactRouter.useLocation();
+    var navigate = reactRouter.useNavigate();
     /********************************************************************************************************************
      * State
      * ******************************************************************************************************************/
@@ -235,7 +235,7 @@ var DefaultLayout = function (_a) {
      * ******************************************************************************************************************/
     var _b, _c, _d, _e, _f, _g;
     var children = _a.children, logo = _a.logo, badgeVariant = _a.badgeVariant, menu = _a.menu, _h = _a.menuHideScreen, menuHideScreen = _h === void 0 ? 'sm' : _h, appBarControl = _a.appBarControl;
-    var location = reactRouterDom.useLocation();
+    var location = reactRouter.useLocation();
     /********************************************************************************************************************
      * State
      * ******************************************************************************************************************/

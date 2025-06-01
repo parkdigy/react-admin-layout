@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ListItemButton, Icon, ListItemText, Badge, Collapse } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router';
 import { SideMenuListItemProps } from './SideMenuListItem.types';
 import { notEmpty } from '@pdg/util';
 import { StyledExpandMore, StyledListItemIcon } from './SideMenuListItem.style';

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router';
 import * as AdminLayout from '../../../../src';
 import { ThemeBase } from '../Theme';
 import Menu from './menu.json';

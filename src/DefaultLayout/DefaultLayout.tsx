@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Toolbar, IconButton, Typography, Box } from '@mui/material';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu.private';
 import Title from './Title.private';

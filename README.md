@@ -7,7 +7,7 @@ https://parkdigy.github.io/react-admin-layout/
 
 ## 설치
 ```shell
-npm install -D @pdg/react-admin-layout @mui/material @mui/icons-material @emotion/react @emotion/styled @pdg/util simplebar-react
+npm install -D @pdg/react-admin-layout
 ```
 
 ### index.html 에 추가
