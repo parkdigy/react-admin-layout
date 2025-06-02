@@ -1,21 +1,13 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Toolbar, IconButton, Typography, Box } from '@mui/material';
+import { Toolbar, IconButton, Typography, Box, styled, AppBar, Drawer } from '@mui/material';
 import { useLocation } from 'react-router';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu.private';
 import Title from './Title.private';
 import { DefaultLayoutProps as Props } from './DefaultLayout.types';
-import { MenuTitleMap } from './DefaultLayout.types.private';
-import {
-  SIDE_MENU_WIDTH,
-  StyledAppBar,
-  StyledContainerBox,
-  StyledMainContentDiv,
-  StyledSideMenuPermanentDrawer,
-  StyledSideMenuTemporaryDrawer,
-} from './DefaultLayout.style.private';
 import { Dict, empty } from '@pdg/util';
 
+const SIDE_MENU_WIDTH = 220;
 const SCREENS = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 const _getNextScreen = (screen: 'xs' | 'sm' | 'md' | 'lg'): 'sm' | 'md' | 'lg' | 'xl' => {
@@ -189,3 +181,54 @@ const DefaultLayout = ({ children, logo, badgeVariant, menu, menuHideScreen = 's
 };
 
 export default DefaultLayout;
+
+/********************************************************************************************************************
+ * Types
+ * ******************************************************************************************************************/
+
+interface MenuTitle {
+  name: string;
+  icon?: string;
+  parentName?: string;
+  parentIcon?: string;
+}
+
+interface MenuTitleMap {
+  [key: string]: MenuTitle;
+}
+
+/********************************************************************************************************************
+ * Styled Components
+ * ******************************************************************************************************************/
+
+const StyledContainerBox = styled(Box)`
+  display: flex;
+  height: 100%;
+`;
+
+const StyledAppBar = styled(AppBar)(({ theme }) =>
+  theme.unstable_sx({
+    backdropFilter: 'blur(20px)',
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    color: 'text.primary',
+    borderBottom: 'thin solid #f5f5f5',
+  })
+);
+
+const StyledSideMenuTemporaryDrawer = styled(Drawer)(({ theme }) =>
+  theme.unstable_sx({
+    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: SIDE_MENU_WIDTH },
+  })
+);
+
+const StyledSideMenuPermanentDrawer = styled(Drawer)(({ theme }) =>
+  theme.unstable_sx({
+    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: SIDE_MENU_WIDTH },
+  })
+);
+
+const StyledMainContentDiv = styled('div')`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;

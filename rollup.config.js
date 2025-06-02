@@ -2,7 +2,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
-import postcss from 'rollup-plugin-postcss';
+import sass from 'rollup-plugin-sass';
 import del from 'rollup-plugin-delete';
 import fs from 'fs';
 import path from 'path';
@@ -29,7 +29,13 @@ const getConfig = () => ({
   plugins: [
     del({ targets: 'dist/*' }),
     peerDepsExternal(),
-    postcss(),
+    sass({
+      insert: true,
+      api: 'modern',
+      options: {
+        style: 'compressed',
+      },
+    }),
     resolve(),
     commonjs({
       include: /node_modules/,
