@@ -6,9 +6,7 @@ import sass from 'rollup-plugin-sass';
 import del from 'rollup-plugin-delete';
 import fs from 'fs';
 import path from 'path';
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const packageJson = require('./package.json');
+import packageJson from './package.json';
 
 const externalDeps = Object.keys(packageJson.dependencies || {}).concat(
   Object.keys(packageJson.peerDependencies || {})
