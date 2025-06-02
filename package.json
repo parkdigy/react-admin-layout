@@ -50,7 +50,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.1.0",
-    "@pdg/util": "^1.0.25",
+    "@pdg/util": "^1.0.26",
     "react-router": "^7.6.1",
     "simplebar-react": "^3.3.1"
   },
