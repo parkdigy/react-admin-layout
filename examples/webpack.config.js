@@ -1,5 +1,7 @@
+/* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
+const env = require('dotenv').config({ path: path.resolve(__dirname, './../.env') }).parsed;
 const ESLintPlugin = require('eslint-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,7 +10,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const { SourceMapDevToolPlugin } = require('webpack');
+/* eslint-enable */
 
 /********************************************************************************************************************
  * Variables
@@ -54,7 +56,7 @@ const alias = {
  * Options
  * ******************************************************************************************************************/
 
-const options = {
+module.exports = {
   mode,
   devtool,
   target: 'web',
@@ -126,6 +128,7 @@ const options = {
     new ForkTsCheckerWebpackPlugin(),
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
+      failOnError: isProduction,
       exclude: [
         path.resolve(__dirname, 'node_modules'),
         path.resolve(__dirname, 'dist'),
@@ -155,7 +158,7 @@ const options = {
           }),
         ]
       : [
-          new SourceMapDevToolPlugin({
+          new webpack.SourceMapDevToolPlugin({
             filename: '[file].map',
           }),
           new FriendlyErrorsWebpackPlugin({
@@ -169,7 +172,7 @@ const options = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, '../src')],
+        // include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, '../src')],
         exclude: /node_modules/,
         use: [
           {
@@ -212,5 +215,3 @@ const options = {
     ],
   },
 };
-
-module.exports = options;
