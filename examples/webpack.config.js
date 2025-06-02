@@ -1,4 +1,3 @@
-/* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -10,7 +9,6 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const CopyPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { SourceMapDevToolPlugin } = require('webpack');
-/* eslint-enable */
 
 /********************************************************************************************************************
  * Variables
