@@ -9,7 +9,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 /* eslint-enable */
 
 /********************************************************************************************************************
@@ -149,11 +148,6 @@ module.exports = {
           }),
           new CopyPlugin({
             patterns: [{ from: './public/robots.txt', to: outputPath }],
-          }),
-          new BundleAnalyzerPlugin({
-            openAnalyzer: false,
-            analyzerMode: 'static',
-            reportFilename: '../build/report.html',
           }),
         ]
       : [
