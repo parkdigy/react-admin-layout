@@ -49,7 +49,6 @@ class MyHtmlPlugin {
 
 const alias = {
   '@comp': path.resolve(__dirname, 'src/component'),
-  '@ccomp': path.resolve(__dirname, 'src/component/Common'),
 };
 
 /********************************************************************************************************************
