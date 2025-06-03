@@ -1,7 +1,7 @@
 {
   "name": "@pdg/react-admin-layout",
   "title": "React Admin Layout",
-  "version": "1.0.45",
+  "version": "1.0.46",
   "description": "Admin Layout for React",
   "type": "module",
   "types": "dist/index.d.ts",
@@ -50,7 +50,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.1.0",
-    "@pdg/util": "^1.0.26",
+    "@pdg/util": "^1.0.27",
     "react-router": "^7.6.1",
     "simplebar-react": "^3.3.1"
   },
