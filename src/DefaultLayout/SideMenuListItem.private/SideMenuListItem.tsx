@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { ListItemButton, Icon, ListItemText, Badge, Collapse } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router';
 import { SideMenuListItemProps } from './SideMenuListItem.types';
-import { notEmpty } from '@pdg/util';
 import { StyledExpandMore, StyledListItemIcon } from './SideMenuListItem.style';
 
 const SideMenuListItem = ({ info, badgeVariant, expandedBackgroundColor }: SideMenuListItemProps) => {
@@ -25,7 +24,7 @@ const SideMenuListItem = ({ info, badgeVariant, expandedBackgroundColor }: SideM
    * ******************************************************************************************************************/
 
   useEffect(() => {
-    setIsExpandable(notEmpty(info.items));
+    setIsExpandable(!!info.items && info.items.length > 0);
 
     if (info.items && info.items.find((info) => location.pathname === info.uri)) {
       setIsExpand(true);

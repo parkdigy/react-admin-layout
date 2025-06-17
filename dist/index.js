@@ -1,4 +1,4 @@
-'use strict';var material=require('@mui/material'),React=require('react'),reactRouter=require('react-router'),iconsMaterial=require('@mui/icons-material'),util=require('@pdg/util'),SimpleBar=require('simplebar-react');function insertStyle(css) {
+'use strict';var material=require('@mui/material'),React=require('react'),reactRouter=require('react-router'),iconsMaterial=require('@mui/icons-material'),SimpleBar=require('simplebar-react');function insertStyle(css) {
     if (typeof window === 'undefined')
         return;
     const style = document.createElement('style');
@@ -63,7 +63,7 @@ var templateObject_1$4, templateObject_2$2;var SideMenuListItem = function (_a) 
      * Effect
      * ******************************************************************************************************************/
     React.useEffect(function () {
-        setIsExpandable(util.notEmpty(info.items));
+        setIsExpandable(!!info.items && info.items.length > 0);
         if (info.items && info.items.find(function (info) { return location.pathname === info.uri; })) {
             setIsExpand(true);
         }
@@ -207,7 +207,7 @@ var DefaultLayout = function (_a) {
         var menuTitles = {};
         if (menu) {
             menu.forEach(function (info) {
-                if (util.empty(info.uri) && info.items && info.items.length > 0) {
+                if ((info.uri == null || info.uri === '') && info.items && info.items.length > 0) {
                     info.items.map(function (subInfo) {
                         menuTitles[subInfo.uri] = { name: subInfo.name, parentName: info.name, parentIcon: info.icon };
                     });

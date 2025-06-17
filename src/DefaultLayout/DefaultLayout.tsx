@@ -5,7 +5,6 @@ import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu.private';
 import Title from './Title.private';
 import { DefaultLayoutProps as Props } from './DefaultLayout.types';
-import { Dict, empty } from '@pdg/util';
 
 const SIDE_MENU_WIDTH = 220;
 const SCREENS = ['xs', 'sm', 'md', 'lg', 'xl'];
@@ -39,7 +38,7 @@ const DefaultLayout = ({ children, logo, badgeVariant, menu, menuHideScreen = 's
     const menuTitles: MenuTitleMap = {};
     if (menu) {
       menu.forEach((info) => {
-        if (empty(info.uri) && info.items && info.items.length > 0) {
+        if ((info.uri == null || info.uri === '') && info.items && info.items.length > 0) {
           info.items.map((subInfo) => {
             menuTitles[subInfo.uri] = { name: subInfo.name, parentName: info.name, parentIcon: info.icon };
           });
@@ -70,30 +69,36 @@ const DefaultLayout = ({ children, logo, badgeVariant, menu, menuHideScreen = 's
   const sideMenuTemporaryDrawerSx: Props['sx'] = useMemo(() => {
     let found = false;
     return {
-      display: SCREENS.reduce((res, screen) => {
-        if (screen === menuHideScreen) {
-          found = true;
-          res[screen] = 'block';
-        } else {
-          res[screen] = found ? 'none' : 'block';
-        }
-        return res;
-      }, {} as Dict<string>),
+      display: SCREENS.reduce(
+        (res, screen) => {
+          if (screen === menuHideScreen) {
+            found = true;
+            res[screen] = 'block';
+          } else {
+            res[screen] = found ? 'none' : 'block';
+          }
+          return res;
+        },
+        {} as Record<string, string>
+      ),
     };
   }, [menuHideScreen]);
 
   const sideMenuPermanentDrawerSx: Props['sx'] = useMemo(() => {
     let found = false;
     return {
-      display: SCREENS.reduce((res, screen) => {
-        if (screen === menuHideScreen) {
-          found = true;
-          res[screen] = 'none';
-        } else {
-          res[screen] = found ? 'block' : 'none';
-        }
-        return res;
-      }, {} as Dict<string>),
+      display: SCREENS.reduce(
+        (res, screen) => {
+          if (screen === menuHideScreen) {
+            found = true;
+            res[screen] = 'none';
+          } else {
+            res[screen] = found ? 'block' : 'none';
+          }
+          return res;
+        },
+        {} as Record<string, string>
+      ),
     };
   }, [menuHideScreen]);
 

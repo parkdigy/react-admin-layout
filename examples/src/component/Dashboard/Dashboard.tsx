@@ -1,16 +1,14 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 
 const Dashboard = () => {
   return (
-    <>
+    <Stack spacing={1}>
       <div>Dashboard</div>
-      <br />
       <div>
         <Button href='/auth/signin'>SignIn</Button>
       </div>
-      <div></div>
-    </>
+    </Stack>
   );
 };
 

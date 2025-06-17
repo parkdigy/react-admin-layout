@@ -1,4 +1,4 @@
-import {Grid,styled,ListItemIcon,ListItemButton,Icon,ListItemText,Badge,Collapse,List,useTheme,alpha,Box,Toolbar,Typography,AppBar,Drawer,IconButton}from'@mui/material';import React,{useState,useEffect,useCallback,useMemo}from'react';import {useLocation,useNavigate}from'react-router';import {ExpandMore,Menu}from'@mui/icons-material';import {notEmpty,empty}from'@pdg/util';import SimpleBar from'simplebar-react';function insertStyle(css) {
+import {Grid,styled,ListItemIcon,ListItemButton,Icon,ListItemText,Badge,Collapse,List,useTheme,alpha,Box,Toolbar,Typography,AppBar,Drawer,IconButton}from'@mui/material';import React,{useState,useEffect,useCallback,useMemo}from'react';import {useLocation,useNavigate}from'react-router';import {ExpandMore,Menu}from'@mui/icons-material';import SimpleBar from'simplebar-react';function insertStyle(css) {
     if (typeof window === 'undefined')
         return;
     const style = document.createElement('style');
@@ -63,7 +63,7 @@ var templateObject_1$4, templateObject_2$2;var SideMenuListItem = function (_a) 
      * Effect
      * ******************************************************************************************************************/
     useEffect(function () {
-        setIsExpandable(notEmpty(info.items));
+        setIsExpandable(!!info.items && info.items.length > 0);
         if (info.items && info.items.find(function (info) { return location.pathname === info.uri; })) {
             setIsExpand(true);
         }
@@ -207,7 +207,7 @@ var DefaultLayout = function (_a) {
         var menuTitles = {};
         if (menu) {
             menu.forEach(function (info) {
-                if (empty(info.uri) && info.items && info.items.length > 0) {
+                if ((info.uri == null || info.uri === '') && info.items && info.items.length > 0) {
                     info.items.map(function (subInfo) {
                         menuTitles[subInfo.uri] = { name: subInfo.name, parentName: info.name, parentIcon: info.icon };
                     });
