@@ -1,8 +1,8 @@
 {
-  "name": "@pdg/npm-react-template",
-  "title": "NPM React Template",
-  "description": "NPM React Template",
-  "version": "1.0.0",
+  "name": "@pdg/react-admin-layout",
+  "title": "React Admin Layout",
+  "version": "1.0.48",
+  "description": "Admin Layout for React",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
@@ -16,13 +16,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/parkdigy/npm-react-template.git",
-    "baseUrl": "https://github.com/parkdigy/npm-react-template"
+    "url": "git+https://github.com/parkdigy/react-admin-layout.git",
+    "baseUrl": "https://github.com/parkdigy/react-admin-layout"
   },
   "bugs": {
-    "url": "https://github.com/parkdigy/npm-react-template/issues"
+    "url": "https://github.com/parkdigy/react-admin-layout/issues"
   },
-  "homepage": "https://github.com/parkdigy/npm-react-template#readme",
+  "homepage": "https://github.com/parkdigy/react-admin-layout#readme",
   "files": [
     "dist",
     "README.md"
@@ -45,7 +45,11 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "keywords": [
-    "util",
+    "react",
+    "admin",
+    "template",
+    "layout",
+    "mui",
     "typescript",
     "javascript"
   ],
