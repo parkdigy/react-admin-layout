@@ -1,6 +1,6 @@
 # @pdg/react-admin-layout
 
-NPM React Template
+React Admin Layout
 
 ## 설치
 ```
