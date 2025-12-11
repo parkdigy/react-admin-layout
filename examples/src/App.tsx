@@ -1,14 +1,12 @@
-/********************************************************************************************************************
- * App 컴포넌트
- * ******************************************************************************************************************/
-
 import './init';
 
 import React, { useEffect } from 'react';
-import { BrowserRouter } from 'react-router';
-import MainRouter from './router';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { CardLayout, DefaultLayout } from './layout';
 
-const App = () => {
+import './sass/index.scss';
+
+function App() {
   useEffect(() => {
     const el = document.getElementById('___appLoading');
     el?.remove();
@@ -16,9 +14,12 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <MainRouter />
+      <Routes>
+        <Route path='/auth/*' element={<CardLayout />} />
+        <Route path='/*' element={<DefaultLayout />} />
+      </Routes>
     </BrowserRouter>
   );
-};
+}
 
 export default App;

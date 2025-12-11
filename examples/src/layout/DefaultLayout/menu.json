@@ -1,0 +1,73 @@
+[
+  {
+    "id": "dashboard",
+    "name": "Dashboard",
+    "depth": 1,
+    "uri": "/",
+    "icon": "Dashboard"
+  },
+  {
+    "id": "menu_1",
+    "name": "Menu 1",
+    "depth": 1,
+    "uri": "/menu_1",
+    "icon": "AssistantPhoto",
+    "badge": 2,
+    "items": []
+  },
+  {
+    "id": "menu_2",
+    "name": "Menu 2",
+    "depth": 1,
+    "icon": "AutoStories",
+    "badge": 123,
+    "items": [
+      {
+        "id": "menu_2_1",
+        "name": "Sub Menu 1",
+        "depth": 2,
+        "uri": "/menu_2/sub_1",
+        "badge": 10
+      },
+      {
+        "id": "menu_2_2",
+        "name": "Sub Menu 2",
+        "depth": 2,
+        "uri": "/menu_2/sub_2",
+        "badge": 4
+      },
+      {
+        "id": "menu_2_3",
+        "name": "Sub Menu 3",
+        "depth": 2,
+        "uri": "/menu_2/sub_3"
+      }
+    ]
+  },
+  {
+    "id": "menu_3",
+    "name": "Menu 3",
+    "depth": 1,
+    "icon": "BeachAccess",
+    "items": [
+      {
+        "id": "menu_3_1",
+        "name": "Sub Menu 1",
+        "depth": 2,
+        "uri": "/menu_3/sub_1"
+      },
+      {
+        "id": "menu_3_2",
+        "name": "Sub Menu 2",
+        "depth": 2,
+        "uri": "/menu_3/sub_2"
+      },
+      {
+        "id": "menu_3_3",
+        "name": "Sub Menu 3",
+        "depth": 2,
+        "uri": "/menu_3/sub_3"
+      }
+    ]
+  }
+]
