@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ListItemButton, Icon, ListItemText, Badge, Collapse } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router';
 import { SideMenuListItemProps } from './SideMenuListItem.types';
 import { StyledExpandMore, StyledListItemIcon } from './SideMenuListItem.style';
+import { useChanged } from '../../@common';
 
 const SideMenuListItem = ({ info, badgeVariant, expandedBackgroundColor }: SideMenuListItemProps) => {
   /********************************************************************************************************************
@@ -23,16 +24,15 @@ const SideMenuListItem = ({ info, badgeVariant, expandedBackgroundColor }: SideM
    * Effect
    * ******************************************************************************************************************/
 
-  useEffect(() => {
+  useChanged(info, () => {
     setIsExpandable(!!info.items && info.items.length > 0);
 
     if (info.items && info.items.find((info) => location.pathname === info.uri)) {
       setIsExpand(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [info]);
+  });
 
-  useEffect(() => {
+  useChanged(location.pathname, () => {
     if (isExpandable && isExpand != null) {
       if (info.uri !== location.pathname) {
         if (info.items && !info.items.find((info) => location.pathname === info.uri)) {
@@ -47,8 +47,7 @@ const SideMenuListItem = ({ info, badgeVariant, expandedBackgroundColor }: SideM
         setIsExpand(true);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
+  });
 
   /********************************************************************************************************************
    * Render
@@ -64,7 +63,7 @@ const SideMenuListItem = ({ info, badgeVariant, expandedBackgroundColor }: SideM
         }}
       >
         <StyledListItemIcon>{info.icon && <Icon fontSize='small'>{info.icon}</Icon>}</StyledListItemIcon>
-        <ListItemText primaryTypographyProps={{ style: { fontWeight: info.depth === 1 ? 600 : undefined } }}>
+        <ListItemText slotProps={{ primary: { style: { fontWeight: info.depth === 1 ? 600 : undefined } } }}>
           {info.badge ? (
             <Badge
               badgeContent={info.badge}

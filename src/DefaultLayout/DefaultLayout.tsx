@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Toolbar, IconButton, Typography, Box, styled, AppBar, Drawer } from '@mui/material';
 import { useLocation } from 'react-router';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu.private';
 import Title from './Title.private';
 import { DefaultLayoutProps as Props } from './DefaultLayout.types';
+import { useChanged } from '../@common';
 
 const SIDE_MENU_WIDTH = 220;
 const SCREENS = ['xs', 'sm', 'md', 'lg', 'xl'];
@@ -31,10 +32,15 @@ const DefaultLayout = ({ children, logo, badgeVariant, menu, menuHideScreen = 's
   const [menuTitles, setMenuTitles] = useState<MenuTitleMap>({});
 
   /********************************************************************************************************************
-   * Effect
+   * Changed
    * ******************************************************************************************************************/
 
-  useEffect(() => {
+  /** 경로 변경 시 모바일 메뉴 닫기 */
+  useChanged(location.pathname, () => {
+    setIsMobileOpen(false);
+  });
+
+  useChanged(menu, () => {
     const menuTitles: MenuTitleMap = {};
     if (menu) {
       menu.forEach((info) => {
@@ -48,59 +54,53 @@ const DefaultLayout = ({ children, logo, badgeVariant, menu, menuHideScreen = 's
       });
     }
     setMenuTitles(menuTitles);
-  }, [menu]);
-
-  useEffect(() => {
-    setIsMobileOpen(false);
-  }, [location]);
+  });
 
   /********************************************************************************************************************
    * Function
    * ******************************************************************************************************************/
 
-  const toggleIsMobileOpen = useCallback(() => {
+  const toggleIsMobileOpen = () => {
     setIsMobileOpen((isMobileOpen) => !isMobileOpen);
-  }, []);
+  };
 
   /********************************************************************************************************************
    * Memo
    * ******************************************************************************************************************/
 
-  const sideMenuTemporaryDrawerSx: Props['sx'] = useMemo(() => {
-    let found = false;
+  const sideMenuTemporaryDrawerSx: Props['sx'] = (() => {
     return {
-      display: SCREENS.reduce(
-        (res, screen) => {
+      display: SCREENS.reduce<{ found: boolean; display: Record<string, string> }>(
+        (acc, screen) => {
           if (screen === menuHideScreen) {
-            found = true;
-            res[screen] = 'block';
+            acc.found = true;
+            acc.display[screen] = 'block';
           } else {
-            res[screen] = found ? 'none' : 'block';
+            acc.display[screen] = acc.found ? 'none' : 'block';
           }
-          return res;
+          return acc;
         },
-        {} as Record<string, string>
-      ),
+        { found: false, display: {} }
+      ).display,
     };
-  }, [menuHideScreen]);
+  })();
 
-  const sideMenuPermanentDrawerSx: Props['sx'] = useMemo(() => {
-    let found = false;
+  const sideMenuPermanentDrawerSx: Props['sx'] = (() => {
     return {
-      display: SCREENS.reduce(
-        (res, screen) => {
+      display: SCREENS.reduce<{ found: boolean; display: Record<string, string> }>(
+        (acc, screen) => {
           if (screen === menuHideScreen) {
-            found = true;
-            res[screen] = 'none';
+            acc.found = true;
+            acc.display[screen] = 'none';
           } else {
-            res[screen] = found ? 'block' : 'none';
+            acc.display[screen] = acc.found ? 'block' : 'none';
           }
-          return res;
+          return acc;
         },
-        {} as Record<string, string>
-      ),
+        { found: false, display: {} }
+      ).display,
     };
-  }, [menuHideScreen]);
+  })();
 
   /********************************************************************************************************************
    * Variable
