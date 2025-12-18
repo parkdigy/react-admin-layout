@@ -25,10 +25,17 @@ const getConfig = () => ({
   plugins: [
     del({ targets: 'dist/*' }),
     peerDepsExternal(),
+    typescript({
+      useTsconfigDeclarationDir: true,
+      tsconfigOverride: {
+        compilerOptions: {
+          emitDeclarationOnly: true,
+        },
+      },
+    }),
     babel({
       babelHelpers: 'bundled',
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      exclude: 'node_modules/**',
       presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
       plugins: [
         [
@@ -39,15 +46,7 @@ const getConfig = () => ({
         ],
       ].filter(Boolean),
     }),
-    typescript({ useTsconfigDeclarationDir: true, check: false }),
-    sass({
-      insert: true,
-      api: 'modern',
-      options: {
-        style: 'compressed',
-      },
-    }),
-    resolve(),
+    resolve({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
     commonjs({
       include: /node_modules/,
     }),
