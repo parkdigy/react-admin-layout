@@ -12,8 +12,7 @@
     "depth": 1,
     "uri": "/menu_1",
     "icon": "AssistantPhoto",
-    "badge": 2,
-    "items": []
+    "badge": 2
   },
   {
     "id": "menu_2",

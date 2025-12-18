@@ -93,8 +93,9 @@ function _unsupportedIterableToArray(r, a) {
   }
 }var _templateObject$4, _templateObject2$2;
 var StyledExpandMore = material.styled(iconsMaterial.ExpandMore)(_templateObject$4 || (_templateObject$4 = _taggedTemplateLiteral(["\n  margin-top: auto;\n  margin-bottom: auto;\n  @keyframes open {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(180deg);\n    }\n  }\n  @keyframes close {\n    0% {\n      transform: rotate(180deg);\n    }\n    100% {\n      transform: rotate(0deg);\n    }\n  }\n"])));
-var StyledListItemIcon = material.styled(material.ListItemIcon)(_templateObject2$2 || (_templateObject2$2 = _taggedTemplateLiteral(["\n  min-width: 30px;\n"])));var useChanged = function useChanged(value, callback) {
-  var _React$useState = React.useState(value),
+var StyledListItemIcon = material.styled(material.ListItemIcon)(_templateObject2$2 || (_templateObject2$2 = _taggedTemplateLiteral(["\n  min-width: 30px;\n"])));var useChange = function useChange(value, callback, t0) {
+  var skipFirst = t0 === undefined ? false : t0;
+  var _React$useState = React.useState(skipFirst ? false : "|||||skip|||||first|||||"),
     _React$useState2 = _slicedToArray(_React$useState, 2),
     _value = _React$useState2[0],
     _setValue = _React$useState2[1];
@@ -133,7 +134,7 @@ var StyledListItemIcon = material.styled(material.ListItemIcon)(_templateObject2
   } else {
     t1 = $[2];
   }
-  useChanged(info, t1);
+  useChange(info, t1);
   var t2;
   if ($[3] !== info.items || $[4] !== info.uri || $[5] !== isExpand || $[6] !== isExpandable || $[7] !== location.pathname) {
     t2 = function t2() {
@@ -165,7 +166,7 @@ var StyledListItemIcon = material.styled(material.ListItemIcon)(_templateObject2
   } else {
     t2 = $[8];
   }
-  useChanged(location.pathname, t2);
+  useChange(location.pathname, t2);
   var t3;
   if ($[9] !== badgeVariant || $[10] !== expandedBackgroundColor || $[11] !== info.badge || $[12] !== info.badgeVariant || $[13] !== info.depth || $[14] !== info.icon || $[15] !== info.items || $[16] !== info.name || $[17] !== info.uri || $[18] !== isExpand || $[19] !== isExpandable || $[20] !== location.pathname || $[21] !== navigate) {
     var t4;
@@ -361,7 +362,7 @@ var StyledList = material.styled(material.List)(_templateObject$3 || (_templateO
   var theme = material.useTheme();
   var t1;
   if ($[0] !== badgeVariant || $[1] !== list || $[2] !== theme.palette.action.selectedOpacity || $[3] !== theme.palette.primary.main) {
-    var finalList = list.map(_temp2);
+    var finalList = list.map(_temp2$1);
     var expandedBackgroundColor = material.alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2);
     t1 = /*#__PURE__*/React.createElement(StyledList, null, finalList.map(function (info, idx_0) {
       return /*#__PURE__*/React.createElement(_SideMenuListItem, {
@@ -385,7 +386,7 @@ var SideMenuList$1 = /*#__PURE__*/React.memo(SideMenuList);
 function _temp$1(letter, idx) {
   return "".concat(idx > 0 ? "_" : "").concat(letter.toLowerCase());
 }
-function _temp2(item) {
+function _temp2$1(item) {
   return Object.assign(Object.assign({}, item), {
     icon: item.icon ? item.icon.replace(/[A-Z]/g, _temp$1) : undefined
   });
@@ -451,7 +452,7 @@ var _getNextScreen = function _getNextScreen(screen) {
   if (screen === 'xs') return 'sm';else if (screen === 'sm') return 'md';else if (screen === 'md') return 'lg';else return 'xl';
 };
 var DefaultLayout = function DefaultLayout(t0) {
-  var $ = compilerRuntime.c(95);
+  var $ = compilerRuntime.c(96);
   var children = t0.children,
     logo = t0.logo,
     badgeVariant = t0.badgeVariant,
@@ -460,75 +461,56 @@ var DefaultLayout = function DefaultLayout(t0) {
     appBarControl = t0.appBarControl;
   var menuHideScreen = t1 === undefined ? "sm" : t1;
   var location = reactRouter.useLocation();
+  var getMenuTitles = _temp;
   var _useState = React.useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     isMobileOpen = _useState2[0],
     setIsMobileOpen = _useState2[1];
   var t2;
-  if ($[0] === Symbol["for"]("react.memo_cache_sentinel")) {
-    t2 = {};
-    $[0] = t2;
+  if ($[0] !== menu) {
+    t2 = getMenuTitles(menu);
+    $[0] = menu;
+    $[1] = t2;
   } else {
-    t2 = $[0];
+    t2 = $[1];
   }
   var _useState3 = React.useState(t2),
     _useState4 = _slicedToArray(_useState3, 2),
-    menuTitles = _useState4[0],
+    menuTitles_0 = _useState4[0],
     setMenuTitles = _useState4[1];
   var t3;
-  if ($[1] === Symbol["for"]("react.memo_cache_sentinel")) {
+  if ($[2] === Symbol["for"]("react.memo_cache_sentinel")) {
     t3 = function t3() {
-      setIsMobileOpen(false);
+      return setIsMobileOpen(false);
     };
-    $[1] = t3;
+    $[2] = t3;
   } else {
-    t3 = $[1];
+    t3 = $[2];
   }
-  useChanged(location.pathname, t3);
+  useChange(location.pathname, t3, true);
   var t4;
-  if ($[2] !== menu) {
+  if ($[3] !== menu) {
     t4 = function t4() {
-      var menuTitles_0 = {};
-      if (menu) {
-        menu.forEach(function (info) {
-          if ((info.uri == null || info.uri === "") && info.items && info.items.length > 0) {
-            info.items.map(function (subInfo) {
-              menuTitles_0[subInfo.uri] = {
-                name: subInfo.name,
-                parentName: info.name,
-                parentIcon: info.icon
-              };
-            });
-          } else {
-            if (info.uri) {
-              menuTitles_0[info.uri] = {
-                name: info.name,
-                icon: info.icon
-              };
-            }
-          }
-        });
-      }
-      setMenuTitles(menuTitles_0);
+      return setMenuTitles(getMenuTitles(menu));
     };
-    $[2] = menu;
-    $[3] = t4;
+    $[3] = menu;
+    $[4] = t4;
   } else {
-    t4 = $[3];
+    t4 = $[4];
   }
-  useChanged(menu, t4);
+  useChange(menu, t4, true);
   var t5;
-  if ($[4] === Symbol["for"]("react.memo_cache_sentinel")) {
+  if ($[5] === Symbol["for"]("react.memo_cache_sentinel")) {
     t5 = function t5() {
-      setIsMobileOpen(_temp);
+      setIsMobileOpen(_temp2);
     };
-    $[4] = t5;
+    $[5] = t5;
   } else {
-    t5 = $[4];
+    t5 = $[5];
   }
   var toggleIsMobileOpen = t5;
   var t6;
-  if ($[5] !== menuHideScreen) {
+  if ($[6] !== menuHideScreen) {
     t6 = SCREENS.reduce(function (acc, screen) {
       if (screen === menuHideScreen) {
         acc.found = true;
@@ -541,24 +523,24 @@ var DefaultLayout = function DefaultLayout(t0) {
       found: false,
       display: {}
     });
-    $[5] = menuHideScreen;
-    $[6] = t6;
+    $[6] = menuHideScreen;
+    $[7] = t6;
   } else {
-    t6 = $[6];
+    t6 = $[7];
   }
   var t7;
-  if ($[7] !== t6.display) {
+  if ($[8] !== t6.display) {
     t7 = {
       display: t6.display
     };
-    $[7] = t6.display;
-    $[8] = t7;
+    $[8] = t6.display;
+    $[9] = t7;
   } else {
-    t7 = $[8];
+    t7 = $[9];
   }
   var sideMenuTemporaryDrawerSx = t7;
   var t8;
-  if ($[9] !== menuHideScreen) {
+  if ($[10] !== menuHideScreen) {
     t8 = SCREENS.reduce(function (acc_0, screen_0) {
       if (screen_0 === menuHideScreen) {
         acc_0.found = true;
@@ -571,61 +553,61 @@ var DefaultLayout = function DefaultLayout(t0) {
       found: false,
       display: {}
     });
-    $[9] = menuHideScreen;
-    $[10] = t8;
+    $[10] = menuHideScreen;
+    $[11] = t8;
   } else {
-    t8 = $[10];
+    t8 = $[11];
   }
   var t9;
-  if ($[11] !== t8.display) {
+  if ($[12] !== t8.display) {
     t9 = {
       display: t8.display
     };
-    $[11] = t8.display;
-    $[12] = t9;
+    $[12] = t8.display;
+    $[13] = t9;
   } else {
-    t9 = $[12];
+    t9 = $[13];
   }
   var sideMenuPermanentDrawerSx = t9;
   var nextMenuScreen = _getNextScreen(menuHideScreen);
   var t10;
-  if ($[13] !== nextMenuScreen) {
+  if ($[14] !== nextMenuScreen) {
     t10 = {
       width: _defineProperty({}, nextMenuScreen, "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)")),
       ml: _defineProperty({}, nextMenuScreen, "".concat(SIDE_MENU_WIDTH, "px"))
     };
-    $[13] = nextMenuScreen;
-    $[14] = t10;
+    $[14] = nextMenuScreen;
+    $[15] = t10;
   } else {
-    t10 = $[14];
+    t10 = $[15];
   }
   var appBarSx = t10;
   var t11;
-  if ($[15] !== nextMenuScreen) {
+  if ($[16] !== nextMenuScreen) {
     t11 = {
       mr: 2,
       display: _defineProperty({}, nextMenuScreen, "none")
     };
-    $[15] = nextMenuScreen;
-    $[16] = t11;
+    $[16] = nextMenuScreen;
+    $[17] = t11;
   } else {
-    t11 = $[16];
+    t11 = $[17];
   }
   var appBarIconButtonSx = t11;
   var t12;
-  if ($[17] !== nextMenuScreen) {
+  if ($[18] !== nextMenuScreen) {
     t12 = {
       width: _defineProperty({}, nextMenuScreen, SIDE_MENU_WIDTH),
       flexShrink: _defineProperty({}, nextMenuScreen, 0)
     };
-    $[17] = nextMenuScreen;
-    $[18] = t12;
+    $[18] = nextMenuScreen;
+    $[19] = t12;
   } else {
-    t12 = $[18];
+    t12 = $[19];
   }
   var sideMenuContainerBoxSx = t12;
   var t13;
-  if ($[19] !== nextMenuScreen) {
+  if ($[20] !== nextMenuScreen) {
     t13 = {
       width: _defineProperty({}, nextMenuScreen, "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)")),
       flexGrow: 1,
@@ -634,39 +616,39 @@ var DefaultLayout = function DefaultLayout(t0) {
       flexDirection: "column",
       minHeight: "100vh"
     };
-    $[19] = nextMenuScreen;
-    $[20] = t13;
+    $[20] = nextMenuScreen;
+    $[21] = t13;
   } else {
-    t13 = $[20];
+    t13 = $[21];
   }
   var mainBoxSx = t13;
-  var titleData = menuTitles[location.pathname];
+  var titleData = menuTitles_0[location.pathname];
   var t14;
-  if ($[21] !== appBarControl || $[22] !== appBarIconButtonSx || $[23] !== appBarSx || $[24] !== badgeVariant || $[25] !== children || $[26] !== isMobileOpen || $[27] !== logo || $[28] !== mainBoxSx || $[29] !== menu || $[30] !== sideMenuContainerBoxSx || $[31] !== sideMenuPermanentDrawerSx || $[32] !== sideMenuTemporaryDrawerSx || $[33] !== titleData) {
+  if ($[22] !== appBarControl || $[23] !== appBarIconButtonSx || $[24] !== appBarSx || $[25] !== badgeVariant || $[26] !== children || $[27] !== isMobileOpen || $[28] !== logo || $[29] !== mainBoxSx || $[30] !== menu || $[31] !== sideMenuContainerBoxSx || $[32] !== sideMenuPermanentDrawerSx || $[33] !== sideMenuTemporaryDrawerSx || $[34] !== titleData) {
     var t15;
-    if ($[35] !== appBarControl || $[36] !== appBarIconButtonSx || $[37] !== appBarSx || $[38] !== titleData) {
+    if ($[36] !== appBarControl || $[37] !== appBarIconButtonSx || $[38] !== appBarSx || $[39] !== titleData) {
       var _t;
-      if ($[40] !== appBarSx) {
+      if ($[41] !== appBarSx) {
         _t = {
           position: "fixed",
           elevation: 0,
           sx: appBarSx
         };
-        $[40] = appBarSx;
-        $[41] = _t;
+        $[41] = appBarSx;
+        $[42] = _t;
       } else {
-        _t = $[41];
+        _t = $[42];
       }
       var _t2;
-      if ($[42] !== appBarControl || $[43] !== appBarIconButtonSx || $[44] !== titleData) {
+      if ($[43] !== appBarControl || $[44] !== appBarIconButtonSx || $[45] !== titleData) {
         var t18;
-        if ($[46] !== appBarIconButtonSx) {
+        if ($[47] !== appBarIconButtonSx) {
           var _t3;
-          if ($[48] === Symbol["for"]("react.memo_cache_sentinel")) {
+          if ($[49] === Symbol["for"]("react.memo_cache_sentinel")) {
             _t3 = /*#__PURE__*/React.createElement(iconsMaterial.Menu, null);
-            $[48] = _t3;
+            $[49] = _t3;
           } else {
-            _t3 = $[48];
+            _t3 = $[49];
           }
           t18 = /*#__PURE__*/React.createElement(material.IconButton, {
             color: "inherit",
@@ -675,15 +657,15 @@ var DefaultLayout = function DefaultLayout(t0) {
             onClick: toggleIsMobileOpen,
             sx: appBarIconButtonSx
           }, _t3);
-          $[46] = appBarIconButtonSx;
-          $[47] = t18;
+          $[47] = appBarIconButtonSx;
+          $[48] = t18;
         } else {
-          t18 = $[47];
+          t18 = $[48];
         }
         var t19;
-        if ($[49] !== titleData) {
+        if ($[50] !== titleData) {
           var t20;
-          if ($[51] === Symbol["for"]("react.memo_cache_sentinel")) {
+          if ($[52] === Symbol["for"]("react.memo_cache_sentinel")) {
             t20 = {
               variant: "h6",
               noWrap: true,
@@ -692,9 +674,9 @@ var DefaultLayout = function DefaultLayout(t0) {
                 flexGrow: 1
               }
             };
-            $[51] = t20;
+            $[52] = t20;
           } else {
-            t20 = $[51];
+            t20 = $[52];
           }
           t19 = /*#__PURE__*/React.createElement(material.Typography, t20, titleData && /*#__PURE__*/React.createElement(Title$1, {
             title: titleData.name,
@@ -702,55 +684,55 @@ var DefaultLayout = function DefaultLayout(t0) {
             headTitle: titleData.parentName,
             headIcon: titleData.parentIcon
           }));
-          $[49] = titleData;
-          $[50] = t19;
+          $[50] = titleData;
+          $[51] = t19;
         } else {
-          t19 = $[50];
+          t19 = $[51];
         }
         _t2 = /*#__PURE__*/React.createElement(material.Toolbar, null, t18, t19, appBarControl);
-        $[42] = appBarControl;
-        $[43] = appBarIconButtonSx;
-        $[44] = titleData;
-        $[45] = _t2;
+        $[43] = appBarControl;
+        $[44] = appBarIconButtonSx;
+        $[45] = titleData;
+        $[46] = _t2;
       } else {
-        _t2 = $[45];
+        _t2 = $[46];
       }
       t15 = /*#__PURE__*/React.createElement(StyledAppBar, _t, _t2);
-      $[35] = appBarControl;
-      $[36] = appBarIconButtonSx;
-      $[37] = appBarSx;
-      $[38] = titleData;
-      $[39] = t15;
+      $[36] = appBarControl;
+      $[37] = appBarIconButtonSx;
+      $[38] = appBarSx;
+      $[39] = titleData;
+      $[40] = t15;
     } else {
-      t15 = $[39];
+      t15 = $[40];
     }
     var t16;
-    if ($[52] !== badgeVariant || $[53] !== isMobileOpen || $[54] !== logo || $[55] !== menu || $[56] !== sideMenuContainerBoxSx || $[57] !== sideMenuPermanentDrawerSx || $[58] !== sideMenuTemporaryDrawerSx) {
+    if ($[53] !== badgeVariant || $[54] !== isMobileOpen || $[55] !== logo || $[56] !== menu || $[57] !== sideMenuContainerBoxSx || $[58] !== sideMenuPermanentDrawerSx || $[59] !== sideMenuTemporaryDrawerSx) {
       var _t4;
-      if ($[60] !== sideMenuContainerBoxSx) {
+      if ($[61] !== sideMenuContainerBoxSx) {
         _t4 = {
           component: "nav",
           "aria-label": "mailbox folders",
           sx: sideMenuContainerBoxSx
         };
-        $[60] = sideMenuContainerBoxSx;
-        $[61] = _t4;
+        $[61] = sideMenuContainerBoxSx;
+        $[62] = _t4;
       } else {
-        _t4 = $[61];
+        _t4 = $[62];
       }
       var _t5;
-      if ($[62] !== badgeVariant || $[63] !== isMobileOpen || $[64] !== logo || $[65] !== menu || $[66] !== sideMenuTemporaryDrawerSx) {
+      if ($[63] !== badgeVariant || $[64] !== isMobileOpen || $[65] !== logo || $[66] !== menu || $[67] !== sideMenuTemporaryDrawerSx) {
         var _t6;
-        if ($[68] === Symbol["for"]("react.memo_cache_sentinel")) {
+        if ($[69] === Symbol["for"]("react.memo_cache_sentinel")) {
           _t6 = {
             keepMounted: true
           };
-          $[68] = _t6;
+          $[69] = _t6;
         } else {
-          _t6 = $[68];
+          _t6 = $[69];
         }
         var _t7;
-        if ($[69] !== isMobileOpen || $[70] !== sideMenuTemporaryDrawerSx) {
+        if ($[70] !== isMobileOpen || $[71] !== sideMenuTemporaryDrawerSx) {
           _t7 = {
             variant: "temporary",
             open: isMobileOpen,
@@ -758,137 +740,137 @@ var DefaultLayout = function DefaultLayout(t0) {
             sx: sideMenuTemporaryDrawerSx,
             ModalProps: _t6
           };
-          $[69] = isMobileOpen;
-          $[70] = sideMenuTemporaryDrawerSx;
-          $[71] = _t7;
+          $[70] = isMobileOpen;
+          $[71] = sideMenuTemporaryDrawerSx;
+          $[72] = _t7;
         } else {
-          _t7 = $[71];
+          _t7 = $[72];
         }
         var t21;
-        if ($[72] !== badgeVariant || $[73] !== logo || $[74] !== menu) {
+        if ($[73] !== badgeVariant || $[74] !== logo || $[75] !== menu) {
           t21 = menu && /*#__PURE__*/React.createElement(SideMenu$1, {
             logo: logo,
             badgeVariant: badgeVariant,
             list: menu
           });
-          $[72] = badgeVariant;
-          $[73] = logo;
-          $[74] = menu;
-          $[75] = t21;
+          $[73] = badgeVariant;
+          $[74] = logo;
+          $[75] = menu;
+          $[76] = t21;
         } else {
-          t21 = $[75];
+          t21 = $[76];
         }
         _t5 = /*#__PURE__*/React.createElement(StyledSideMenuTemporaryDrawer, _t7, t21);
-        $[62] = badgeVariant;
-        $[63] = isMobileOpen;
-        $[64] = logo;
-        $[65] = menu;
-        $[66] = sideMenuTemporaryDrawerSx;
-        $[67] = _t5;
+        $[63] = badgeVariant;
+        $[64] = isMobileOpen;
+        $[65] = logo;
+        $[66] = menu;
+        $[67] = sideMenuTemporaryDrawerSx;
+        $[68] = _t5;
       } else {
-        _t5 = $[67];
+        _t5 = $[68];
       }
       var _t8;
-      if ($[76] !== badgeVariant || $[77] !== logo || $[78] !== menu || $[79] !== sideMenuPermanentDrawerSx) {
+      if ($[77] !== badgeVariant || $[78] !== logo || $[79] !== menu || $[80] !== sideMenuPermanentDrawerSx) {
         var _t9;
-        if ($[81] !== sideMenuPermanentDrawerSx) {
+        if ($[82] !== sideMenuPermanentDrawerSx) {
           _t9 = {
             variant: "permanent",
             open: true,
             sx: sideMenuPermanentDrawerSx
           };
-          $[81] = sideMenuPermanentDrawerSx;
-          $[82] = _t9;
+          $[82] = sideMenuPermanentDrawerSx;
+          $[83] = _t9;
         } else {
-          _t9 = $[82];
+          _t9 = $[83];
         }
         var _t0;
-        if ($[83] !== badgeVariant || $[84] !== logo || $[85] !== menu) {
+        if ($[84] !== badgeVariant || $[85] !== logo || $[86] !== menu) {
           _t0 = menu && /*#__PURE__*/React.createElement(SideMenu$1, {
             logo: logo,
             badgeVariant: badgeVariant,
             list: menu
           });
-          $[83] = badgeVariant;
-          $[84] = logo;
-          $[85] = menu;
-          $[86] = _t0;
+          $[84] = badgeVariant;
+          $[85] = logo;
+          $[86] = menu;
+          $[87] = _t0;
         } else {
-          _t0 = $[86];
+          _t0 = $[87];
         }
         _t8 = /*#__PURE__*/React.createElement(StyledSideMenuPermanentDrawer, _t9, _t0);
-        $[76] = badgeVariant;
-        $[77] = logo;
-        $[78] = menu;
-        $[79] = sideMenuPermanentDrawerSx;
-        $[80] = _t8;
+        $[77] = badgeVariant;
+        $[78] = logo;
+        $[79] = menu;
+        $[80] = sideMenuPermanentDrawerSx;
+        $[81] = _t8;
       } else {
-        _t8 = $[80];
+        _t8 = $[81];
       }
       t16 = /*#__PURE__*/React.createElement(material.Box, _t4, _t5, _t8);
-      $[52] = badgeVariant;
-      $[53] = isMobileOpen;
-      $[54] = logo;
-      $[55] = menu;
-      $[56] = sideMenuContainerBoxSx;
-      $[57] = sideMenuPermanentDrawerSx;
-      $[58] = sideMenuTemporaryDrawerSx;
-      $[59] = t16;
+      $[53] = badgeVariant;
+      $[54] = isMobileOpen;
+      $[55] = logo;
+      $[56] = menu;
+      $[57] = sideMenuContainerBoxSx;
+      $[58] = sideMenuPermanentDrawerSx;
+      $[59] = sideMenuTemporaryDrawerSx;
+      $[60] = t16;
     } else {
-      t16 = $[59];
+      t16 = $[60];
     }
     var t17;
-    if ($[87] !== children || $[88] !== mainBoxSx) {
+    if ($[88] !== children || $[89] !== mainBoxSx) {
       var _t1;
-      if ($[90] !== mainBoxSx) {
+      if ($[91] !== mainBoxSx) {
         _t1 = {
           component: "main",
           sx: mainBoxSx
         };
-        $[90] = mainBoxSx;
-        $[91] = _t1;
+        $[91] = mainBoxSx;
+        $[92] = _t1;
       } else {
-        _t1 = $[91];
+        _t1 = $[92];
       }
       var _t10;
-      if ($[92] === Symbol["for"]("react.memo_cache_sentinel")) {
+      if ($[93] === Symbol["for"]("react.memo_cache_sentinel")) {
         _t10 = /*#__PURE__*/React.createElement(material.Toolbar, null);
-        $[92] = _t10;
+        $[93] = _t10;
       } else {
-        _t10 = $[92];
+        _t10 = $[93];
       }
       var _t11;
-      if ($[93] !== children) {
+      if ($[94] !== children) {
         _t11 = /*#__PURE__*/React.createElement(StyledMainContentDiv, null, children);
-        $[93] = children;
-        $[94] = _t11;
+        $[94] = children;
+        $[95] = _t11;
       } else {
-        _t11 = $[94];
+        _t11 = $[95];
       }
       t17 = /*#__PURE__*/React.createElement(material.Box, _t1, _t10, _t11);
-      $[87] = children;
-      $[88] = mainBoxSx;
-      $[89] = t17;
+      $[88] = children;
+      $[89] = mainBoxSx;
+      $[90] = t17;
     } else {
-      t17 = $[89];
+      t17 = $[90];
     }
     t14 = /*#__PURE__*/React.createElement(StyledContainerBox, null, t15, t16, t17);
-    $[21] = appBarControl;
-    $[22] = appBarIconButtonSx;
-    $[23] = appBarSx;
-    $[24] = badgeVariant;
-    $[25] = children;
-    $[26] = isMobileOpen;
-    $[27] = logo;
-    $[28] = mainBoxSx;
-    $[29] = menu;
-    $[30] = sideMenuContainerBoxSx;
-    $[31] = sideMenuPermanentDrawerSx;
-    $[32] = sideMenuTemporaryDrawerSx;
-    $[33] = titleData;
-    $[34] = t14;
+    $[22] = appBarControl;
+    $[23] = appBarIconButtonSx;
+    $[24] = appBarSx;
+    $[25] = badgeVariant;
+    $[26] = children;
+    $[27] = isMobileOpen;
+    $[28] = logo;
+    $[29] = mainBoxSx;
+    $[30] = menu;
+    $[31] = sideMenuContainerBoxSx;
+    $[32] = sideMenuPermanentDrawerSx;
+    $[33] = sideMenuTemporaryDrawerSx;
+    $[34] = titleData;
+    $[35] = t14;
   } else {
-    t14 = $[34];
+    t14 = $[35];
   }
   return t14;
 };
@@ -924,6 +906,30 @@ var StyledSideMenuPermanentDrawer = material.styled(material.Drawer)(function (_
   });
 });
 var StyledMainContentDiv = material.styled('div')(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n"])));
-function _temp(isMobileOpen_0) {
+function _temp(m) {
+  var menuTitles = {};
+  if (m) {
+    m.forEach(function (info) {
+      if ((info.uri == null || info.uri === "") && info.items && info.items.length > 0) {
+        info.items.map(function (subInfo) {
+          menuTitles[subInfo.uri] = {
+            name: subInfo.name,
+            parentName: info.name,
+            parentIcon: info.icon
+          };
+        });
+      } else {
+        if (info.uri) {
+          menuTitles[info.uri] = {
+            name: info.name,
+            icon: info.icon
+          };
+        }
+      }
+    });
+  }
+  return menuTitles;
+}
+function _temp2(isMobileOpen_0) {
   return !isMobileOpen_0;
 }exports.CardLayout=CardLayout;exports.DefaultLayout=DefaultLayout;

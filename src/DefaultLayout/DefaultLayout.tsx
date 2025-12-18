@@ -4,8 +4,8 @@ import { useLocation } from 'react-router';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu.private';
 import Title from './Title.private';
-import { DefaultLayoutProps as Props } from './DefaultLayout.types';
-import { useChanged } from '../@common';
+import { DefaultLayoutProps as Props, MenuItem } from './DefaultLayout.types';
+import { useChange } from '../@common';
 
 const SIDE_MENU_WIDTH = 220;
 const SCREENS = ['xs', 'sm', 'md', 'lg', 'xl'];
@@ -25,25 +25,13 @@ const DefaultLayout = ({ children, logo, badgeVariant, menu, menuHideScreen = 's
   const location = useLocation();
 
   /********************************************************************************************************************
-   * State
+   * Function
    * ******************************************************************************************************************/
 
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [menuTitles, setMenuTitles] = useState<MenuTitleMap>({});
-
-  /********************************************************************************************************************
-   * Changed
-   * ******************************************************************************************************************/
-
-  /** 경로 변경 시 모바일 메뉴 닫기 */
-  useChanged(location.pathname, () => {
-    setIsMobileOpen(false);
-  });
-
-  useChanged(menu, () => {
+  const getMenuTitles = (m?: MenuItem[]) => {
     const menuTitles: MenuTitleMap = {};
-    if (menu) {
-      menu.forEach((info) => {
+    if (m) {
+      m.forEach((info) => {
         if ((info.uri == null || info.uri === '') && info.items && info.items.length > 0) {
           info.items.map((subInfo) => {
             menuTitles[subInfo.uri] = { name: subInfo.name, parentName: info.name, parentIcon: info.icon };
@@ -53,8 +41,24 @@ const DefaultLayout = ({ children, logo, badgeVariant, menu, menuHideScreen = 's
         }
       });
     }
-    setMenuTitles(menuTitles);
-  });
+    return menuTitles;
+  };
+
+  /********************************************************************************************************************
+   * State
+   * ******************************************************************************************************************/
+
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [menuTitles, setMenuTitles] = useState<MenuTitleMap>(getMenuTitles(menu));
+
+  /********************************************************************************************************************
+   * Changed
+   * ******************************************************************************************************************/
+
+  /** 경로 변경 시 모바일 메뉴 닫기 */
+  useChange(location.pathname, () => setIsMobileOpen(false), true);
+
+  useChange(menu, () => setMenuTitles(getMenuTitles(menu)), true);
 
   /********************************************************************************************************************
    * Function

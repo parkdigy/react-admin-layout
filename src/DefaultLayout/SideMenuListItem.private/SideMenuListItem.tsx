@@ -3,7 +3,7 @@ import { ListItemButton, Icon, ListItemText, Badge, Collapse } from '@mui/materi
 import { useLocation, useNavigate } from 'react-router';
 import { SideMenuListItemProps } from './SideMenuListItem.types';
 import { StyledExpandMore, StyledListItemIcon } from './SideMenuListItem.style';
-import { useChanged } from '../../@common';
+import { useChange } from '../../@common';
 
 const SideMenuListItem = ({ info, badgeVariant, expandedBackgroundColor }: SideMenuListItemProps) => {
   /********************************************************************************************************************
@@ -24,7 +24,7 @@ const SideMenuListItem = ({ info, badgeVariant, expandedBackgroundColor }: SideM
    * Effect
    * ******************************************************************************************************************/
 
-  useChanged(info, () => {
+  useChange(info, () => {
     setIsExpandable(!!info.items && info.items.length > 0);
 
     if (info.items && info.items.find((info) => location.pathname === info.uri)) {
@@ -32,7 +32,7 @@ const SideMenuListItem = ({ info, badgeVariant, expandedBackgroundColor }: SideM
     }
   });
 
-  useChanged(location.pathname, () => {
+  useChange(location.pathname, () => {
     if (isExpandable && isExpand != null) {
       if (info.uri !== location.pathname) {
         if (info.items && !info.items.find((info) => location.pathname === info.uri)) {
