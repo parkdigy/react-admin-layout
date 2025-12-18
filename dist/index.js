@@ -1,4 +1,4 @@
-'use strict';var material=require('@mui/material'),React=require('react'),compilerRuntime=require('react/compiler-runtime'),reactRouter=require('react-router'),iconsMaterial=require('@mui/icons-material'),SimpleBar=require('simplebar-react');function insertStyle(css) {
+'use strict';var compilerRuntime=require('react/compiler-runtime'),material=require('@mui/material'),React=require('react'),reactRouter=require('react-router'),iconsMaterial=require('@mui/icons-material'),SimpleBar=require('simplebar-react');function insertStyle(css) {
     if (typeof window === 'undefined')
         return;
     const style = document.createElement('style');
@@ -6,18 +6,37 @@
     style.innerHTML = css;
     document.head.appendChild(style);
     return css;
-}insertStyle(".simplebar-track.simplebar-vertical{width:8px !important}.simplebar-track.simplebar-vertical .simplebar-scrollbar.simplebar-visible:before{opacity:.3 !important}.MuiButtonBase-root.MuiButton-root.MuiButton-outlined{padding:5px 15px 4px}.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-sizeLarge{padding:7px 21px 6px}.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-sizeSmall{padding:3px 9px 2px}.MuiButtonBase-root.MuiButton-root.MuiButton-contained{padding:6px 16px 5px}.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-sizeLarge{padding:8px 22px 7px}.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-sizeSmall{padding:4px 10px 3px}.MuiButtonBase-root.MuiButton-root.MuiButton-text{padding:6px 8px 5px}.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-sizeLarge{padding:8px 11px 7px}.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-sizeSmall{padding:4px 5px 3px}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video,main,input,button,textarea,pre,select,a{font-family:\"Pretendard\",\"Apple Gothic\",\"Dotum\",sans-serif;margin:0;padding:0;border:0;vertical-align:top;box-sizing:border-box;word-break:keep-all;line-height:unset}*:before,*:after{box-sizing:border-box}");var CardLayout = function CardLayout(_ref) {
-  var children = _ref.children,
-    _ref$backgroundColor = _ref.backgroundColor,
-    backgroundColor = _ref$backgroundColor === void 0 ? '#eff3f8' : _ref$backgroundColor;
-  return /*#__PURE__*/React.createElement(material.Grid, {
-    container: true,
-    direction: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    bgcolor: backgroundColor,
-    minHeight: '100vh'
-  }, /*#__PURE__*/React.createElement(material.Grid, null, children));
+}insertStyle(".simplebar-track.simplebar-vertical{width:8px !important}.simplebar-track.simplebar-vertical .simplebar-scrollbar.simplebar-visible:before{opacity:.3 !important}.MuiButtonBase-root.MuiButton-root.MuiButton-outlined{padding:5px 15px 4px}.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-sizeLarge{padding:7px 21px 6px}.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-sizeSmall{padding:3px 9px 2px}.MuiButtonBase-root.MuiButton-root.MuiButton-contained{padding:6px 16px 5px}.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-sizeLarge{padding:8px 22px 7px}.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-sizeSmall{padding:4px 10px 3px}.MuiButtonBase-root.MuiButton-root.MuiButton-text{padding:6px 8px 5px}.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-sizeLarge{padding:8px 11px 7px}.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-sizeSmall{padding:4px 5px 3px}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video,main,input,button,textarea,pre,select,a{font-family:\"Pretendard\",\"Apple Gothic\",\"Dotum\",sans-serif;margin:0;padding:0;border:0;vertical-align:top;box-sizing:border-box;word-break:keep-all;line-height:unset}*:before,*:after{box-sizing:border-box}");var CardLayout = function CardLayout(t0) {
+    var $ = compilerRuntime.c(5);
+    var children = t0.children, t1 = t0.backgroundColor;
+    var backgroundColor = t1 === undefined ? "#eff3f8" : t1;
+    var t2;
+    if ($[0] !== children) {
+        t2 = /*#__PURE__*/ React.createElement(material.Grid, null, children);
+        $[0] = children;
+        $[1] = t2;
+    }
+    else {
+        t2 = $[1];
+    }
+    var t3;
+    if ($[2] !== backgroundColor || $[3] !== t2) {
+        t3 = /*#__PURE__*/ React.createElement(material.Grid, {
+            container: true,
+            direction: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            bgcolor: backgroundColor,
+            minHeight: "100vh"
+        }, t2);
+        $[2] = backgroundColor;
+        $[3] = t2;
+        $[4] = t3;
+    }
+    else {
+        t3 = $[4];
+    }
+    return t3;
 };function _arrayLikeToArray(r, a) {
   (null == a || a > r.length) && (a = r.length);
   for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
@@ -61,6 +80,27 @@ function _iterableToArrayLimit(r, l) {
 function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
+function ownKeys(e, r) {
+  var t = Object.keys(e);
+  if (Object.getOwnPropertySymbols) {
+    var o = Object.getOwnPropertySymbols(e);
+    r && (o = o.filter(function (r) {
+      return Object.getOwnPropertyDescriptor(e, r).enumerable;
+    })), t.push.apply(t, o);
+  }
+  return t;
+}
+function _objectSpread2(e) {
+  for (var r = 1; r < arguments.length; r++) {
+    var t = null != arguments[r] ? arguments[r] : {};
+    r % 2 ? ownKeys(Object(t), true).forEach(function (r) {
+      _defineProperty(e, r, t[r]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) {
+      Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
+    });
+  }
+  return e;
+}
 function _slicedToArray(r, e) {
   return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
 }
@@ -94,842 +134,923 @@ function _unsupportedIterableToArray(r, a) {
 }var _templateObject$4, _templateObject2$2;
 var StyledExpandMore = material.styled(iconsMaterial.ExpandMore)(_templateObject$4 || (_templateObject$4 = _taggedTemplateLiteral(["\n  margin-top: auto;\n  margin-bottom: auto;\n  @keyframes open {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(180deg);\n    }\n  }\n  @keyframes close {\n    0% {\n      transform: rotate(180deg);\n    }\n    100% {\n      transform: rotate(0deg);\n    }\n  }\n"])));
 var StyledListItemIcon = material.styled(material.ListItemIcon)(_templateObject2$2 || (_templateObject2$2 = _taggedTemplateLiteral(["\n  min-width: 30px;\n"])));var useChange = function useChange(value, callback, t0) {
-  var skipFirst = t0 === undefined ? false : t0;
-  var _React$useState = React.useState(skipFirst ? false : "|||||skip|||||first|||||"),
-    _React$useState2 = _slicedToArray(_React$useState, 2),
-    _value = _React$useState2[0],
-    _setValue = _React$useState2[1];
-  if (value !== _value) {
-    _setValue(value);
-    callback();
-  }
+    var skipFirst = t0 === undefined ? false : t0;
+    var _React$useState = React.useState(skipFirst ? false : "|||||skip|||||first|||||"), _React$useState2 = _slicedToArray(_React$useState, 2), _value = _React$useState2[0], _setValue = _React$useState2[1];
+    if (value !== _value) {
+        _setValue(value);
+        callback();
+    }
 };var _SideMenuListItem = function SideMenuListItem(t0) {
-  var $ = compilerRuntime.c(70);
-  var info = t0.info,
-    badgeVariant = t0.badgeVariant,
-    expandedBackgroundColor = t0.expandedBackgroundColor;
-  var location = reactRouter.useLocation();
-  var navigate = reactRouter.useNavigate();
-  var _useState = React.useState(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isExpandable = _useState2[0],
-    setIsExpandable = _useState2[1];
-  var _useState3 = React.useState(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    isExpand = _useState4[0],
-    setIsExpand = _useState4[1];
-  var t1;
-  if ($[0] !== info.items || $[1] !== location.pathname) {
-    t1 = function t1() {
-      setIsExpandable(!!info.items && info.items.length > 0);
-      if (info.items && info.items.find(function (info_0) {
-        return location.pathname === info_0.uri;
-      })) {
-        setIsExpand(true);
-      }
-    };
-    $[0] = info.items;
-    $[1] = location.pathname;
-    $[2] = t1;
-  } else {
-    t1 = $[2];
-  }
-  useChange(info, t1);
-  var t2;
-  if ($[3] !== info.items || $[4] !== info.uri || $[5] !== isExpand || $[6] !== isExpandable || $[7] !== location.pathname) {
-    t2 = function t2() {
-      if (isExpandable && isExpand != null) {
-        if (info.uri !== location.pathname) {
-          if (info.items && !info.items.find(function (info_1) {
-            return location.pathname === info_1.uri;
-          })) {
-            if (isExpand) {
-              setIsExpand(false);
+    var $ = compilerRuntime.c(48);
+    var info = t0.info, badgeVariant = t0.badgeVariant, expandedBackgroundColor = t0.expandedBackgroundColor;
+    var location = reactRouter.useLocation();
+    var navigate = reactRouter.useNavigate();
+    var _useState = React.useState(false), _useState2 = _slicedToArray(_useState, 2), isExpandable = _useState2[0], setIsExpandable = _useState2[1];
+    var _useState3 = React.useState(false), _useState4 = _slicedToArray(_useState3, 2), isExpand = _useState4[0], setIsExpand = _useState4[1];
+    var t1;
+    if ($[0] !== info.items || $[1] !== location.pathname) {
+        t1 = function t1() {
+            setIsExpandable(!!info.items && info.items.length > 0);
+            if (info.items && info.items.find(function (info_0) {
+                return location.pathname === info_0.uri;
+            })) {
+                setIsExpand(true);
             }
-          }
-        }
-      }
-      if (isExpandable && !isExpand) {
-        if (info.items && info.items.find(function (info_2) {
-          return location.pathname === info_2.uri;
-        })) {
-          setIsExpand(true);
-        }
-      }
-    };
-    $[3] = info.items;
-    $[4] = info.uri;
-    $[5] = isExpand;
-    $[6] = isExpandable;
-    $[7] = location.pathname;
-    $[8] = t2;
-  } else {
-    t2 = $[8];
-  }
-  useChange(location.pathname, t2);
-  var t3;
-  if ($[9] !== badgeVariant || $[10] !== expandedBackgroundColor || $[11] !== info.badge || $[12] !== info.badgeVariant || $[13] !== info.depth || $[14] !== info.icon || $[15] !== info.items || $[16] !== info.name || $[17] !== info.uri || $[18] !== isExpand || $[19] !== isExpandable || $[20] !== location.pathname || $[21] !== navigate) {
-    var t4;
-    if ($[23] !== badgeVariant || $[24] !== expandedBackgroundColor || $[25] !== info.badge || $[26] !== info.badgeVariant || $[27] !== info.depth || $[28] !== info.icon || $[29] !== info.name || $[30] !== info.uri || $[31] !== isExpand || $[32] !== isExpandable || $[33] !== location.pathname || $[34] !== navigate) {
-      var _t;
-      if ($[36] !== info.uri || $[37] !== isExpandable || $[38] !== navigate) {
-        _t = isExpandable ? function () {
-          return setIsExpand(_temp$2);
-        } : function () {
-          return info.uri && navigate(info.uri);
         };
-        $[36] = info.uri;
-        $[37] = isExpandable;
-        $[38] = navigate;
-        $[39] = _t;
-      } else {
-        _t = $[39];
-      }
-      var t6 = isExpandable ? false : info.uri === location.pathname;
-      var t7 = isExpandable && isExpand ? expandedBackgroundColor : undefined;
-      var t8;
-      if ($[40] !== t7) {
-        t8 = {
-          backgroundColor: t7
-        };
-        $[40] = t7;
-        $[41] = t8;
-      } else {
-        t8 = $[41];
-      }
-      var t9;
-      if ($[42] !== _t || $[43] !== t6 || $[44] !== t8) {
-        t9 = {
-          onClick: _t,
-          selected: t6,
-          style: t8
-        };
-        $[42] = _t;
-        $[43] = t6;
-        $[44] = t8;
-        $[45] = t9;
-      } else {
-        t9 = $[45];
-      }
-      var t10;
-      if ($[46] !== info.icon) {
-        t10 = /*#__PURE__*/React.createElement(StyledListItemIcon, null, info.icon && /*#__PURE__*/React.createElement(material.Icon, {
-          fontSize: "small"
-        }, info.icon));
-        $[46] = info.icon;
-        $[47] = t10;
-      } else {
-        t10 = $[47];
-      }
-      var t11;
-      if ($[48] !== badgeVariant || $[49] !== info.badge || $[50] !== info.badgeVariant || $[51] !== info.depth || $[52] !== info.name) {
-        var _t2 = info.depth === 1 ? 600 : undefined;
-        var t13;
-        if ($[54] !== _t2) {
-          t13 = {
-            slotProps: {
-              primary: {
-                style: {
-                  fontWeight: _t2
+        $[0] = info.items;
+        $[1] = location.pathname;
+        $[2] = t1;
+    }
+    else {
+        t1 = $[2];
+    }
+    useChange(info, t1);
+    var t2;
+    if ($[3] !== info.items || $[4] !== info.uri || $[5] !== isExpand || $[6] !== isExpandable || $[7] !== location.pathname) {
+        t2 = function t2() {
+            if (isExpandable && isExpand != null) {
+                if (info.uri !== location.pathname) {
+                    if (info.items && !info.items.find(function (info_1) {
+                        return location.pathname === info_1.uri;
+                    })) {
+                        if (isExpand) {
+                            setIsExpand(false);
+                        }
+                    }
                 }
-              }
             }
-          };
-          $[54] = _t2;
-          $[55] = t13;
-        } else {
-          t13 = $[55];
-        }
-        var t14;
-        if ($[56] !== badgeVariant || $[57] !== info.badge || $[58] !== info.badgeVariant || $[59] !== info.name) {
-          t14 = info.badge ? /*#__PURE__*/React.createElement(material.Badge, {
+            if (isExpandable && !isExpand) {
+                if (info.items && info.items.find(function (info_2) {
+                    return location.pathname === info_2.uri;
+                })) {
+                    setIsExpand(true);
+                }
+            }
+        };
+        $[3] = info.items;
+        $[4] = info.uri;
+        $[5] = isExpand;
+        $[6] = isExpandable;
+        $[7] = location.pathname;
+        $[8] = t2;
+    }
+    else {
+        t2 = $[8];
+    }
+    useChange(location.pathname, t2);
+    var t3;
+    if ($[9] !== info.uri || $[10] !== isExpandable || $[11] !== navigate) {
+        t3 = isExpandable ? function () {
+            return setIsExpand(_temp$3);
+        } : function () {
+            return info.uri && navigate(info.uri);
+        };
+        $[9] = info.uri;
+        $[10] = isExpandable;
+        $[11] = navigate;
+        $[12] = t3;
+    }
+    else {
+        t3 = $[12];
+    }
+    var t4 = isExpandable ? false : info.uri === location.pathname;
+    var t5 = isExpandable && isExpand ? expandedBackgroundColor : undefined;
+    var t6;
+    if ($[13] !== t5) {
+        t6 = {
+            backgroundColor: t5
+        };
+        $[13] = t5;
+        $[14] = t6;
+    }
+    else {
+        t6 = $[14];
+    }
+    var t7;
+    if ($[15] !== info.icon) {
+        t7 = info.icon && /*#__PURE__*/ React.createElement(material.Icon, {
+            fontSize: "small"
+        }, info.icon);
+        $[15] = info.icon;
+        $[16] = t7;
+    }
+    else {
+        t7 = $[16];
+    }
+    var t8;
+    if ($[17] !== t7) {
+        t8 = /*#__PURE__*/ React.createElement(StyledListItemIcon, null, t7);
+        $[17] = t7;
+        $[18] = t8;
+    }
+    else {
+        t8 = $[18];
+    }
+    var t9 = info.depth === 1 ? 600 : undefined;
+    var t10;
+    if ($[19] !== t9) {
+        t10 = {
+            primary: {
+                style: {
+                    fontWeight: t9
+                }
+            }
+        };
+        $[19] = t9;
+        $[20] = t10;
+    }
+    else {
+        t10 = $[20];
+    }
+    var t11;
+    if ($[21] !== badgeVariant || $[22] !== info.badge || $[23] !== info.badgeVariant || $[24] !== info.name) {
+        t11 = info.badge ? /*#__PURE__*/ React.createElement(material.Badge, {
             badgeContent: info.badge,
             color: "error",
             variant: badgeVariant !== undefined ? badgeVariant : info.badgeVariant,
             anchorOrigin: {
-              horizontal: "left",
-              vertical: "top"
+                horizontal: "left",
+                vertical: "top"
             },
             slotProps: {
-              badge: {
-                style: {
-                  left: "100%",
-                  top: "50%",
-                  transform: "scale(.8) translate(10px, -50%)"
+                badge: {
+                    style: {
+                        left: "100%",
+                        top: "50%",
+                        transform: "scale(.8) translate(10px, -50%)"
+                    }
                 }
-              }
             }
-          }, /*#__PURE__*/React.createElement("div", null, info.name)) : info.name;
-          $[56] = badgeVariant;
-          $[57] = info.badge;
-          $[58] = info.badgeVariant;
-          $[59] = info.name;
-          $[60] = t14;
-        } else {
-          t14 = $[60];
-        }
-        t11 = /*#__PURE__*/React.createElement(material.ListItemText, t13, t14);
-        $[48] = badgeVariant;
-        $[49] = info.badge;
-        $[50] = info.badgeVariant;
-        $[51] = info.depth;
-        $[52] = info.name;
-        $[53] = t11;
-      } else {
-        t11 = $[53];
-      }
-      var t12;
-      if ($[61] !== isExpand || $[62] !== isExpandable) {
-        t12 = isExpandable && /*#__PURE__*/React.createElement(StyledExpandMore, {
-          sx: {
-            animation: "".concat(isExpand ? "open" : "close", " 0.1s linear"),
-            transform: "rotate(".concat(isExpand ? 180 : 0, "deg)")
-          }
-        });
-        $[61] = isExpand;
-        $[62] = isExpandable;
-        $[63] = t12;
-      } else {
-        t12 = $[63];
-      }
-      t4 = /*#__PURE__*/React.createElement(material.ListItemButton, t9, t10, t11, t12);
-      $[23] = badgeVariant;
-      $[24] = expandedBackgroundColor;
-      $[25] = info.badge;
-      $[26] = info.badgeVariant;
-      $[27] = info.depth;
-      $[28] = info.icon;
-      $[29] = info.name;
-      $[30] = info.uri;
-      $[31] = isExpand;
-      $[32] = isExpandable;
-      $[33] = location.pathname;
-      $[34] = navigate;
-      $[35] = t4;
-    } else {
-      t4 = $[35];
+        }, /*#__PURE__*/ React.createElement("div", null, info.name)) : info.name;
+        $[21] = badgeVariant;
+        $[22] = info.badge;
+        $[23] = info.badgeVariant;
+        $[24] = info.name;
+        $[25] = t11;
     }
-    var t5;
-    if ($[64] !== badgeVariant || $[65] !== expandedBackgroundColor || $[66] !== info.items || $[67] !== isExpand || $[68] !== isExpandable) {
-      t5 = isExpandable && /*#__PURE__*/React.createElement(material.Collapse, {
-        "in": isExpand,
-        style: {
-          backgroundColor: isExpand ? expandedBackgroundColor : undefined
-        }
-      }, info.items && info.items.map(function (subInfo, idx) {
-        return /*#__PURE__*/React.createElement(_SideMenuListItem, {
-          key: idx,
-          badgeVariant: badgeVariant,
-          info: subInfo
-        });
-      }));
-      $[64] = badgeVariant;
-      $[65] = expandedBackgroundColor;
-      $[66] = info.items;
-      $[67] = isExpand;
-      $[68] = isExpandable;
-      $[69] = t5;
-    } else {
-      t5 = $[69];
+    else {
+        t11 = $[25];
     }
-    t3 = /*#__PURE__*/React.createElement(React.Fragment, null, t4, t5);
-    $[9] = badgeVariant;
-    $[10] = expandedBackgroundColor;
-    $[11] = info.badge;
-    $[12] = info.badgeVariant;
-    $[13] = info.depth;
-    $[14] = info.icon;
-    $[15] = info.items;
-    $[16] = info.name;
-    $[17] = info.uri;
-    $[18] = isExpand;
-    $[19] = isExpandable;
-    $[20] = location.pathname;
-    $[21] = navigate;
-    $[22] = t3;
-  } else {
-    t3 = $[22];
-  }
-  return t3;
+    var t12;
+    if ($[26] !== t10 || $[27] !== t11) {
+        t12 = /*#__PURE__*/ React.createElement(material.ListItemText, {
+            slotProps: t10
+        }, t11);
+        $[26] = t10;
+        $[27] = t11;
+        $[28] = t12;
+    }
+    else {
+        t12 = $[28];
+    }
+    var t13;
+    if ($[29] !== isExpand || $[30] !== isExpandable) {
+        t13 = isExpandable && /*#__PURE__*/ React.createElement(StyledExpandMore, {
+            sx: {
+                animation: "".concat(isExpand ? "open" : "close", " 0.1s linear"),
+                transform: "rotate(".concat(isExpand ? 180 : 0, "deg)")
+            }
+        });
+        $[29] = isExpand;
+        $[30] = isExpandable;
+        $[31] = t13;
+    }
+    else {
+        t13 = $[31];
+    }
+    var t14;
+    if ($[32] !== t12 || $[33] !== t13 || $[34] !== t3 || $[35] !== t4 || $[36] !== t6 || $[37] !== t8) {
+        t14 = /*#__PURE__*/ React.createElement(material.ListItemButton, {
+            onClick: t3,
+            selected: t4,
+            style: t6
+        }, t8, t12, t13);
+        $[32] = t12;
+        $[33] = t13;
+        $[34] = t3;
+        $[35] = t4;
+        $[36] = t6;
+        $[37] = t8;
+        $[38] = t14;
+    }
+    else {
+        t14 = $[38];
+    }
+    var t15;
+    if ($[39] !== badgeVariant || $[40] !== expandedBackgroundColor || $[41] !== info.items || $[42] !== isExpand || $[43] !== isExpandable) {
+        t15 = isExpandable && /*#__PURE__*/ React.createElement(material.Collapse, {
+            "in": isExpand,
+            style: {
+                backgroundColor: isExpand ? expandedBackgroundColor : undefined
+            }
+        }, info.items && info.items.map(function (subInfo, idx) {
+            return /*#__PURE__*/ React.createElement(_SideMenuListItem, {
+                key: idx,
+                badgeVariant: badgeVariant,
+                info: subInfo
+            });
+        }));
+        $[39] = badgeVariant;
+        $[40] = expandedBackgroundColor;
+        $[41] = info.items;
+        $[42] = isExpand;
+        $[43] = isExpandable;
+        $[44] = t15;
+    }
+    else {
+        t15 = $[44];
+    }
+    var t16;
+    if ($[45] !== t14 || $[46] !== t15) {
+        t16 = /*#__PURE__*/ React.createElement(React.Fragment, null, t14, t15);
+        $[45] = t14;
+        $[46] = t15;
+        $[47] = t16;
+    }
+    else {
+        t16 = $[47];
+    }
+    return t16;
 };
-function _temp$2(old) {
-  return !old;
+function _temp$3(old) {
+    return !old;
 }var _templateObject$3;
 var StyledList = material.styled(material.List)(_templateObject$3 || (_templateObject$3 = _taggedTemplateLiteral(["\n  padding: 0;\n"])));var SideMenuList = function SideMenuList(t0) {
-  var $ = compilerRuntime.c(5);
-  var list = t0.list,
-    badgeVariant = t0.badgeVariant;
-  var theme = material.useTheme();
-  var t1;
-  if ($[0] !== badgeVariant || $[1] !== list || $[2] !== theme.palette.action.selectedOpacity || $[3] !== theme.palette.primary.main) {
-    var finalList = list.map(_temp2$1);
-    var expandedBackgroundColor = material.alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity / 2);
-    t1 = /*#__PURE__*/React.createElement(StyledList, null, finalList.map(function (info, idx_0) {
-      return /*#__PURE__*/React.createElement(_SideMenuListItem, {
-        key: idx_0,
-        info: info,
-        badgeVariant: badgeVariant,
-        expandedBackgroundColor: expandedBackgroundColor
-      });
-    }));
-    $[0] = badgeVariant;
-    $[1] = list;
-    $[2] = theme.palette.action.selectedOpacity;
-    $[3] = theme.palette.primary.main;
-    $[4] = t1;
-  } else {
-    t1 = $[4];
-  }
-  return t1;
+    var $ = compilerRuntime.c(15);
+    var list = t0.list, badgeVariant = t0.badgeVariant;
+    var theme = material.useTheme();
+    var T0;
+    var t1;
+    if ($[0] !== badgeVariant || $[1] !== list || $[2] !== theme.palette.action.selectedOpacity || $[3] !== theme.palette.primary.main) {
+        var finalList = list.map(_temp2$2);
+        var _t = theme.palette.action.selectedOpacity / 2;
+        var t3;
+        if ($[6] !== _t || $[7] !== theme.palette.primary.main) {
+            t3 = material.alpha(theme.palette.primary.main, _t);
+            $[6] = _t;
+            $[7] = theme.palette.primary.main;
+            $[8] = t3;
+        }
+        else {
+            t3 = $[8];
+        }
+        var expandedBackgroundColor = t3;
+        T0 = StyledList;
+        var t4;
+        if ($[9] !== badgeVariant || $[10] !== expandedBackgroundColor) {
+            t4 = function t4(info, idx_0) {
+                return /*#__PURE__*/ React.createElement(_SideMenuListItem, {
+                    key: idx_0,
+                    info: info,
+                    badgeVariant: badgeVariant,
+                    expandedBackgroundColor: expandedBackgroundColor
+                });
+            };
+            $[9] = badgeVariant;
+            $[10] = expandedBackgroundColor;
+            $[11] = t4;
+        }
+        else {
+            t4 = $[11];
+        }
+        t1 = finalList.map(t4);
+        $[0] = badgeVariant;
+        $[1] = list;
+        $[2] = theme.palette.action.selectedOpacity;
+        $[3] = theme.palette.primary.main;
+        $[4] = T0;
+        $[5] = t1;
+    }
+    else {
+        T0 = $[4];
+        t1 = $[5];
+    }
+    var t2;
+    if ($[12] !== T0 || $[13] !== t1) {
+        t2 = /*#__PURE__*/ React.createElement(T0, null, t1);
+        $[12] = T0;
+        $[13] = t1;
+        $[14] = t2;
+    }
+    else {
+        t2 = $[14];
+    }
+    return t2;
 };
-var SideMenuList$1 = /*#__PURE__*/React.memo(SideMenuList);
-function _temp$1(letter, idx) {
-  return "".concat(idx > 0 ? "_" : "").concat(letter.toLowerCase());
+var SideMenuList$1 = /*#__PURE__*/ React.memo(SideMenuList);
+function _temp$2(letter, idx) {
+    return "".concat(idx > 0 ? "_" : "").concat(letter.toLowerCase());
 }
-function _temp2$1(item) {
-  return Object.assign(Object.assign({}, item), {
-    icon: item.icon ? item.icon.replace(/[A-Z]/g, _temp$1) : undefined
-  });
+function _temp2$2(item) {
+    return _objectSpread2(_objectSpread2({}, item), {}, {
+        icon: item.icon ? item.icon.replace(/[A-Z]/g, _temp$2) : undefined
+    });
 }var _templateObject$2;
 var StyledSimpleBar = material.styled(SimpleBar)(_templateObject$2 || (_templateObject$2 = _taggedTemplateLiteral(["\n  max-height: 100%;\n"])));
 var StyledLogoContainerBox = material.styled(material.Box)(function (_ref) {
-  var theme = _ref.theme;
-  return theme.unstable_sx({
-    borderBottom: 'thin solid #f5f5f5',
-    color: 'text.primary'
-  });
-});var SideMenu = function SideMenu(_ref) {
-  var logo = _ref.logo,
-    badgeVariant = _ref.badgeVariant,
-    list = _ref.list;
-  return /*#__PURE__*/React.createElement(StyledSimpleBar, null, /*#__PURE__*/React.createElement(StyledLogoContainerBox, null, /*#__PURE__*/React.createElement(material.Toolbar, null, logo)), list && /*#__PURE__*/React.createElement(SideMenuList$1, {
-    badgeVariant: badgeVariant,
-    list: list
-  }));
+    var theme = _ref.theme;
+    return theme.unstable_sx({
+        borderBottom: 'thin solid #f5f5f5',
+        color: 'text.primary'
+    });
+});var SideMenu = function SideMenu(t0) {
+    var $ = compilerRuntime.c(8);
+    var logo = t0.logo, badgeVariant = t0.badgeVariant, list = t0.list;
+    var t1;
+    if ($[0] !== logo) {
+        t1 = /*#__PURE__*/ React.createElement(StyledLogoContainerBox, null, /*#__PURE__*/ React.createElement(material.Toolbar, null, logo));
+        $[0] = logo;
+        $[1] = t1;
+    }
+    else {
+        t1 = $[1];
+    }
+    var t2;
+    if ($[2] !== badgeVariant || $[3] !== list) {
+        t2 = list && /*#__PURE__*/ React.createElement(SideMenuList$1, {
+            badgeVariant: badgeVariant,
+            list: list
+        });
+        $[2] = badgeVariant;
+        $[3] = list;
+        $[4] = t2;
+    }
+    else {
+        t2 = $[4];
+    }
+    var t3;
+    if ($[5] !== t1 || $[6] !== t2) {
+        t3 = /*#__PURE__*/ React.createElement(StyledSimpleBar, null, t1, t2);
+        $[5] = t1;
+        $[6] = t2;
+        $[7] = t3;
+    }
+    else {
+        t3 = $[7];
+    }
+    return t3;
 };
-var SideMenu$1 = /*#__PURE__*/React.memo(SideMenu);var _templateObject$1, _templateObject2$1, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
+var SideMenu$1 = /*#__PURE__*/ React.memo(SideMenu);var _templateObject$1, _templateObject2$1, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
 var StyledContainerBox$1 = material.styled(material.Box)(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral(["\n  position: relative;\n"])));
 var StyledHeadContainerBox = material.styled(material.Box)(function (_ref) {
-  var theme = _ref.theme;
-  return theme.unstable_sx({
-    display: {
-      xs: 'none',
-      sm: 'flex'
-    },
-    alignItems: 'center',
-    opacity: 0.5
-  });
+    var theme = _ref.theme;
+    return theme.unstable_sx({
+        display: {
+            xs: 'none',
+            sm: 'flex'
+        },
+        alignItems: 'center',
+        opacity: 0.5
+    });
 });
 var StyledHeadIconContainerBox = material.styled(material.Box)(_templateObject2$1 || (_templateObject2$1 = _taggedTemplateLiteral(["\n  margin-right: 0.25rem;\n  line-height: 0;\n"])));
 var StyledHeadIcon = material.styled(material.Icon)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  font-size: 1rem;\n"])));
 var StyledHeadTitleTypography = material.styled(material.Typography)(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  font-size: 0.7rem;\n"])));
 var StyledTitleContainerDiv = material.styled('div')(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  font-size: 1rem;\n"])));
-var StyledTitleIconContainerDiv = material.styled('div')(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  flex-shrink: 0;\n  display: inline-flex;\n  margin-right: 0.3rem;\n"])));var Title = function Title(_ref) {
-  var title = _ref.title,
-    icon = _ref.icon,
-    headTitle = _ref.headTitle,
-    headIcon = _ref.headIcon;
-  /********************************************************************************************************************
-   * Variable
-   * ******************************************************************************************************************/
-  var finalHeadIcon = headIcon ? headIcon.replace(/[A-Z]/g, function (letter, idx) {
-    return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase());
-  }) : undefined;
-  var finalIcon = icon ? icon.replace(/[A-Z]/g, function (letter, idx) {
-    return "".concat(idx > 0 ? '_' : '').concat(letter.toLowerCase());
-  }) : undefined;
-  /********************************************************************************************************************
-   * Render
-   * ******************************************************************************************************************/
-  return /*#__PURE__*/React.createElement(StyledContainerBox$1, null, headTitle && (/*#__PURE__*/React.createElement(StyledHeadContainerBox, null, finalHeadIcon && (/*#__PURE__*/React.createElement(StyledHeadIconContainerBox, null, /*#__PURE__*/React.createElement(StyledHeadIcon, null, finalHeadIcon))), /*#__PURE__*/React.createElement(StyledHeadTitleTypography, null, headTitle))), /*#__PURE__*/React.createElement(StyledTitleContainerDiv, null, finalIcon && (/*#__PURE__*/React.createElement(StyledTitleIconContainerDiv, null, /*#__PURE__*/React.createElement(material.Icon, {
-    fontSize: 'small'
-  }, finalIcon))), /*#__PURE__*/React.createElement("div", null, title)));
+var StyledTitleIconContainerDiv = material.styled('div')(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  flex-shrink: 0;\n  display: inline-flex;\n  margin-right: 0.3rem;\n"])));var Title = function Title(t0) {
+    var $ = compilerRuntime.c(17);
+    var title = t0.title, icon = t0.icon, headTitle = t0.headTitle, headIcon = t0.headIcon;
+    var t1;
+    if ($[0] !== headIcon) {
+        t1 = headIcon ? headIcon.replace(/[A-Z]/g, _temp$1) : undefined;
+        $[0] = headIcon;
+        $[1] = t1;
+    }
+    else {
+        t1 = $[1];
+    }
+    var finalHeadIcon = t1;
+    var t2;
+    if ($[2] !== icon) {
+        t2 = icon ? icon.replace(/[A-Z]/g, _temp2$1) : undefined;
+        $[2] = icon;
+        $[3] = t2;
+    }
+    else {
+        t2 = $[3];
+    }
+    var finalIcon = t2;
+    var t3;
+    if ($[4] !== finalHeadIcon || $[5] !== headTitle) {
+        t3 = headTitle && /*#__PURE__*/ React.createElement(StyledHeadContainerBox, null, finalHeadIcon && /*#__PURE__*/ React.createElement(StyledHeadIconContainerBox, null, /*#__PURE__*/ React.createElement(StyledHeadIcon, null, finalHeadIcon)), /*#__PURE__*/ React.createElement(StyledHeadTitleTypography, null, headTitle));
+        $[4] = finalHeadIcon;
+        $[5] = headTitle;
+        $[6] = t3;
+    }
+    else {
+        t3 = $[6];
+    }
+    var t4;
+    if ($[7] !== finalIcon) {
+        t4 = finalIcon && /*#__PURE__*/ React.createElement(StyledTitleIconContainerDiv, null, /*#__PURE__*/ React.createElement(material.Icon, {
+            fontSize: "small"
+        }, finalIcon));
+        $[7] = finalIcon;
+        $[8] = t4;
+    }
+    else {
+        t4 = $[8];
+    }
+    var t5;
+    if ($[9] !== title) {
+        t5 = /*#__PURE__*/ React.createElement("div", null, title);
+        $[9] = title;
+        $[10] = t5;
+    }
+    else {
+        t5 = $[10];
+    }
+    var t6;
+    if ($[11] !== t4 || $[12] !== t5) {
+        t6 = /*#__PURE__*/ React.createElement(StyledTitleContainerDiv, null, t4, t5);
+        $[11] = t4;
+        $[12] = t5;
+        $[13] = t6;
+    }
+    else {
+        t6 = $[13];
+    }
+    var t7;
+    if ($[14] !== t3 || $[15] !== t6) {
+        t7 = /*#__PURE__*/ React.createElement(StyledContainerBox$1, null, t3, t6);
+        $[14] = t3;
+        $[15] = t6;
+        $[16] = t7;
+    }
+    else {
+        t7 = $[16];
+    }
+    return t7;
 };
-var Title$1 = /*#__PURE__*/React.memo(Title);var _templateObject, _templateObject2;
+var Title$1 = /*#__PURE__*/ React.memo(Title);
+function _temp$1(letter, idx) {
+    return "".concat(idx > 0 ? "_" : "").concat(letter.toLowerCase());
+}
+function _temp2$1(letter_0, idx_0) {
+    return "".concat(idx_0 > 0 ? "_" : "").concat(letter_0.toLowerCase());
+}var _templateObject, _templateObject2;
 var SIDE_MENU_WIDTH = 220;
 var SCREENS = ['xs', 'sm', 'md', 'lg', 'xl'];
 var _getNextScreen = function _getNextScreen(screen) {
-  if (screen === 'xs') return 'sm';else if (screen === 'sm') return 'md';else if (screen === 'md') return 'lg';else return 'xl';
+    if (screen === 'xs')
+        return 'sm';
+    else if (screen === 'sm')
+        return 'md';
+    else if (screen === 'md')
+        return 'lg';
+    else
+        return 'xl';
 };
 var DefaultLayout = function DefaultLayout(t0) {
-  var $ = compilerRuntime.c(96);
-  var children = t0.children,
-    logo = t0.logo,
-    badgeVariant = t0.badgeVariant,
-    menu = t0.menu,
-    t1 = t0.menuHideScreen,
-    appBarControl = t0.appBarControl;
-  var menuHideScreen = t1 === undefined ? "sm" : t1;
-  var location = reactRouter.useLocation();
-  var getMenuTitles = _temp;
-  var _useState = React.useState(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isMobileOpen = _useState2[0],
-    setIsMobileOpen = _useState2[1];
-  var t2;
-  if ($[0] !== menu) {
-    t2 = getMenuTitles(menu);
-    $[0] = menu;
-    $[1] = t2;
-  } else {
-    t2 = $[1];
-  }
-  var _useState3 = React.useState(t2),
-    _useState4 = _slicedToArray(_useState3, 2),
-    menuTitles_0 = _useState4[0],
-    setMenuTitles = _useState4[1];
-  var t3;
-  if ($[2] === Symbol["for"]("react.memo_cache_sentinel")) {
-    t3 = function t3() {
-      return setIsMobileOpen(false);
-    };
-    $[2] = t3;
-  } else {
-    t3 = $[2];
-  }
-  useChange(location.pathname, t3, true);
-  var t4;
-  if ($[3] !== menu) {
-    t4 = function t4() {
-      return setMenuTitles(getMenuTitles(menu));
-    };
-    $[3] = menu;
-    $[4] = t4;
-  } else {
-    t4 = $[4];
-  }
-  useChange(menu, t4, true);
-  var t5;
-  if ($[5] === Symbol["for"]("react.memo_cache_sentinel")) {
-    t5 = function t5() {
-      setIsMobileOpen(_temp2);
-    };
-    $[5] = t5;
-  } else {
-    t5 = $[5];
-  }
-  var toggleIsMobileOpen = t5;
-  var t6;
-  if ($[6] !== menuHideScreen) {
-    t6 = SCREENS.reduce(function (acc, screen) {
-      if (screen === menuHideScreen) {
-        acc.found = true;
-        acc.display[screen] = "block";
-      } else {
-        acc.display[screen] = acc.found ? "none" : "block";
-      }
-      return acc;
-    }, {
-      found: false,
-      display: {}
-    });
-    $[6] = menuHideScreen;
-    $[7] = t6;
-  } else {
-    t6 = $[7];
-  }
-  var t7;
-  if ($[8] !== t6.display) {
-    t7 = {
-      display: t6.display
-    };
-    $[8] = t6.display;
-    $[9] = t7;
-  } else {
-    t7 = $[9];
-  }
-  var sideMenuTemporaryDrawerSx = t7;
-  var t8;
-  if ($[10] !== menuHideScreen) {
-    t8 = SCREENS.reduce(function (acc_0, screen_0) {
-      if (screen_0 === menuHideScreen) {
-        acc_0.found = true;
-        acc_0.display[screen_0] = "none";
-      } else {
-        acc_0.display[screen_0] = acc_0.found ? "block" : "none";
-      }
-      return acc_0;
-    }, {
-      found: false,
-      display: {}
-    });
-    $[10] = menuHideScreen;
-    $[11] = t8;
-  } else {
-    t8 = $[11];
-  }
-  var t9;
-  if ($[12] !== t8.display) {
-    t9 = {
-      display: t8.display
-    };
-    $[12] = t8.display;
-    $[13] = t9;
-  } else {
-    t9 = $[13];
-  }
-  var sideMenuPermanentDrawerSx = t9;
-  var nextMenuScreen = _getNextScreen(menuHideScreen);
-  var t10;
-  if ($[14] !== nextMenuScreen) {
-    t10 = {
-      width: _defineProperty({}, nextMenuScreen, "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)")),
-      ml: _defineProperty({}, nextMenuScreen, "".concat(SIDE_MENU_WIDTH, "px"))
-    };
-    $[14] = nextMenuScreen;
-    $[15] = t10;
-  } else {
-    t10 = $[15];
-  }
-  var appBarSx = t10;
-  var t11;
-  if ($[16] !== nextMenuScreen) {
-    t11 = {
-      mr: 2,
-      display: _defineProperty({}, nextMenuScreen, "none")
-    };
-    $[16] = nextMenuScreen;
-    $[17] = t11;
-  } else {
-    t11 = $[17];
-  }
-  var appBarIconButtonSx = t11;
-  var t12;
-  if ($[18] !== nextMenuScreen) {
-    t12 = {
-      width: _defineProperty({}, nextMenuScreen, SIDE_MENU_WIDTH),
-      flexShrink: _defineProperty({}, nextMenuScreen, 0)
-    };
-    $[18] = nextMenuScreen;
-    $[19] = t12;
-  } else {
-    t12 = $[19];
-  }
-  var sideMenuContainerBoxSx = t12;
-  var t13;
-  if ($[20] !== nextMenuScreen) {
-    t13 = {
-      width: _defineProperty({}, nextMenuScreen, "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)")),
-      flexGrow: 1,
-      p: 2,
-      display: "flex",
-      flexDirection: "column",
-      minHeight: "100vh"
-    };
-    $[20] = nextMenuScreen;
-    $[21] = t13;
-  } else {
-    t13 = $[21];
-  }
-  var mainBoxSx = t13;
-  var titleData = menuTitles_0[location.pathname];
-  var t14;
-  if ($[22] !== appBarControl || $[23] !== appBarIconButtonSx || $[24] !== appBarSx || $[25] !== badgeVariant || $[26] !== children || $[27] !== isMobileOpen || $[28] !== logo || $[29] !== mainBoxSx || $[30] !== menu || $[31] !== sideMenuContainerBoxSx || $[32] !== sideMenuPermanentDrawerSx || $[33] !== sideMenuTemporaryDrawerSx || $[34] !== titleData) {
-    var t15;
-    if ($[36] !== appBarControl || $[37] !== appBarIconButtonSx || $[38] !== appBarSx || $[39] !== titleData) {
-      var _t;
-      if ($[41] !== appBarSx) {
-        _t = {
-          position: "fixed",
-          elevation: 0,
-          sx: appBarSx
+    var $ = compilerRuntime.c(67);
+    var children = t0.children, logo = t0.logo, badgeVariant = t0.badgeVariant, menu = t0.menu, t1 = t0.menuHideScreen, appBarControl = t0.appBarControl;
+    var menuHideScreen = t1 === undefined ? "sm" : t1;
+    var location = reactRouter.useLocation();
+    var getMenuTitles = _temp;
+    var _useState = React.useState(false), _useState2 = _slicedToArray(_useState, 2), isMobileOpen = _useState2[0], setIsMobileOpen = _useState2[1];
+    var t2;
+    if ($[0] !== menu) {
+        t2 = getMenuTitles(menu);
+        $[0] = menu;
+        $[1] = t2;
+    }
+    else {
+        t2 = $[1];
+    }
+    var _useState3 = React.useState(t2), _useState4 = _slicedToArray(_useState3, 2), menuTitles_0 = _useState4[0], setMenuTitles = _useState4[1];
+    var t3;
+    if ($[2] === Symbol["for"]("react.memo_cache_sentinel")) {
+        t3 = function t3() {
+            return setIsMobileOpen(false);
         };
-        $[41] = appBarSx;
-        $[42] = _t;
-      } else {
-        _t = $[42];
-      }
-      var _t2;
-      if ($[43] !== appBarControl || $[44] !== appBarIconButtonSx || $[45] !== titleData) {
-        var t18;
-        if ($[47] !== appBarIconButtonSx) {
-          var _t3;
-          if ($[49] === Symbol["for"]("react.memo_cache_sentinel")) {
-            _t3 = /*#__PURE__*/React.createElement(iconsMaterial.Menu, null);
-            $[49] = _t3;
-          } else {
-            _t3 = $[49];
-          }
-          t18 = /*#__PURE__*/React.createElement(material.IconButton, {
+        $[2] = t3;
+    }
+    else {
+        t3 = $[2];
+    }
+    useChange(location.pathname, t3, true);
+    var t4;
+    if ($[3] !== menu) {
+        t4 = function t4() {
+            return setMenuTitles(getMenuTitles(menu));
+        };
+        $[3] = menu;
+        $[4] = t4;
+    }
+    else {
+        t4 = $[4];
+    }
+    useChange(menu, t4, true);
+    var t5;
+    if ($[5] === Symbol["for"]("react.memo_cache_sentinel")) {
+        t5 = function t5() {
+            setIsMobileOpen(_temp2);
+        };
+        $[5] = t5;
+    }
+    else {
+        t5 = $[5];
+    }
+    var toggleIsMobileOpen = t5;
+    var t6;
+    if ($[6] !== menuHideScreen) {
+        t6 = SCREENS.reduce(function (acc, screen) {
+            if (screen === menuHideScreen) {
+                acc.found = true;
+                acc.display[screen] = "block";
+            }
+            else {
+                acc.display[screen] = acc.found ? "none" : "block";
+            }
+            return acc;
+        }, {
+            found: false,
+            display: {}
+        });
+        $[6] = menuHideScreen;
+        $[7] = t6;
+    }
+    else {
+        t6 = $[7];
+    }
+    var t7;
+    if ($[8] !== t6.display) {
+        t7 = {
+            display: t6.display
+        };
+        $[8] = t6.display;
+        $[9] = t7;
+    }
+    else {
+        t7 = $[9];
+    }
+    var sideMenuTemporaryDrawerSx = t7;
+    var t8;
+    if ($[10] !== menuHideScreen) {
+        t8 = SCREENS.reduce(function (acc_0, screen_0) {
+            if (screen_0 === menuHideScreen) {
+                acc_0.found = true;
+                acc_0.display[screen_0] = "none";
+            }
+            else {
+                acc_0.display[screen_0] = acc_0.found ? "block" : "none";
+            }
+            return acc_0;
+        }, {
+            found: false,
+            display: {}
+        });
+        $[10] = menuHideScreen;
+        $[11] = t8;
+    }
+    else {
+        t8 = $[11];
+    }
+    var t9;
+    if ($[12] !== t8.display) {
+        t9 = {
+            display: t8.display
+        };
+        $[12] = t8.display;
+        $[13] = t9;
+    }
+    else {
+        t9 = $[13];
+    }
+    var sideMenuPermanentDrawerSx = t9;
+    var nextMenuScreen = _getNextScreen(menuHideScreen);
+    var t10;
+    if ($[14] !== nextMenuScreen) {
+        t10 = {
+            width: _defineProperty({}, nextMenuScreen, "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)")),
+            ml: _defineProperty({}, nextMenuScreen, "".concat(SIDE_MENU_WIDTH, "px"))
+        };
+        $[14] = nextMenuScreen;
+        $[15] = t10;
+    }
+    else {
+        t10 = $[15];
+    }
+    var appBarSx = t10;
+    var t11;
+    if ($[16] !== nextMenuScreen) {
+        t11 = {
+            mr: 2,
+            display: _defineProperty({}, nextMenuScreen, "none")
+        };
+        $[16] = nextMenuScreen;
+        $[17] = t11;
+    }
+    else {
+        t11 = $[17];
+    }
+    var appBarIconButtonSx = t11;
+    var t12;
+    if ($[18] !== nextMenuScreen) {
+        t12 = {
+            width: _defineProperty({}, nextMenuScreen, SIDE_MENU_WIDTH),
+            flexShrink: _defineProperty({}, nextMenuScreen, 0)
+        };
+        $[18] = nextMenuScreen;
+        $[19] = t12;
+    }
+    else {
+        t12 = $[19];
+    }
+    var sideMenuContainerBoxSx = t12;
+    var t13;
+    if ($[20] !== nextMenuScreen) {
+        t13 = {
+            width: _defineProperty({}, nextMenuScreen, "calc(100% - ".concat(SIDE_MENU_WIDTH, "px)")),
+            flexGrow: 1,
+            p: 2,
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh"
+        };
+        $[20] = nextMenuScreen;
+        $[21] = t13;
+    }
+    else {
+        t13 = $[21];
+    }
+    var mainBoxSx = t13;
+    var titleData = menuTitles_0[location.pathname];
+    var t14;
+    if ($[22] === Symbol["for"]("react.memo_cache_sentinel")) {
+        t14 = /*#__PURE__*/ React.createElement(iconsMaterial.Menu, null);
+        $[22] = t14;
+    }
+    else {
+        t14 = $[22];
+    }
+    var t15;
+    if ($[23] !== appBarIconButtonSx) {
+        t15 = /*#__PURE__*/ React.createElement(material.IconButton, {
             color: "inherit",
             "aria-label": "open drawer",
             edge: "start",
             onClick: toggleIsMobileOpen,
             sx: appBarIconButtonSx
-          }, _t3);
-          $[47] = appBarIconButtonSx;
-          $[48] = t18;
-        } else {
-          t18 = $[48];
-        }
-        var t19;
-        if ($[50] !== titleData) {
-          var t20;
-          if ($[52] === Symbol["for"]("react.memo_cache_sentinel")) {
-            t20 = {
-              variant: "h6",
-              noWrap: true,
-              component: "div",
-              sx: {
-                flexGrow: 1
-              }
-            };
-            $[52] = t20;
-          } else {
-            t20 = $[52];
-          }
-          t19 = /*#__PURE__*/React.createElement(material.Typography, t20, titleData && /*#__PURE__*/React.createElement(Title$1, {
+        }, t14);
+        $[23] = appBarIconButtonSx;
+        $[24] = t15;
+    }
+    else {
+        t15 = $[24];
+    }
+    var t16;
+    if ($[25] === Symbol["for"]("react.memo_cache_sentinel")) {
+        t16 = {
+            flexGrow: 1
+        };
+        $[25] = t16;
+    }
+    else {
+        t16 = $[25];
+    }
+    var t17;
+    if ($[26] !== titleData) {
+        t17 = titleData && /*#__PURE__*/ React.createElement(Title$1, {
             title: titleData.name,
             icon: titleData.icon,
             headTitle: titleData.parentName,
             headIcon: titleData.parentIcon
-          }));
-          $[50] = titleData;
-          $[51] = t19;
-        } else {
-          t19 = $[51];
-        }
-        _t2 = /*#__PURE__*/React.createElement(material.Toolbar, null, t18, t19, appBarControl);
-        $[43] = appBarControl;
-        $[44] = appBarIconButtonSx;
-        $[45] = titleData;
-        $[46] = _t2;
-      } else {
-        _t2 = $[46];
-      }
-      t15 = /*#__PURE__*/React.createElement(StyledAppBar, _t, _t2);
-      $[36] = appBarControl;
-      $[37] = appBarIconButtonSx;
-      $[38] = appBarSx;
-      $[39] = titleData;
-      $[40] = t15;
-    } else {
-      t15 = $[40];
+        });
+        $[26] = titleData;
+        $[27] = t17;
     }
-    var t16;
-    if ($[53] !== badgeVariant || $[54] !== isMobileOpen || $[55] !== logo || $[56] !== menu || $[57] !== sideMenuContainerBoxSx || $[58] !== sideMenuPermanentDrawerSx || $[59] !== sideMenuTemporaryDrawerSx) {
-      var _t4;
-      if ($[61] !== sideMenuContainerBoxSx) {
-        _t4 = {
-          component: "nav",
-          "aria-label": "mailbox folders",
-          sx: sideMenuContainerBoxSx
-        };
-        $[61] = sideMenuContainerBoxSx;
-        $[62] = _t4;
-      } else {
-        _t4 = $[62];
-      }
-      var _t5;
-      if ($[63] !== badgeVariant || $[64] !== isMobileOpen || $[65] !== logo || $[66] !== menu || $[67] !== sideMenuTemporaryDrawerSx) {
-        var _t6;
-        if ($[69] === Symbol["for"]("react.memo_cache_sentinel")) {
-          _t6 = {
+    else {
+        t17 = $[27];
+    }
+    var t18;
+    if ($[28] !== t17) {
+        t18 = /*#__PURE__*/ React.createElement(material.Typography, {
+            variant: "h6",
+            noWrap: true,
+            component: "div",
+            sx: t16
+        }, t17);
+        $[28] = t17;
+        $[29] = t18;
+    }
+    else {
+        t18 = $[29];
+    }
+    var t19;
+    if ($[30] !== appBarControl || $[31] !== t15 || $[32] !== t18) {
+        t19 = /*#__PURE__*/ React.createElement(material.Toolbar, null, t15, t18, appBarControl);
+        $[30] = appBarControl;
+        $[31] = t15;
+        $[32] = t18;
+        $[33] = t19;
+    }
+    else {
+        t19 = $[33];
+    }
+    var t20;
+    if ($[34] !== appBarSx || $[35] !== t19) {
+        t20 = /*#__PURE__*/ React.createElement(StyledAppBar, {
+            position: "fixed",
+            elevation: 0,
+            sx: appBarSx
+        }, t19);
+        $[34] = appBarSx;
+        $[35] = t19;
+        $[36] = t20;
+    }
+    else {
+        t20 = $[36];
+    }
+    var t21;
+    if ($[37] === Symbol["for"]("react.memo_cache_sentinel")) {
+        t21 = {
             keepMounted: true
-          };
-          $[69] = _t6;
-        } else {
-          _t6 = $[69];
-        }
-        var _t7;
-        if ($[70] !== isMobileOpen || $[71] !== sideMenuTemporaryDrawerSx) {
-          _t7 = {
+        };
+        $[37] = t21;
+    }
+    else {
+        t21 = $[37];
+    }
+    var t22;
+    if ($[38] !== badgeVariant || $[39] !== logo || $[40] !== menu) {
+        t22 = menu && /*#__PURE__*/ React.createElement(SideMenu$1, {
+            logo: logo,
+            badgeVariant: badgeVariant,
+            list: menu
+        });
+        $[38] = badgeVariant;
+        $[39] = logo;
+        $[40] = menu;
+        $[41] = t22;
+    }
+    else {
+        t22 = $[41];
+    }
+    var t23;
+    if ($[42] !== isMobileOpen || $[43] !== sideMenuTemporaryDrawerSx || $[44] !== t22) {
+        t23 = /*#__PURE__*/ React.createElement(StyledSideMenuTemporaryDrawer, {
             variant: "temporary",
             open: isMobileOpen,
             onClose: toggleIsMobileOpen,
             sx: sideMenuTemporaryDrawerSx,
-            ModalProps: _t6
-          };
-          $[70] = isMobileOpen;
-          $[71] = sideMenuTemporaryDrawerSx;
-          $[72] = _t7;
-        } else {
-          _t7 = $[72];
-        }
-        var t21;
-        if ($[73] !== badgeVariant || $[74] !== logo || $[75] !== menu) {
-          t21 = menu && /*#__PURE__*/React.createElement(SideMenu$1, {
+            ModalProps: t21
+        }, t22);
+        $[42] = isMobileOpen;
+        $[43] = sideMenuTemporaryDrawerSx;
+        $[44] = t22;
+        $[45] = t23;
+    }
+    else {
+        t23 = $[45];
+    }
+    var t24;
+    if ($[46] !== badgeVariant || $[47] !== logo || $[48] !== menu) {
+        t24 = menu && /*#__PURE__*/ React.createElement(SideMenu$1, {
             logo: logo,
             badgeVariant: badgeVariant,
             list: menu
-          });
-          $[73] = badgeVariant;
-          $[74] = logo;
-          $[75] = menu;
-          $[76] = t21;
-        } else {
-          t21 = $[76];
-        }
-        _t5 = /*#__PURE__*/React.createElement(StyledSideMenuTemporaryDrawer, _t7, t21);
-        $[63] = badgeVariant;
-        $[64] = isMobileOpen;
-        $[65] = logo;
-        $[66] = menu;
-        $[67] = sideMenuTemporaryDrawerSx;
-        $[68] = _t5;
-      } else {
-        _t5 = $[68];
-      }
-      var _t8;
-      if ($[77] !== badgeVariant || $[78] !== logo || $[79] !== menu || $[80] !== sideMenuPermanentDrawerSx) {
-        var _t9;
-        if ($[82] !== sideMenuPermanentDrawerSx) {
-          _t9 = {
+        });
+        $[46] = badgeVariant;
+        $[47] = logo;
+        $[48] = menu;
+        $[49] = t24;
+    }
+    else {
+        t24 = $[49];
+    }
+    var t25;
+    if ($[50] !== sideMenuPermanentDrawerSx || $[51] !== t24) {
+        t25 = /*#__PURE__*/ React.createElement(StyledSideMenuPermanentDrawer, {
             variant: "permanent",
             open: true,
             sx: sideMenuPermanentDrawerSx
-          };
-          $[82] = sideMenuPermanentDrawerSx;
-          $[83] = _t9;
-        } else {
-          _t9 = $[83];
-        }
-        var _t0;
-        if ($[84] !== badgeVariant || $[85] !== logo || $[86] !== menu) {
-          _t0 = menu && /*#__PURE__*/React.createElement(SideMenu$1, {
-            logo: logo,
-            badgeVariant: badgeVariant,
-            list: menu
-          });
-          $[84] = badgeVariant;
-          $[85] = logo;
-          $[86] = menu;
-          $[87] = _t0;
-        } else {
-          _t0 = $[87];
-        }
-        _t8 = /*#__PURE__*/React.createElement(StyledSideMenuPermanentDrawer, _t9, _t0);
-        $[77] = badgeVariant;
-        $[78] = logo;
-        $[79] = menu;
-        $[80] = sideMenuPermanentDrawerSx;
-        $[81] = _t8;
-      } else {
-        _t8 = $[81];
-      }
-      t16 = /*#__PURE__*/React.createElement(material.Box, _t4, _t5, _t8);
-      $[53] = badgeVariant;
-      $[54] = isMobileOpen;
-      $[55] = logo;
-      $[56] = menu;
-      $[57] = sideMenuContainerBoxSx;
-      $[58] = sideMenuPermanentDrawerSx;
-      $[59] = sideMenuTemporaryDrawerSx;
-      $[60] = t16;
-    } else {
-      t16 = $[60];
+        }, t24);
+        $[50] = sideMenuPermanentDrawerSx;
+        $[51] = t24;
+        $[52] = t25;
     }
-    var t17;
-    if ($[88] !== children || $[89] !== mainBoxSx) {
-      var _t1;
-      if ($[91] !== mainBoxSx) {
-        _t1 = {
-          component: "main",
-          sx: mainBoxSx
-        };
-        $[91] = mainBoxSx;
-        $[92] = _t1;
-      } else {
-        _t1 = $[92];
-      }
-      var _t10;
-      if ($[93] === Symbol["for"]("react.memo_cache_sentinel")) {
-        _t10 = /*#__PURE__*/React.createElement(material.Toolbar, null);
-        $[93] = _t10;
-      } else {
-        _t10 = $[93];
-      }
-      var _t11;
-      if ($[94] !== children) {
-        _t11 = /*#__PURE__*/React.createElement(StyledMainContentDiv, null, children);
-        $[94] = children;
-        $[95] = _t11;
-      } else {
-        _t11 = $[95];
-      }
-      t17 = /*#__PURE__*/React.createElement(material.Box, _t1, _t10, _t11);
-      $[88] = children;
-      $[89] = mainBoxSx;
-      $[90] = t17;
-    } else {
-      t17 = $[90];
+    else {
+        t25 = $[52];
     }
-    t14 = /*#__PURE__*/React.createElement(StyledContainerBox, null, t15, t16, t17);
-    $[22] = appBarControl;
-    $[23] = appBarIconButtonSx;
-    $[24] = appBarSx;
-    $[25] = badgeVariant;
-    $[26] = children;
-    $[27] = isMobileOpen;
-    $[28] = logo;
-    $[29] = mainBoxSx;
-    $[30] = menu;
-    $[31] = sideMenuContainerBoxSx;
-    $[32] = sideMenuPermanentDrawerSx;
-    $[33] = sideMenuTemporaryDrawerSx;
-    $[34] = titleData;
-    $[35] = t14;
-  } else {
-    t14 = $[35];
-  }
-  return t14;
+    var t26;
+    if ($[53] !== sideMenuContainerBoxSx || $[54] !== t23 || $[55] !== t25) {
+        t26 = /*#__PURE__*/ React.createElement(material.Box, {
+            component: "nav",
+            "aria-label": "mailbox folders",
+            sx: sideMenuContainerBoxSx
+        }, t23, t25);
+        $[53] = sideMenuContainerBoxSx;
+        $[54] = t23;
+        $[55] = t25;
+        $[56] = t26;
+    }
+    else {
+        t26 = $[56];
+    }
+    var t27;
+    if ($[57] === Symbol["for"]("react.memo_cache_sentinel")) {
+        t27 = /*#__PURE__*/ React.createElement(material.Toolbar, null);
+        $[57] = t27;
+    }
+    else {
+        t27 = $[57];
+    }
+    var t28;
+    if ($[58] !== children) {
+        t28 = /*#__PURE__*/ React.createElement(StyledMainContentDiv, null, children);
+        $[58] = children;
+        $[59] = t28;
+    }
+    else {
+        t28 = $[59];
+    }
+    var t29;
+    if ($[60] !== mainBoxSx || $[61] !== t28) {
+        t29 = /*#__PURE__*/ React.createElement(material.Box, {
+            component: "main",
+            sx: mainBoxSx
+        }, t27, t28);
+        $[60] = mainBoxSx;
+        $[61] = t28;
+        $[62] = t29;
+    }
+    else {
+        t29 = $[62];
+    }
+    var t30;
+    if ($[63] !== t20 || $[64] !== t26 || $[65] !== t29) {
+        t30 = /*#__PURE__*/ React.createElement(StyledContainerBox, null, t20, t26, t29);
+        $[63] = t20;
+        $[64] = t26;
+        $[65] = t29;
+        $[66] = t30;
+    }
+    else {
+        t30 = $[66];
+    }
+    return t30;
 };
+/********************************************************************************************************************
+ * Types
+ * ******************************************************************************************************************/
 /********************************************************************************************************************
  * Styled Components
  * ******************************************************************************************************************/
 var StyledContainerBox = material.styled(material.Box)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  height: 100%;\n"])));
 var StyledAppBar = material.styled(material.AppBar)(function (_ref) {
-  var theme = _ref.theme;
-  return theme.unstable_sx({
-    backdropFilter: 'blur(20px)',
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
-    color: 'text.primary',
-    borderBottom: 'thin solid #f5f5f5'
-  });
+    var theme = _ref.theme;
+    return theme.unstable_sx({
+        backdropFilter: 'blur(20px)',
+        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+        color: 'text.primary',
+        borderBottom: 'thin solid #f5f5f5'
+    });
 });
 var StyledSideMenuTemporaryDrawer = material.styled(material.Drawer)(function (_ref2) {
-  var theme = _ref2.theme;
-  return theme.unstable_sx({
-    '& .MuiDrawer-paper': {
-      boxSizing: 'border-box',
-      width: SIDE_MENU_WIDTH
-    }
-  });
+    var theme = _ref2.theme;
+    return theme.unstable_sx({
+        '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: SIDE_MENU_WIDTH
+        }
+    });
 });
 var StyledSideMenuPermanentDrawer = material.styled(material.Drawer)(function (_ref3) {
-  var theme = _ref3.theme;
-  return theme.unstable_sx({
-    '& .MuiDrawer-paper': {
-      boxSizing: 'border-box',
-      width: SIDE_MENU_WIDTH
-    }
-  });
+    var theme = _ref3.theme;
+    return theme.unstable_sx({
+        '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: SIDE_MENU_WIDTH
+        }
+    });
 });
 var StyledMainContentDiv = material.styled('div')(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n"])));
 function _temp(m) {
-  var menuTitles = {};
-  if (m) {
-    m.forEach(function (info) {
-      if ((info.uri == null || info.uri === "") && info.items && info.items.length > 0) {
-        info.items.map(function (subInfo) {
-          menuTitles[subInfo.uri] = {
-            name: subInfo.name,
-            parentName: info.name,
-            parentIcon: info.icon
-          };
+    var menuTitles = {};
+    if (m) {
+        m.forEach(function (info) {
+            if ((info.uri == null || info.uri === "") && info.items && info.items.length > 0) {
+                info.items.map(function (subInfo) {
+                    menuTitles[subInfo.uri] = {
+                        name: subInfo.name,
+                        parentName: info.name,
+                        parentIcon: info.icon
+                    };
+                });
+            }
+            else {
+                if (info.uri) {
+                    menuTitles[info.uri] = {
+                        name: info.name,
+                        icon: info.icon
+                    };
+                }
+            }
         });
-      } else {
-        if (info.uri) {
-          menuTitles[info.uri] = {
-            name: info.name,
-            icon: info.icon
-          };
-        }
-      }
-    });
-  }
-  return menuTitles;
+    }
+    return menuTitles;
 }
 function _temp2(isMobileOpen_0) {
-  return !isMobileOpen_0;
+    return !isMobileOpen_0;
 }exports.CardLayout=CardLayout;exports.DefaultLayout=DefaultLayout;
