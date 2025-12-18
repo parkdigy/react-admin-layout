@@ -1,1 +1,1 @@
-export declare var useChange: (value: any, callback: any, t0: any) => void;
+export declare const useChange: (value: any, callback: () => void, skipFirst?: boolean) => void;
