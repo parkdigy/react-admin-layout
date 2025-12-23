@@ -42,4 +42,4 @@ const SideMenuList = ({ list, badgeVariant }: SideMenuListProps) => {
   );
 };
 
-export default React.memo(SideMenuList);
+export default SideMenuList;

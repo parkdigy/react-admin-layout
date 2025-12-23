@@ -39,7 +39,7 @@ export const theme = createTheme({
   },
 });
 
-const ThemeBase: React.FC<{ children: ReactNode }> = ({ children }) => {
+const ThemeBase = ({ children }: { children: ReactNode }) => {
   return (
     <ThemeProvider theme={theme}>
       <>

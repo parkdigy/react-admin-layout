@@ -2,7 +2,7 @@ import React from 'react';
 import { CardHeader, CardContent, CardActions, Button, Grid, Card } from '@mui/material';
 import { Box, TextField } from '@mui/material';
 
-const SignIn: React.FC = () => {
+const SignIn = () => {
   return (
     <Card sx={{ width: { xs: 300, sm: 400 } }}>
       <CardHeader title='Login' subheader='로그인' />

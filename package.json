@@ -2,7 +2,7 @@
   "name": "@pdg/react-admin-layout",
   "title": "React Admin Layout",
   "description": "Admin Layout for React",
-  "version": "1.0.55",
+  "version": "1.0.56",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",

@@ -431,7 +431,6 @@ var StyledList = material.styled(material.List)(_templateObject$3 || (_templateO
   }
   return t2;
 };
-var SideMenuList$1 = /*#__PURE__*/React.memo(SideMenuList);
 function _temp$2(letter, idx) {
   return "".concat(idx > 0 ? "_" : "").concat(letter.toLowerCase());
 }
@@ -462,7 +461,7 @@ var StyledLogoContainerBox = material.styled(material.Box)(function (_ref) {
   }
   var t2;
   if ($[2] !== badgeVariant || $[3] !== list) {
-    t2 = list && /*#__PURE__*/React.createElement(SideMenuList$1, {
+    t2 = list && /*#__PURE__*/React.createElement(SideMenuList, {
       badgeVariant: badgeVariant,
       list: list
     });
@@ -482,8 +481,7 @@ var StyledLogoContainerBox = material.styled(material.Box)(function (_ref) {
     t3 = $[7];
   }
   return t3;
-};
-var SideMenu$1 = /*#__PURE__*/React.memo(SideMenu);var _templateObject$1, _templateObject2$1, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
+};var _templateObject$1, _templateObject2$1, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
 var StyledContainerBox$1 = material.styled(material.Box)(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral(["\n  position: relative;\n"])));
 var StyledHeadContainerBox = material.styled(material.Box)(function (_ref) {
   var theme = _ref.theme;
@@ -571,7 +569,6 @@ var StyledTitleIconContainerDiv = material.styled('div')(_templateObject6 || (_t
   }
   return t7;
 };
-var Title$1 = /*#__PURE__*/React.memo(Title);
 function _temp$1(letter, idx) {
   return "".concat(idx > 0 ? "_" : "").concat(letter.toLowerCase());
 }
@@ -787,7 +784,7 @@ var DefaultLayout = function DefaultLayout(t0) {
   }
   var t17;
   if ($[26] !== titleData) {
-    t17 = titleData && /*#__PURE__*/React.createElement(Title$1, {
+    t17 = titleData && /*#__PURE__*/React.createElement(Title, {
       title: titleData.name,
       icon: titleData.icon,
       headTitle: titleData.parentName,
@@ -845,7 +842,7 @@ var DefaultLayout = function DefaultLayout(t0) {
   }
   var t22;
   if ($[38] !== badgeVariant || $[39] !== logo || $[40] !== menu) {
-    t22 = menu && /*#__PURE__*/React.createElement(SideMenu$1, {
+    t22 = menu && /*#__PURE__*/React.createElement(SideMenu, {
       logo: logo,
       badgeVariant: badgeVariant,
       list: menu
@@ -875,7 +872,7 @@ var DefaultLayout = function DefaultLayout(t0) {
   }
   var t24;
   if ($[46] !== badgeVariant || $[47] !== logo || $[48] !== menu) {
-    t24 = menu && /*#__PURE__*/React.createElement(SideMenu$1, {
+    t24 = menu && /*#__PURE__*/React.createElement(SideMenu, {
       logo: logo,
       badgeVariant: badgeVariant,
       list: menu

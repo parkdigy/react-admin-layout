@@ -58,4 +58,4 @@ const Title = ({ title, icon, headTitle, headIcon }: TitleProps) => {
   );
 };
 
-export default React.memo(Title);
+export default Title;

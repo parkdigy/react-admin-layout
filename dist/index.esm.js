@@ -372,7 +372,7 @@ var StyledListItemIcon = styled(ListItemIcon)(_templateObject2$2 || (_templateOb
 function _temp$3(old) {
   return !old;
 }var _templateObject$3;
-var StyledList = styled(List)(_templateObject$3 || (_templateObject$3 = _taggedTemplateLiteral(["\n  padding: 0;\n"])));var SideMenuList$1 = function SideMenuList(t0) {
+var StyledList = styled(List)(_templateObject$3 || (_templateObject$3 = _taggedTemplateLiteral(["\n  padding: 0;\n"])));var SideMenuList = function SideMenuList(t0) {
   var $ = c(15);
   var list = t0.list,
     badgeVariant = t0.badgeVariant;
@@ -431,7 +431,6 @@ var StyledList = styled(List)(_templateObject$3 || (_templateObject$3 = _taggedT
   }
   return t2;
 };
-var SideMenuList = /*#__PURE__*/React.memo(SideMenuList$1);
 function _temp$2(letter, idx) {
   return "".concat(idx > 0 ? "_" : "").concat(letter.toLowerCase());
 }
@@ -447,7 +446,7 @@ var StyledLogoContainerBox = styled(Box)(function (_ref) {
     borderBottom: 'thin solid #f5f5f5',
     color: 'text.primary'
   });
-});var SideMenu$1 = function SideMenu(t0) {
+});var SideMenu = function SideMenu(t0) {
   var $ = c(8);
   var logo = t0.logo,
     badgeVariant = t0.badgeVariant,
@@ -482,8 +481,7 @@ var StyledLogoContainerBox = styled(Box)(function (_ref) {
     t3 = $[7];
   }
   return t3;
-};
-var SideMenu = /*#__PURE__*/React.memo(SideMenu$1);var _templateObject$1, _templateObject2$1, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
+};var _templateObject$1, _templateObject2$1, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
 var StyledContainerBox$1 = styled(Box)(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral(["\n  position: relative;\n"])));
 var StyledHeadContainerBox = styled(Box)(function (_ref) {
   var theme = _ref.theme;
@@ -500,7 +498,7 @@ var StyledHeadIconContainerBox = styled(Box)(_templateObject2$1 || (_templateObj
 var StyledHeadIcon = styled(Icon)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  font-size: 1rem;\n"])));
 var StyledHeadTitleTypography = styled(Typography)(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  font-size: 0.7rem;\n"])));
 var StyledTitleContainerDiv = styled('div')(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  font-size: 1rem;\n"])));
-var StyledTitleIconContainerDiv = styled('div')(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  flex-shrink: 0;\n  display: inline-flex;\n  margin-right: 0.3rem;\n"])));var Title$1 = function Title(t0) {
+var StyledTitleIconContainerDiv = styled('div')(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  flex-shrink: 0;\n  display: inline-flex;\n  margin-right: 0.3rem;\n"])));var Title = function Title(t0) {
   var $ = c(17);
   var title = t0.title,
     icon = t0.icon,
@@ -571,7 +569,6 @@ var StyledTitleIconContainerDiv = styled('div')(_templateObject6 || (_templateOb
   }
   return t7;
 };
-var Title = /*#__PURE__*/React.memo(Title$1);
 function _temp$1(letter, idx) {
   return "".concat(idx > 0 ? "_" : "").concat(letter.toLowerCase());
 }

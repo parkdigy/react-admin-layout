@@ -15,4 +15,4 @@ const SideMenu = ({ logo, badgeVariant, list }: SideMenuProps) => {
   );
 };
 
-export default React.memo(SideMenu);
+export default SideMenu;
