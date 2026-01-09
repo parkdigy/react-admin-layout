@@ -1,6 +1,6 @@
 import React from 'react';
 import SideMenuListItem from '../SideMenuListItem.private';
-import { SideMenuListProps } from './SideMenuList.types';
+import { type SideMenuListProps } from './SideMenuList.types';
 import { StyledList } from './SideMenuList.style';
 import { alpha, useTheme } from '@mui/material';
 

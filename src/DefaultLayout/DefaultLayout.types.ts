@@ -1,7 +1,7 @@
-import { CSSProperties, ReactNode } from 'react';
-import { BadgeProps } from '@mui/material';
-import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material/styles';
+import { type CSSProperties, type ReactNode } from 'react';
+import { type BadgeProps } from '@mui/material';
+import { type SxProps } from '@mui/system';
+import { type Theme } from '@mui/material/styles';
 
 export interface SubMenuItem {
   id: string;

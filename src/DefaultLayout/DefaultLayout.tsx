@@ -4,7 +4,7 @@ import { useLocation } from 'react-router';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import SideMenu from './SideMenu.private';
 import Title from './Title.private';
-import { DefaultLayoutProps as Props, MenuItem } from './DefaultLayout.types';
+import { type DefaultLayoutProps as Props, type MenuItem } from './DefaultLayout.types';
 import { useChange } from '../@common';
 
 const SIDE_MENU_WIDTH = 220;

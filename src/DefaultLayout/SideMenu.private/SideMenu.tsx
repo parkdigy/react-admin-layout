@@ -1,7 +1,7 @@
 import React from 'react';
 import { Toolbar } from '@mui/material';
 import SideMenuList from '../SideMenuList.private';
-import { SideMenuProps } from './SideMenu.types';
+import { type SideMenuProps } from './SideMenu.types';
 import { StyledLogoContainerBox, StyledSimpleBar } from './SideMenu.style';
 
 const SideMenu = ({ logo, badgeVariant, list }: SideMenuProps) => {

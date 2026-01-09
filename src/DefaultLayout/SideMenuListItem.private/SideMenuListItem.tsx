@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ListItemButton, Icon, ListItemText, Badge, Collapse } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router';
-import { SideMenuListItemProps } from './SideMenuListItem.types';
+import { type SideMenuListItemProps } from './SideMenuListItem.types';
 import { StyledExpandMore, StyledListItemIcon } from './SideMenuListItem.style';
 import { useChange } from '../../@common';
 
