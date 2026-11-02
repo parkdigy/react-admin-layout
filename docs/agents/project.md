@@ -26,7 +26,7 @@
 
 Rollup은 빌드 시작 시 `dist/*`를 정리하며 `.private` 디렉터리와 `.private.d.ts` 파일을 선언 결과에서 제거한다. 공개 선언이 삭제된 타입을 참조하지 않는지 확인한다. 라이브러리와 예제 모두 TypeScript의 `moduleResolution: bundler`를 사용한다. 예제의 `@comp` 경로는 예제 TypeScript 및 Rspack 설정에서 해석한다.
 
-루트 Babel은 Rollup 플러그인의 peer 범위 때문에 7.x를 사용한다. ESLint는 `@rollup/plugin-eslint`, `eslint-plugin-react` 및 예제의 `eslint-plugin-jsx-a11y` peer 범위에 맞춰 9.x이고, TypeScript는 `typescript-eslint`와 `ts-jest` 범위에 맞춰 6.x다. 의존성을 변경할 때 현재 peer 범위를 다시 확인한다.
+루트 Babel은 Rollup 플러그인의 peer 범위 때문에 7.x를 사용한다. ESLint는 `@rollup/plugin-eslint`와 `eslint-plugin-react`의 peer 범위에 맞춰 9.x이고, TypeScript는 `typescript-eslint`와 `ts-jest` 범위에 맞춰 6.x다. 의존성을 변경할 때 현재 peer 범위를 다시 확인한다.
 
 ## 명령 안내
 
