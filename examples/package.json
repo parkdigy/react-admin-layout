@@ -29,12 +29,10 @@
     "@eslint/js": "^9.39.5",
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.0",
     "@rspack/cli": "^2.3.0",
     "@rspack/core": "^2.3.0",
     "@rspack/dev-server": "^2.2.2",
     "@rspack/plugin-react-refresh": "^2.0.2",
-    "@soda/friendly-errors-webpack-plugin": "^1.8.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
@@ -71,9 +69,6 @@
     "tsx": "4.23.15",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.72.1",
-    "url-loader": "^4.1.1",
-    "webpack": "^5.99.9",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.1"
+    "url-loader": "^4.1.1"
   }
 }
